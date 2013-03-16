@@ -80,14 +80,14 @@ header h2 {
   padding-top: 20px;
 }
 
-code, pre {
+code, pre, kbd {
   font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal;
   color: #222;
   margin-bottom: 30px;
   font-size: 12px;
 }
 
-code {
+code, kbd {
   padding: 0 3px;
 }
 

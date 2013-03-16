@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <meta charset='utf-8'/>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1"/>
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'/>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
@@ -19,54 +19,65 @@
 
         <header>
           <h1>company-mode</h1>
-          <h2></h2>
+          <h2>Modular in-buffer completion framework for Emacs</h2>
         </header>
-
-        <section id="downloads" class="clearfix">
-          <a href="https://github.com/company-mode/company-mode" id="view-on-github" class="button"><span>View on GitHub</span></a>
-        </section>
 
         <hr>
 
         <section id="main_content">
-          <h1>Company Mode</h1>
-
 <h2>About</h2>
 
-<p>Company is an Emacs extension for performing text completion.</p>
+<p>Company stands for "complete anything". It uses pluggable back-ends
+  and front-ends to retrieve and display completion candidates.</p>
 
-<p>Completion candidates are retrieved from a variety of back-ends, such as
-<code>abbrev</code>, <code>Semantic</code>, <code>Eclim</code>, <code>etags</code>, etc.</p>
+<p>It comes with several back-ends such as <code>Elisp</code>,
+  <code>Semantic</code>, <code>Eclim</code>, <code>Clang</code>,
+  <code>Ropemacs</code>, <code>Ispell</code>, <code>abbrev</code>,
+  <code>etags</code>, <code>keywords</code> and others.</p>
 
 <h2>Screenshots</h2>
 
-<p><a href="https://raw.github.com/company-mode/company-mode/master/screenshots/company-elisp.png"><img src="https://raw.github.com/company-mode/company-mode/master/screenshots/company-elisp.png" alt="company-elisp" width="256"></a>
-<a href="https://raw.github.com/company-mode/company-mode/master/screenshots/company-cpp.png"><img src="https://raw.github.com/company-mode/company-mode/master/screenshots/company-cpp.png" alt="company-cpp" width="256"></a></p>
+<p>
+  <a href="https://raw.github.com/company-mode/company-mode/master/screenshots/company-elisp.png">
+    <img src="https://raw.github.com/company-mode/company-mode/master/screenshots/company-elisp.png"
+         alt="company-elisp" width="256"></a>
+  <a href="https://raw.github.com/company-mode/company-mode/master/screenshots/company-cpp.png">
+    <img src="https://raw.github.com/company-mode/company-mode/master/screenshots/company-cpp.png"
+         alt="company-cpp" width="256"></a>
+</p>
 
 <h2>Installation</h2>
 
 <p>This package is part of <a href="http://elpa.gnu.org/">GNU ELPA</a> (<kbd>M-x
 list-packages</kbd>).</p>
 
+<p>Advanced users can also download the <a href="https://github.com/company-mode/company-mode/zipball/master">development snapshot</a>.</p>
+
 <h2>Usage</h2>
 
 <p>Once installed, enable <code>company-mode</code> with <kbd>M-x company-mode</kbd>.</p>
 
 <p>Completion will start automatically after you type a few letters. Use
-<kbd>M-n</kbd>, <kbd>M-p</kbd>, <kbd>&lt;tab&gt;</kbd> and <kbd>&lt;return&gt;</kbd> to
-complete. Search through the completions with <kbd>C-s</kbd>, <kbd>C-r</kbd> and
-<kbd>C-o</kbd>.</p>
+  <kbd>M-n</kbd>, <kbd>M-p</kbd>, <kbd>&lt;tab&gt;</kbd>
+  and <kbd>&lt;return&gt;</kbd> to complete. Search through the
+  completions with <kbd>C-s</kbd>, <kbd>C-r</kbd> and
+  <kbd>C-o</kbd>.</p>
 
-<p>To use <code>company-mode</code> in all buffers, add the following to your init file:</p>
+<p>Type <kbd>M-x company-complete</kbd> to initiate completion
+  manually. Bind this command to a key combination of your choice.</p>
+
+<p>To use <code>company-mode</code> in all buffers, add the following
+  line to your init file:</p>
 
 <pre><code>(global-company-mode)
 </code></pre>
 
-<p>To set up preferred back-ends, customize <code>company-backends</code>.</p>
+<p>To see and change the list of enabled back-ends, press <kbd>M-x
+    customize-variable RET company-backends</kbd>. Also see its
+  description for information on writing a back-end.</p>
 
-<p>Also see this variable's docstring for information on writing a back-end.</p>
-
-<p>For more information, see the docstring for <code>company-mode</code>.</p>
+<p>For more information, press <kbd>M-x describe-function RET
+    company-mode</kbd>.</p>
 
 <h2>Feedback</h2>
 
