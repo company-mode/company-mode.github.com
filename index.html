@@ -74,7 +74,7 @@ list-packages</kbd>).</p>
 <p>To use <code>company-mode</code> in all buffers, add the following
   line to your init file:</p>
 
-<pre><code>(global-company-mode)
+<pre><code>(add-hook 'after-init-hook 'global-company-mode)
 </code></pre>
 
 <p>To see or change the list of enabled back-ends, type <kbd>M-x
