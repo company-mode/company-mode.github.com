@@ -288,8 +288,8 @@ p a {
 }
 
 .screenshots img {
-  box-shadow: 0px 0px 20px 0px #000000;
-  margin-right: 45px;
+  box-shadow: 0px 0px 10px 0px #000;
+  margin-right: 25px;
 }
 
 blockquote {
