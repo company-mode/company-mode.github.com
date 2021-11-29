@@ -1,0 +1,386 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This user manual is for Company version 0.9.14.
+
+Copyright (C) 2021 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation. -->
+<title>Backends (Company User Manual)</title>
+
+<meta name="description" content="Backends (Company User Manual)">
+<meta name="keywords" content="Backends (Company User Manual)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html" rel="up" title="Top">
+<link href="Troubleshooting.html" rel="next" title="Troubleshooting">
+<link href="Frontends.html#Frontends" rel="prev" title="Frontends">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="inner manual"><div class="chapter" id="Backends">
+<div class="header">
+<p>
+Next: <a href="Troubleshooting.html" accesskey="n" rel="next">Troubleshooting</a>, Previous: <a href="Frontends.html#Frontends" accesskey="p" rel="prev">Frontends</a>, Up: <a href="index.html" accesskey="u" rel="up">Company</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<span id="Backends-1"></span><h2 class="chapter">Backends</h2>
+
+<span id="index-backends"></span>
+<p>We can metaphorically say that each backend is like an engine.  (The
+reality is even better since backends are just functions.)  Fueling
+such an engine with a command causes the production of material for
+Company to move further on.  Typically, moving on means outputting
+that material to a user via one or several configured frontends,
+<a href="Frontends.html#Frontends">Frontends</a>.
+</p>
+<span id="index-company_002dbackends"></span>
+<p>Just like Company provides a preconfigured list of the enabled
+frontends, it also defines a list of the backends to rely on by
+default.  This list is stored in the user option
+<code><span class="nolinebreak">company-backends</span></code><!-- /@w -->.  The docstring of this variable has been
+a source of valuable information for years.  That&rsquo;s why we&rsquo;re going to
+stick to a tradition and suggest reading the output of <kbd>C-h v
+company-backends</kbd> for insightful details about backends.
+Nevertheless, the fundamental concepts are described in this user
+manual too.
+</p>
+<hr>
+<div class="section" id="Backends-Usage-Basics">
+<span id="Backends-Usage-Basics-1"></span><h3 class="section">Backends Usage Basics</h3>
+
+<span id="index-backends-1"></span>
+<span id="index-company_002dbackends-1"></span>
+<p>One of the significant concepts to understand about Company is that
+the package relies on one backend at a time <a id="DOCF6" href="#FOOT6"><sup>6</sup></a>.  The
+backends are invoked one by one, in the sequential order of the items
+on the <code>company-backends</code> list.
+</p>
+<span id="index-active-backend"></span>
+<span id="index-backend-2"></span>
+<span id="index-company_002ddiag"></span>
+<p>The name of the currently active backend is shown in the mode line and
+in the output of the command <kbd>M-x company-diag</kbd>.
+</p>
+<span id="index-next-backend"></span>
+<span id="index-backend-3"></span>
+<span id="index-company_002dother_002dbackend"></span>
+<p>In most cases (mainly to exclude false-positive results), the next
+backend is not invoked automatically.  For the purpose of invoking the
+next backend, use the command <kbd><span class="nolinebreak">company-other-backend</span></kbd><!-- /@w -->: either
+by calling it with <kbd>M-x</kbd> or by binding the command to the keys of
+your choice, such as:
+</p>
+<div class="example lisp">
+<pre class="lisp">(global-set-key (kbd &quot;C-c C-/&quot;) #'company-other-backend)
+</pre></div>
+
+<span id="index-company_002dbegin_002dbackend"></span>
+<p>It is also possible to specifically start a backend with the command
+<kbd><span class="nolinebreak">M-x</span>&nbsp;<span class="nolinebreak">company-begin-backend</span></kbd><!-- /@w --> or by calling a backend by its
+name, for instance: <kbd><span class="nolinebreak">M-x</span>&nbsp;<span class="nolinebreak">company-capf</span></kbd><!-- /@w -->.  As usual for Emacs,
+such backends calls can be assigned to key bindings, for example:
+</p>
+<div class="example lisp">
+<pre class="lisp">(global-set-key (kbd &quot;C-c y&quot;) 'company-yasnippet)
+</pre></div>
+
+<hr>
+</div>
+<div class="section" id="Grouped-Backends">
+<span id="Grouped-Backends-1"></span><h3 class="section">Grouped Backends</h3>
+
+<span id="index-grouped-backends"></span>
+<span id="index-backends-2"></span>
+<span id="index-company_002dbackends-2"></span>
+<p>In many cases, it can be desirable to receive candidates from several
+backends simultaneously.  This can be achieved by configuring
+<em>grouped backends</em>: a sub-list of backends in the
+<code>company-backends</code> list, that is handled specifically by Company.
+</p>
+<p>The most important part of this handling is the merge of the
+completion candidates from the grouped backends.  (But only from the
+backends that return the same <em>prefix</em> value, see <code>C-h v
+company-backends</code> for more details.)
+</p>
+<p>To keep the candidates organized in accordance with the grouped
+backends order, add the keyword <code>:separate</code> to the list of the
+grouped backends.  The following example illustrates this.
+</p>
+<div class="example lisp">
+<pre class="lisp">(defun my-text-mode-hook ()
+  (setq-local company-backends
+              '((company-dabbrev company-ispell :separate)
+                company-files)))
+
+(add-hook 'text-mode-hook #'my-text-mode-hook)
+</pre></div>
+
+<p>Another keyword <code>:with</code> helps to make sure the results from
+major/minor mode agnostic backends (such as <em>company-yasnippet</em>,
+<em>company-dabbrev-code</em>) are returned without preventing results
+from context-aware backends (such as <em>company-capf</em> or
+<em>company-clang</em>).  For this feature to work, put backends
+dependent on a mode at the beginning of the grouped backends list,
+then put a keyword <code>:with</code>, and only then put context agnostic
+backend(s), as shown in the following concise example:
+</p>
+<div class="example lisp">
+<pre class="lisp">(setq company-backends '((company-capf :with company-yasnippet)))
+</pre></div>
+
+<hr>
+</div>
+<div class="section" id="Package-Backends">
+<span id="Package-Backends-1"></span><h3 class="section">Package Backends</h3>
+
+
+<span id="index-package-backends"></span>
+<span id="index-bundled-backends"></span>
+<span id="index-backends-3"></span>
+<p>The following sections review commonly used backends bundled with
+Company.  Each section is devoted to one of the roughly outlined
+groups of the backends.
+</p>
+<p>Some of the backends expose several user options for customization.
+To see the list of the user options, we suggest doing one of the
+following:
+</p>
+<ul>
+<li> Execute command <code>M-x customize-group <span class="key">RET</span> &lt;backend-name&gt;</code>.
+
+</li><li> Open the source file of the backend and run <code>M-x occur <span class="key">RET</span>
+^(defcustom</code>.
+</li></ul>
+
+<hr>
+<div class="subsection" id="Symbol-Names-Completion">
+<span id="Symbol-Names-Completion-1"></span><h4 class="subsection">Symbol Names Completion</h4>
+
+<p>A completion for symbol names typically assists programmers working
+with the source code.
+</p>
+<dl class="def">
+<dt id="index-company_002dcapf"><span class="category">Function: </span><span><strong>company-capf</strong><a href='#index-company_002dcapf' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>In Emacs&rsquo; world, the current tendency is to have the completion logic
+executed by <code><span class="nolinebreak">completion-at-point-functions</span></code><!-- /@w --> (<acronym>CAPF</acronym>)
+implementations.  [Among the other things, this is what the popular
+packages that support language server protocol (<acronym>LSP</acronym>) also
+rely on.]
+</p>
+<p>Since <em>company-capf</em> works as a bridge to the standard
+<acronym>CAPF</acronym> facility, it is probably the most often used and
+recommended backend nowadays, including for Emacs Lisp coding.
+</p>
+<p>Just to illustrate, the following minimal backends setup
+</p>
+<div class="example lisp">
+<pre class="lisp">(setq company-backends '((company-capf company-dabbrev-code)))
+</pre></div>
+
+<p>might cover a large number of basic use cases, especially so in major
+modes that have <acronym>CAPF</acronym> support implemented.
+</p>
+<p>For more details on <acronym>CAPF</acronym>, <a data-manual="elisp" href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Completion-in-Buffers.html#Completion-in-Buffers">(elisp)Completion in Buffers</a>.
+</p></dd></dl>
+
+<dl class="def">
+<dt id="index-company_002ddabbrev_002dcode"><span class="category">Function: </span><span><strong>company-dabbrev-code</strong><a href='#index-company_002ddabbrev_002dcode' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>This backend works similarly to the Emacs built-in package
+<em>dabbrev</em>, parsing completion candidates from the text in open
+buffer(s).  Internally, its based on the backend
+<em>company-dabbrev</em> (see <a href="#Natural-Language-Completion">Natural Language Completion</a>).
+</p></dd></dl>
+
+<dl class="def">
+<dt id="index-company_002dkeywords"><span class="category">Function: </span><span><strong>company-keywords</strong><a href='#index-company_002dkeywords' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>This backend provides completions for many of the widely spread
+programming languages <em>keywords</em>: words bearing specific meaning
+in a language.
+</p></dd></dl>
+
+<dl class="def">
+<dt id="index-company_002dclang"><span class="category">Function: </span><span><strong>company-clang</strong><a href='#index-company_002dclang' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>As the name suggests, use this backend to get completions from
+<em>Clang</em> compiler; that is, for the languages in the <em>C</em>
+language family: <em>C</em>, <em>C++</em>, <em>Objective-C</em>.
+</p></dd></dl>
+
+<dl class="def">
+<dt id="index-company_002dsemantic"><span class="category">Function: </span><span><strong>company-semantic</strong><a href='#index-company_002dsemantic' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>This backend relies on a built-in Emacs package that provides
+language-aware editing commands based on source code parsers,
+<a data-manual="emacs" href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Semantic.html#Semantic">(emacs)Semantic</a>.  Having enabled <em>semantic-mode</em> makes it
+to be used by the <acronym>CAPF</acronym> mechanism (see <a data-manual="emacs" href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Symbol-Completion.html#Symbol-Completion">(emacs)Symbol
+Completion</a>), hence a user may consider enabling
+<em>company-capf</em> backend instead.
+</p></dd></dl>
+
+<dl class="def">
+<dt id="index-company_002detags"><span class="category">Function: </span><span><strong>company-etags</strong><a href='#index-company_002detags' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>This backend works on top of a built-in Emacs package <em>etags</em>,
+<a data-manual="emacs" href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Tags-Tables.html#Tags-Tables">(emacs)Tags Tables</a>.  Similarly to aforementioned
+<em>Semantic</em> usage, tags-based completions now are a part of the
+Emacs&rsquo; <acronym>CAPF</acronym> facility, therefore a user may consider
+switching to <em>company-capf</em> backend.
+</p></dd></dl>
+
+<hr>
+</div>
+<div class="subsection" id="Natural-Language-Completion">
+<span id="Natural-Language-Completion-1"></span><h4 class="subsection">Natural Language Completion</h4>
+
+<dl class="def">
+<dt id="index-company_002ddabbrev"><span class="category">Function: </span><span><strong>company-dabbrev</strong><a href='#index-company_002ddabbrev' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>This backend works similarly to the Emacs built-in package
+<em>dabbrev</em>, parsing completion candidates from the text entered
+into the open buffer(s).
+</p></dd></dl>
+
+<dl class="def">
+<dt id="index-company_002dispell"><span class="category">Function: </span><span><strong>company-ispell</strong><a href='#index-company_002dispell' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>This backend returns completion candidates collected by <em>Ispell</em>,
+a built-in Emacs package that performs spell-checking.
+See <a data-manual="emacs" href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Spelling.html#Spelling">(emacs)Checking and Correcting Spelling</a>.
+</p></dd></dl>
+
+<hr>
+</div>
+<div class="subsection" id="File-Paths-Completion">
+<span id="File-Paths-Completion-1"></span><h4 class="subsection">File Paths Completion</h4>
+
+<dl class="def">
+<dt id="index-company_002dfiles"><span class="category">Function: </span><span><strong>company-files</strong><a href='#index-company_002dfiles' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>This backend can be used to retrieve file paths completion candidates.
+</p></dd></dl>
+
+<hr>
+</div>
+<div class="subsection" id="Templates-Expansion">
+<span id="Templates-Expansion-1"></span><h4 class="subsection">Templates Expansion</h4>
+
+<span id="index-template"></span>
+<span id="index-expansion"></span>
+<span id="index-snippet"></span>
+<span id="index-abbrev"></span>
+<dl class="def">
+<dt id="index-company_002dabbrev"><span class="category">Function: </span><span><strong>company-abbrev</strong><a href='#index-company_002dabbrev' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>This is a completion backend for a built-in word abbreviation mode
+(see <a data-manual="emacs" href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Abbrevs.html#Abbrevs">(emacs)Abbrevs</a>), that allows completing abbreviations with
+their expansions.
+</p></dd></dl>
+
+<dl class="def">
+<dt id="index-company_002dtempo"><span class="category">Function: </span><span><strong>company-tempo</strong><a href='#index-company_002dtempo' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>A backend for users of
+<a href="https://www.lysator.liu.se/~davidk/elisp/">Tempo</a>, a built-in
+Emacs package for creating and inserting (expanding) templates.
+</p></dd></dl>
+
+<dl class="def">
+<dt id="index-company_002dyasnippet"><span class="category">Function: </span><span><strong>company-yasnippet</strong><a href='#index-company_002dyasnippet' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Used as a completion backend for a third-party template system
+<a href="https://github.com/joaotavora/yasnippet">YASnippet</a>.
+</p></dd></dl>
+
+<hr>
+</div>
+</div>
+<div class="section" id="Candidates-Post_002dProcessing">
+<span id="Candidates-Post_002dProcessing-1"></span><h3 class="section">Candidates Post-Processing</h3>
+
+<span id="index-sort"></span>
+<span id="index-duplicate"></span>
+<span id="index-company_002dtransformers"></span>
+<p>A list of completion candidates, supplied by a backend, can be
+additionally manipulated (reorganized, reduced, sorted, etc) before
+its output.  This is done by adding a processing function name to the
+user option <code>company-transformers</code> list, for example:
+</p>
+<div class="example lisp">
+<pre class="lisp">(setq company-transformers '(delete-consecutive-dups
+                             company-sort-by-occurrence))
+</pre></div>
+
+<p>Company is bundled with several such transformer functions.  They are
+listed below.
+</p>
+<dl class="def">
+<dt id="index-company_002dsort_002dby_002doccurrence"><span class="category">Function: </span><span><strong>company-sort-by-occurrence</strong><a href='#index-company_002dsort_002dby_002doccurrence' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Sorts candidates using <code>company-occurrence-weight-function</code>
+algorithm.
+</p></dd></dl>
+
+<dl class="def">
+<dt id="index-company_002doccurrence_002dweight_002dfunction"><span class="category">User Option: </span><span><strong>company-occurrence-weight-function</strong><a href='#index-company_002doccurrence_002dweight_002dfunction' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Can be set to one of
+<code><span class="nolinebreak">company-occurrence-prefer-closest-above</span></code><!-- /@w --> (default) or
+<code><span class="nolinebreak">company-occurrence-prefer-any-closest</span></code><!-- /@w -->.  This user option
+defines the behavior of the <code>company-sort-by-occurrence</code>
+transformer function.
+</p></dd></dl>
+
+<dl class="def">
+<dt id="index-company_002dsort_002dby_002dbackend_002dimportance"><span class="category">Function: </span><span><strong>company-sort-by-backend-importance</strong><a href='#index-company_002dsort_002dby_002dbackend_002dimportance' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Sorts candidates as two priority groups, differentiated by the keyword
+<code>:with</code> (see <a href="#Grouped-Backends">Grouped Backends</a>).  Backends positioned in the
+backends list before the keyword <code>:with</code> are treated as more
+important.
+</p></dd></dl>
+
+<dl class="def">
+<dt id="index-company_002dsort_002dprefer_002dsame_002dcase_002dprefix"><span class="category">Function: </span><span><strong>company-sort-prefer-same-case-prefix</strong><a href='#index-company_002dsort_002dprefer_002dsame_002dcase_002dprefix' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Gives preference to the candidates that match the prefix
+case-insensitively.
+</p></dd></dl>
+
+</div>
+</div>
+<div class="footnote">
+<hr>
+<h4 class="footnotes-heading">Footnotes</h4>
+
+<h5><a id="FOOT6" href="#DOCF6">(6)</a></h5>
+<p>The grouped
+backends act as one complex backend.  See <a href="#Grouped-Backends">Grouped Backends</a>.</p>
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Troubleshooting.html" accesskey="n" rel="next">Troubleshooting</a>, Previous: <a href="Frontends.html#Frontends" accesskey="p" rel="prev">Frontends</a>, Up: <a href="index.html" accesskey="u" rel="up">Company</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+
+
+</div>
+</body>
+</html>

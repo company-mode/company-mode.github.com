@@ -1,0 +1,237 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This user manual is for Company version 0.9.14.
+
+Copyright (C) 2021 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation. -->
+<title>Customization (Company User Manual)</title>
+
+<meta name="description" content="Customization (Company User Manual)">
+<meta name="keywords" content="Customization (Company User Manual)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html" rel="up" title="Top">
+<link href="Frontends.html#Frontends" rel="next" title="Frontends">
+<link href="Getting-Started.html#Getting-Started" rel="prev" title="Getting Started">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="inner manual"><div class="chapter" id="Customization">
+<div class="header">
+<p>
+Next: <a href="Frontends.html#Frontends" accesskey="n" rel="next">Frontends</a>, Previous: <a href="Getting-Started.html#Getting-Started" accesskey="p" rel="prev">Getting Started</a>, Up: <a href="index.html" accesskey="u" rel="up">Company</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<span id="Customization-1"></span><h2 class="chapter">Customization</h2>
+
+<span id="index-configure"></span>
+<span id="index-custom"></span>
+<p>Emacs provides two equally acceptable ways for user preferences
+configuration: via customization interface (for more details,
+see <a data-manual="emacs" href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Easy-Customization.html#Easy-Customization">(emacs)Easy Customization</a>) and a configuration file
+(see&nbsp;<a data-manual="emacs" href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Init-File.html#Init-File">(emacs)Init&nbsp;File</a>)<!-- /@w -->.  Naturally, Company can be configured
+by both of these approaches.
+</p>
+<hr>
+<div class="section" id="Customization-Interface">
+<span id="Customization-Interface-1"></span><h3 class="section">Customization Interface</h3>
+
+<span id="index-configure-1"></span>
+<span id="index-custom-1"></span>
+<p>In order to employ the customization interface, run <kbd><span class="nolinebreak">M-x</span>&nbsp;<span class="nolinebreak">customize-group</span>&nbsp;<span class="key">RET</span>&nbsp;company</kbd><!-- /@w -->.
+</p>
+<p>This interface outputs all the options available for user
+customization, so you may find it beneficial to review this list even
+if you are going to configure Company with the configuration file.
+</p>
+<p>For instructions on how to change the settings, see <a data-manual="emacs" href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Changing-a-Variable.html#Changing-a-Variable">(emacs)Changing a
+Variable</a>.
+</p>
+<hr>
+</div>
+<div class="section" id="Configuration-File">
+<span id="Configuration-File-1"></span><h3 class="section">Configuration File</h3>
+
+<span id="index-configure-2"></span>
+<span id="index-custom-2"></span>
+<p>Company is a customization-rich package.  This section lists some of
+the core settings that influence the overall behavior of the
+<em>company-mode</em>.
+</p>
+<dl class="def">
+<dt id="index-company_002dminimum_002dprefix_002dlength"><span class="category">User Option: </span><span><strong>company-minimum-prefix-length</strong><a href='#index-company_002dminimum_002dprefix_002dlength' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>This is one of the values (together with <code>company-idle-delay</code>),
+based on which Company auto-stars looking up completion candidates.
+This option configures how many characters have to be typed in by a
+user before candidates start to be collected and displayed.  An often
+choice nowadays is to configure this option to a lower number than the
+default value of <code>3</code>.
+</p></dd></dl>
+
+<dl class="def">
+<dt id="index-company_002didle_002ddelay"><span class="category">User Option: </span><span><strong>company-idle-delay</strong><a href='#index-company_002didle_002ddelay' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>This is the second of the options that configure Company&rsquo;s auto-start
+behavior (together with <code>company-minimum-prefix-length</code>).  The
+value of this option defines how fast Company is going to react to the
+typed input, such that setting <code>company-idle-delay</code> to <code>0</code>
+makes Company react immediately, <code>nil</code> disables auto-starting,
+and a larger value postpones completion auto-start for that number of
+seconds.  For an even fancier setup, set this option value to a
+predicate function, as shown in the following example:
+</p>
+<div class="example lisp">
+<pre class="lisp">(setq company-idle-delay
+      (lambda () (if (company-in-string-or-comment) nil 0.3)))
+</pre></div>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-company_002dglobal_002dmodes"><span class="category">User Option: </span><span><strong>company-global-modes</strong><a href='#index-company_002dglobal_002dmodes' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>This option allows to specify in which major modes <em>company-mode</em>
+can be enabled by <code>(global-company-mode)</code>. See <a href="Getting-Started.html#Initial-Setup">Initial Setup</a>.
+The default value of <code>t</code> enables Company in all major modes.
+Setting <code>company-global-modes</code> to <code>nil</code> equal in action to
+toggling off <em>global-company-mode</em>.  Providing a list of major
+modes results in having <em>company-mode</em> enabled in the listed
+modes only.  For the opposite result, provide a list of major modes
+with <code>not</code> being the first element of the list, as shown in the
+following example:
+</p>
+<div class="example lisp">
+<pre class="lisp">(setq company-global-modes '(not erc-mode message-mode eshell-mode))
+</pre></div>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-company_002dselection_002dwrap_002daround"><span class="category">User Option: </span><span><strong>company-selection-wrap-around</strong><a href='#index-company_002dselection_002dwrap_002daround' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Enable this option to loop (cycle) the candidates&rsquo; selection: after
+selecting the last candidate on the list, a command to select the next
+candidate does so with the first candidate.  By default, this option
+is disabled, which means the selection of the next candidate stops on
+the last item.  The selection of the previous candidate is influenced
+by this option similarly.
+</p></dd></dl>
+
+<dl class="def">
+<dt id="index-company_002drequire_002dmatch"><span class="category">User Option: </span><span><strong>company-require-match</strong><a href='#index-company_002drequire_002dmatch' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>To allow typing in characters that don&rsquo;t match the candidates, set the
+value of this option to <code>nil</code>.  For an opposite behavior (that
+is, to disallow non-matching input), set it to <code>t</code>.  By default,
+Company is configured to require a matching input only if a user
+manually enables completion or selects a candidate; by having the
+option configured to call the function
+<code>company-explicit-action-p</code>.
+</p></dd></dl>
+
+<dl class="def">
+<dt id="index-company_002dlighter_002dbase"><span class="category">User Option: </span><span><strong>company-lighter-base</strong><a href='#index-company_002dlighter_002dbase' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>This user options allows to configure a string indicator of the
+enabled <em>company-mode</em> in the mode line.  The default value is
+&lsquo;<samp>company</samp>&rsquo;.
+</p></dd></dl>
+
+<span id="company_002dauto_002dcommit"></span><dl class="def">
+<dt id="index-company_002dauto_002dcommit"><span class="category">User Option: </span><span><strong>company-auto-commit</strong><a href='#index-company_002dauto_002dcommit' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>One more pair of the user options may instruct Company to complete
+with the selected candidate by typing one of the
+<code>company-auto-commit-chars</code> <a id="DOCF3" href="#FOOT3"><sup>3</sup></a>.  The user
+option <code>company-auto-commit</code> can be enabled or disabled by
+setting its value to one of: <code>nil</code>, <code>t</code>, or a predicate
+function name.
+See <a href="https://www.gnu.org/software/emacs/manual/html_node/eintr/Wrong-Type-of-Argument.html">(eintr)Predicate</a>.
+</p></dd></dl>
+
+<span id="company_002dauto_002dcommit_002dchars"></span><dl class="def">
+<dt id="index-company_002dauto_002dcommit_002dchars"><span class="category">User Option: </span><span><strong>company-auto-commit-chars</strong><a href='#index-company_002dauto_002dcommit_002dchars' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>This option acts only when <code>company-auto-commit</code> is enabled.  The
+value can be one of: a string of characters, a list of syntax
+description characters (see <a data-manual="elisp" href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Syntax-Class-Table.html#Syntax-Class-Table">(elisp)Syntax Class Table</a>), or a
+predicate function.  By default, <code>company-auto-commit-chars</code> is
+set to the list of the syntax characters: <code>(?\&nbsp;?\)&nbsp;?.)</code><!-- /@w -->,
+which translates to the whitespaces, close parenthesis, and
+punctuation.  The particular convenience of
+<code>company-auto-commit-chars</code> is that they do not act as a trigger
+when they are a part of valid completion.
+</p></dd></dl>
+
+
+<span id="Hooks"></span><h4 class="subheading">Hooks</h4>
+
+<p>Company exposes the following life-cycle hooks:
+</p>
+<dl class="def">
+<dt id="index-company_002dcompletion_002dstarted_002dhook"><span class="category">User Option: </span><span><strong>company-completion-started-hook</strong><a href='#index-company_002dcompletion_002dstarted_002dhook' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-company_002dcompletion_002dcancelled_002dhook"><span class="category">User Option: </span><span><strong>company-completion-cancelled-hook</strong><a href='#index-company_002dcompletion_002dcancelled_002dhook' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-company_002dcompletion_002dfinished_002dhook"><span class="category">User Option: </span><span><strong>company-completion-finished-hook</strong><a href='#index-company_002dcompletion_002dfinished_002dhook' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-company_002dafter_002dcompletion_002dhook"><span class="category">User Option: </span><span><strong>company-after-completion-hook</strong><a href='#index-company_002dafter_002dcompletion_002dhook' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+
+</div>
+</div>
+<div class="footnote">
+<hr>
+<h4 class="footnotes-heading">Footnotes</h4>
+
+<h5><a id="FOOT3" href="#DOCF3">(3)</a></h5>
+<p>The options
+<code>company-auto-commit</code> and <code>company-auto-commit-chars</code> used
+to be called <code>company-auto-complete</code> and
+<code>company-auto-complete-chars</code> respectively, which was in more
+accordance with the terminology given in this manual.  But the
+resulting combination of the words &lsquo;<samp>auto-complete</samp>&rsquo; present in
+those names made it seem the role of these user options was to
+configure Company&rsquo;s auto-start behavior.  Hence, it was chosen to
+rename the options to, hopefully, less confusing names.</p>
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Frontends.html#Frontends" accesskey="n" rel="next">Frontends</a>, Previous: <a href="Getting-Started.html#Getting-Started" accesskey="p" rel="prev">Getting Started</a>, Up: <a href="index.html" accesskey="u" rel="up">Company</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+
+
+</div>
+</body>
+</html>
