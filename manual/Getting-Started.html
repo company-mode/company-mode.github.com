@@ -1,0 +1,280 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This user manual is for Company version 0.9.14.
+
+Copyright (C) 2021 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation. -->
+<title>Getting Started (Company User Manual)</title>
+
+<meta name="description" content="Getting Started (Company User Manual)">
+<meta name="keywords" content="Getting Started (Company User Manual)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html" rel="up" title="Top">
+<link href="Customization.html#Customization" rel="next" title="Customization">
+<link href="Overview.html#Overview" rel="prev" title="Overview">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="inner manual"><div class="chapter" id="Getting-Started">
+<div class="header">
+<p>
+Next: <a href="Customization.html#Customization" accesskey="n" rel="next">Customization</a>, Previous: <a href="Overview.html#Overview" accesskey="p" rel="prev">Overview</a>, Up: <a href="index.html" accesskey="u" rel="up">Company</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<span id="Getting-Started-1"></span><h2 class="chapter">Getting Started</h2>
+
+<p>This chapter provides basic instructions for Company setup and usage.
+</p>
+<hr>
+<div class="section" id="Installation">
+<span id="Installation-1"></span><h3 class="section">Installation</h3>
+
+<span id="index-distribution"></span>
+<span id="index-package"></span>
+<span id="index-install"></span>
+<p>Company package is distributed via commonly used package archives in a
+form of both stable and development releases.  To install Company,
+type <kbd><span class="nolinebreak">M-x</span>&nbsp;<span class="nolinebreak">package-install</span>&nbsp;<span class="key">RET</span>&nbsp;company&nbsp;<span class="key">RET</span></kbd><!-- /@w -->.
+</p>
+<p>For more details on Emacs package archives, see <a data-manual="emacs" href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Packages.html#Packages">(emacs)Packages</a>.
+</p>
+<hr>
+</div>
+<div class="section" id="Initial-Setup">
+<span id="Initial-Setup-1"></span><h3 class="section">Initial Setup</h3>
+
+<span id="index-quick-start"></span>
+<span id="index-intro"></span>
+<span id="index-minor_002dmode"></span>
+<span id="index-company_002dmode"></span>
+<span id="index-company_002dmode-1"></span>
+<p>The package Company provides a minor mode <em>company-mode</em>.
+</p>
+<span id="index-enable"></span>
+<span id="index-activate"></span>
+<span id="index-manual"></span>
+<p>To activate the <em>company-mode</em>, execute the command <kbd>M-x
+company-mode</kbd> that toggles the mode on and off.  When it is switched
+on, the mode line (see <a data-manual="emacs" href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Mode-line.html#Mode-line">(emacs)Mode line</a>) should indicate its
+presence with an indicator &lsquo;<samp>company</samp>&rsquo;.
+</p>
+<span id="index-auto_002dstart"></span>
+<p>After <em>company-mode</em> had been enabled, the package auto-starts
+suggesting completion candidates.  The candidates are retrieved and
+shown according to the typed characters and the default (until a user
+specifies otherwise) configurations.
+</p>
+<span id="index-global_002dcompany_002dmode"></span>
+<p>To have Company always enabled for the following sessions, add the
+line <code><span class="nolinebreak">(global-company-mode)</span></code><!-- /@w --> to the Emacs configuration file
+(see&nbsp;<a data-manual="emacs" href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Init-File.html#Init-File">(emacs)Init&nbsp;File</a>)<!-- /@w -->.
+</p>
+<hr>
+</div>
+<div class="section" id="Usage-Basics">
+<span id="Usage-Basics-1"></span><h3 class="section">Usage Basics</h3>
+
+<span id="index-usage"></span>
+<span id="index-basics"></span>
+<p>By default &mdash; having <em>company-mode</em> enabled (see <a href="#Initial-Setup">Initial Setup</a>) &mdash; a tooltip with completion candidates is shown when a user
+types in a few characters.
+</p>
+<span id="index-manual-1"></span>
+<span id="index-company_002dcomplete"></span>
+<p>To initiate completion manually, use the command <kbd>M-x
+company-complete</kbd>.
+</p>
+<span id="index-select"></span>
+<span id="index-navigate"></span>
+<span id="index-complete-1"></span>
+<span id="index-completion-1"></span>
+<span id="index-candidate-1"></span>
+<span id="index-C_002dn"></span>
+<span id="index-C_002dp"></span>
+<p>To select next or previous of the shown completion candidates, use
+respectively key bindings <kbd>C-n</kbd> and <kbd>C-p</kbd>, then do one of the
+following:
+</p>
+<ul>
+<li> <span id="index-complete-2"></span>
+<span id="index-completion-2"></span>
+<span id="index-candidate-2"></span>
+<span id="index-RET"></span>
+Hit <tt class="key">RET</tt> to choose a selected candidate for completion.
+
+</li><li> <span id="index-common-part"></span>
+<span id="index-complete-3"></span>
+<span id="index-completion-3"></span>
+<span id="index-TAB-1"></span>
+Hit <tt class="key">TAB</tt> to complete with the <em>common part</em>: characters
+present at the beginning of all the candidates.
+
+</li><li> <span id="index-abort"></span>
+<span id="index-quit"></span>
+<span id="index-finish"></span>
+<span id="index-stop"></span>
+<span id="index-cancel"></span>
+<span id="index-C_002dg"></span>
+Hit <kbd>C-g</kbd> to stop activity of Company.
+</li></ul>
+
+<hr>
+</div>
+<div class="section" id="Commands">
+<span id="Commands-1"></span><h3 class="section">Commands</h3>
+
+<p>Under the hood, mentioned in the previous section keys are bound to
+the commands of the out-of-the-box Company.
+</p>
+<dl compact="compact">
+<dt id='index-C_002dn-1'><span><kbd>C-n</kbd><a href='#index-C_002dn-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt><span><kbd>M-n</kbd></span></dt>
+<dd><span id="index-select-1"></span>
+<span id="index-company_002dselect_002dnext_002dor_002dabort"></span>
+<p>Select the next candidate (<code>company-complete-next-or-abort</code>).
+</p>
+</dd>
+<dt id='index-C_002dp-1'><span><kbd>C-p</kbd><a href='#index-C_002dp-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt><span><kbd>M-p</kbd></span></dt>
+<dd><span id="index-select-2"></span>
+<span id="index-company_002dcomplete_002dprevious_002dor_002dabort"></span>
+<p>Select the previous candidate
+(<code>company-complete-previous-or-abort</code>).
+</p>
+</dd>
+<dt id='index-RET-1'><span><kbd>RET</kbd><a href='#index-RET-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt><span><kbd>&lt;return&gt;</kbd></span></dt>
+<dd><span id="index-complete-4"></span>
+<span id="index-company_002dcomplete_002dselection"></span>
+<p>Insert the selected candidate (<code>company-complete-selection</code>).
+</p>
+</dd>
+<dt id='index-TAB-2'><span><kbd>TAB</kbd><a href='#index-TAB-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt><span><kbd>&lt;tab&gt;</kbd></span></dt>
+<dd><span id="index-common-part-1"></span>
+<span id="index-company_002dcomplete_002dcommon"></span>
+<p>Insert the common part of all the candidates
+(<code>company-complete-common</code>).
+</p>
+</dd>
+<dt id='index-C_002dg-1'><span><kbd>C-g</kbd><a href='#index-C_002dg-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt><span><kbd>&lt;ESC ESC ESC&gt;</kbd></span></dt>
+<dd><span id="index-abort-1"></span>
+<span id="index-quit-1"></span>
+<span id="index-finish-1"></span>
+<span id="index-stop-1"></span>
+<span id="index-cancel-1"></span>
+<span id="index-company_002dabort"></span>
+<p>Cancel <em>company-mode</em> activity (<code>company-abort</code>).
+</p>
+</dd>
+<dt id='index-C_002dh'><span><kbd>C-h</kbd><a href='#index-C_002dh' class='copiable-anchor'> &para;</a></span></dt>
+<dt><span><kbd>&lt;f1&gt;</kbd></span></dt>
+<dd><span id="index-doc"></span>
+<span id="index-company_002dshow_002ddoc_002dbuffer"></span>
+<p>Display a buffer with the documentation for the selected candidate
+(<code><span class="nolinebreak">company-show-doc-buffer</span></code><!-- /@w -->).
+</p>
+</dd>
+<dt id='index-C_002dw'><span><kbd>C-w</kbd><a href='#index-C_002dw' class='copiable-anchor'> &para;</a></span></dt>
+<dd><span id="index-definition"></span>
+<span id="index-location"></span>
+<span id="index-company_002dshow_002dlocation"></span>
+<p>Display a buffer with the definition of the selected candidate
+(<code><span class="nolinebreak">company-show-location</span></code><!-- /@w -->).
+</p>
+</dd>
+</dl>
+
+<p>The full list of the default key bindings is stored in the variables
+<code>company-active-map</code> and <code>company-search-map</code> <a id="DOCF2" href="#FOOT2"><sup>2</sup></a>.
+</p>
+<p>Moreover, Company is bundled with a number of convenience commands
+that do not have default key bindings defined.  The following examples
+illustrate how to assign key bindings to such commands.
+</p>
+<div class="example lisp">
+<pre class="lisp">(global-set-key (kbd &quot;&lt;tab&gt;&quot;) #'company-indent-or-complete-common)
+</pre></div>
+
+<div class="example lisp">
+<pre class="lisp">(with-eval-after-load 'company
+  (define-key company-active-map (kbd &quot;M-/&quot;) #'company-complete))
+</pre></div>
+
+<div class="example lisp">
+<pre class="lisp">(with-eval-after-load 'company
+  (define-key company-active-map
+              (kbd &quot;TAB&quot;)
+              #'company-complete-common-or-cycle)
+  (define-key company-active-map
+              (kbd &quot;&lt;backtab&gt;&quot;)
+              (lambda ()
+                (interactive)
+                (company-complete-common-or-cycle -1))))
+</pre></div>
+
+<p>In the same manner, an additional key can be assigned to a command or
+a command can be unbound from a key.  For instance:
+</p>
+<div class="example lisp">
+<pre class="lisp">(with-eval-after-load 'company
+  (define-key company-active-map (kbd &quot;M-.&quot;) #'company-show-location)
+  (define-key company-active-map (kbd &quot;RET&quot;) nil))
+</pre></div>
+
+
+</div>
+</div>
+<div class="footnote">
+<hr>
+<h4 class="footnotes-heading">Footnotes</h4>
+
+<h5><a id="FOOT2" href="#DOCF2">(2)</a></h5>
+<p>For
+a more user-friendly output of the pre-defined key bindings, utilize
+<kbd><span class="nolinebreak">M-x</span>&nbsp;<span class="nolinebreak">describe-keymap</span>&nbsp;<span class="key">RET</span>&nbsp;<span class="nolinebreak">company-active-map</span></kbd><!-- /@w --> or <kbd><span class="nolinebreak">C-h</span>&nbsp;f&nbsp;<span class="key">RET</span>&nbsp;<span class="nolinebreak">company-mode</span></kbd><!-- /@w -->.</p>
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Customization.html#Customization" accesskey="n" rel="next">Customization</a>, Previous: <a href="Overview.html#Overview" accesskey="p" rel="prev">Overview</a>, Up: <a href="index.html" accesskey="u" rel="up">Company</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+
+
+</div>
+</body>
+</html>

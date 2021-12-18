@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This user manual is for Company version 0.9.14.
+
+Copyright (C) 2021 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation. -->
+<title>Troubleshooting (Company User Manual)</title>
+
+<meta name="description" content="Troubleshooting (Company User Manual)">
+<meta name="keywords" content="Troubleshooting (Company User Manual)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html" rel="up" title="Top">
+<link href="Backends.html#Backends" rel="prev" title="Backends">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="inner manual"><div class="chapter" id="Troubleshooting">
+<div class="header">
+<p>
+Previous: <a href="Backends.html#Backends" accesskey="p" rel="prev">Backends</a>, Up: <a href="index.html" accesskey="u" rel="up">Company</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<span id="Troubleshooting-1"></span><h2 class="chapter">Troubleshooting</h2>
+
+<span id="index-troubleshoot"></span>
+<span id="index-bug"></span>
+<span id="index-issue"></span>
+<span id="index-error"></span>
+<span id="index-company_002ddiag-1"></span>
+<p>If something goes wrong, the first thing we recommend doing is to
+execute command <kbd><span class="nolinebreak">M-x</span>&nbsp;<span class="nolinebreak">company-diag</span></kbd><!-- /@w --> and thoroughly study its
+output.
+</p>
+<p>This command outputs important details about the internal workings of
+Company at the moment of the <kbd>company-diag</kbd> command execution,
+including a responsible backend and a list of completion candidates
+provided by it.
+</p>
+<span id="index-active-backend-1"></span>
+<span id="index-backend-4"></span>
+<p>Based on the value of the &lsquo;<samp>Used backend</samp>&rsquo; in the output of the
+command <kbd><span class="nolinebreak">M-x</span>&nbsp;<span class="nolinebreak">company-diag</span></kbd><!-- /@w -->, these possible actions may follow:
+</p>
+<ul>
+<li> <span id="index-third_002dparty-1"></span>
+If the used backend does not belong to the Company package, report the
+issue to the corresponding third-party package maintainer(s).
+
+</li><li> If the used backend is &lsquo;<samp>company-capf</samp>&rsquo;, then take a look at the
+line starting with &lsquo;<samp>Value of c-a-p-f:</samp>&rsquo;.  The issue could have
+been caused by a function listed there.  To identify to which package
+it belongs, type <kbd><span class="nolinebreak">M-x</span>&nbsp;<span class="nolinebreak">find-function</span>&nbsp;<span class="key">RET</span>&nbsp;<span class="nolinebreak">FUNCTION-NAME</span>&nbsp;<span class="key">RET</span></kbd><!-- /@w -->.
+</li></ul>
+
+<span id="index-issue-tracker"></span>
+<span id="index-bug-1"></span>
+<span id="index-error-1"></span>
+<p>If the aforementioned steps didn&rsquo;t help to find the cause of the
+issue, then file a bug report to
+<a href="https://github.com/company-mode/company-mode/issues">the&nbsp;Company&nbsp;Issue&nbsp;Tracker</a><!-- /@w -->, attaching the following information:
+</p>
+<ol>
+<li> Output of the <kbd>M-x company-diag</kbd>.
+
+</li><li> The exact error message: you can find it in the <samp>*Messages*</samp>
+buffer.
+
+</li><li> The steps to reproduce the behavior. Ideally, if you can, starting
+with a bare Emacs session: <code>emacs -Q</code>.
+
+</li><li> The backtrace of the error, which you can get by running the command:
+<kbd><span class="nolinebreak">M-x</span>&nbsp;<span class="nolinebreak">toggle-debug-on-error</span></kbd><!-- /@w --> before reproducing the error.
+</li></ol>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Previous: <a href="Backends.html#Backends" accesskey="p" rel="prev">Backends</a>, Up: <a href="index.html" accesskey="u" rel="up">Company</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+
+
+</div>
+</body>
+</html>

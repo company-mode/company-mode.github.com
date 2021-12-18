@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This user manual is for Company version 0.9.14.
+
+Copyright (C) 2021 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation. -->
+<title>Top (Company User Manual)</title>
+
+<meta name="description" content="Top (Company User Manual)">
+<meta name="keywords" content="Top (Company User Manual)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="#Top" rel="start" title="Top">
+<link href="#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Overview.html#Overview" rel="next" title="Overview">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="inner manual"><h1 class="settitle" align="center">Company User Manual</h1>
+
+
+
+
+
+<div class="top" id="Top">
+<div class="header">
+<p>
+Next: <a href="Overview.html#Overview" accesskey="n" rel="next">Overview</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<span id="Company"></span><h1 class="top">Company</h1>
+
+<p>Company is a modular text completion framework for GNU Emacs.
+</p>
+<p>The goal of this document is to lay out the foundational knowledge of
+the package, so that the readers of the manual could competently start
+adapting Company to their needs and preferences.
+</p>
+<p>This user manual is for Company version 0.9.14.
+</p>
+<p>Copyright &copy; 2021 Free Software Foundation, Inc.
+</p>
+<blockquote>
+<p>Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation.
+</p></blockquote>
+
+
+<div class="Contents_element" id="SEC_Contents">
+<h2 class="contents-heading">Table of Contents</h2>
+
+<div class="contents">
+
+<ul>
+  <li><a id="toc-Overview-1" href="Overview.html#Overview">Overview</a>
+  <ul>
+    <li><a id="toc-Terminology-1" href="Overview.html#Terminology">Terminology</a></li>
+    <li><a id="toc-Structure-1" href="Overview.html#Structure">Structure</a></li>
+  </ul></li>
+  <li><a id="toc-Getting-Started-1" href="Getting-Started.html#Getting-Started">Getting Started</a>
+  <ul>
+    <li><a id="toc-Installation-1" href="Getting-Started.html#Installation">Installation</a></li>
+    <li><a id="toc-Initial-Setup-1" href="Getting-Started.html#Initial-Setup">Initial Setup</a></li>
+    <li><a id="toc-Usage-Basics-1" href="Getting-Started.html#Usage-Basics">Usage Basics</a></li>
+    <li><a id="toc-Commands-1" href="Getting-Started.html#Commands">Commands</a></li>
+  </ul></li>
+  <li><a id="toc-Customization-1" href="Customization.html#Customization">Customization</a>
+  <ul>
+    <li><a id="toc-Customization-Interface-1" href="Customization.html#Customization-Interface">Customization Interface</a></li>
+    <li><a id="toc-Configuration-File-1" href="Customization.html#Configuration-File">Configuration File</a></li>
+  </ul></li>
+  <li><a id="toc-Frontends-1" href="Frontends.html#Frontends">Frontends</a>
+  <ul>
+    <li><a id="toc-Tooltip-Frontends-1" href="Frontends.html#Tooltip-Frontends">Tooltip Frontends</a></li>
+    <li><a id="toc-Preview-Frontends-1" href="Frontends.html#Preview-Frontends">Preview Frontends</a></li>
+    <li><a id="toc-Echo-Frontends-1" href="Frontends.html#Echo-Frontends">Echo Frontends</a></li>
+    <li><a id="toc-Candidates-Search-1" href="Frontends.html#Candidates-Search">Candidates Search</a></li>
+    <li><a id="toc-Filter-Candidates-1" href="Frontends.html#Filter-Candidates">Filter Candidates</a></li>
+    <li><a id="toc-Quick-Access-a-Candidate-1" href="Frontends.html#Quick-Access-a-Candidate">Quick Access a Candidate</a></li>
+  </ul></li>
+  <li><a id="toc-Backends-1" href="Backends.html#Backends">Backends</a>
+  <ul>
+    <li><a id="toc-Backends-Usage-Basics-1" href="Backends.html#Backends-Usage-Basics">Backends Usage Basics</a></li>
+    <li><a id="toc-Grouped-Backends-1" href="Backends.html#Grouped-Backends">Grouped Backends</a></li>
+    <li><a id="toc-Package-Backends-1" href="Backends.html#Package-Backends">Package Backends</a>
+    <ul>
+      <li><a id="toc-Symbol-Names-Completion-1" href="Backends.html#Symbol-Names-Completion">Symbol Names Completion</a></li>
+      <li><a id="toc-Natural-Language-Completion-1" href="Backends.html#Natural-Language-Completion">Natural Language Completion</a></li>
+      <li><a id="toc-File-Paths-Completion-1" href="Backends.html#File-Paths-Completion">File Paths Completion</a></li>
+      <li><a id="toc-Templates-Expansion-1" href="Backends.html#Templates-Expansion">Templates Expansion</a></li>
+    </ul></li>
+    <li><a id="toc-Candidates-Post_002dProcessing-1" href="Backends.html#Candidates-Post_002dProcessing">Candidates Post-Processing</a></li>
+  </ul></li>
+  <li><a id="toc-Troubleshooting-1" href="Troubleshooting.html">Troubleshooting</a></li>
+</ul>
+</div>
+</div>
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Overview.html#Overview" accesskey="n" rel="next">Overview</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+
+
+</div>
+</body>
+</html>
