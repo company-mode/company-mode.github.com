@@ -43,7 +43,7 @@ span:hover a.copiable-anchor {visibility: visible}
 ul.no-bullet {list-style: none}
 -->
 </style>
-<link rel="stylesheet" type="text/css" href="http://company-mode.github.io/stylesheets/stylesheet.css">
+<link rel="stylesheet" type="text/css" href="https://company-mode.github.io/stylesheets/stylesheet.css">
 
 
 </head>
@@ -165,15 +165,19 @@ the commands of the out-of-the-box Company.
 <dt><span><kbd>M-n</kbd></span></dt>
 <dd><span id="index-select-1"></span>
 <span id="index-company_002dselect_002dnext_002dor_002dabort"></span>
-<p>Select the next candidate (<code>company-complete-next-or-abort</code>).
+<span id="index-company_002dselect_002dnext"></span>
+<p>Select the next candidate (<code>company-select-next-or-abort</code>,
+<code><span class="nolinebreak">company-select-next</span></code><!-- /@w -->).
 </p>
 </dd>
 <dt id='index-C_002dp-1'><span><kbd>C-p</kbd><a href='#index-C_002dp-1' class='copiable-anchor'> &para;</a></span></dt>
 <dt><span><kbd>M-p</kbd></span></dt>
 <dd><span id="index-select-2"></span>
-<span id="index-company_002dcomplete_002dprevious_002dor_002dabort"></span>
+<span id="index-company_002dselect_002dprevious_002dor_002dabort"></span>
+<span id="index-company_002dselect_002dprevious"></span>
 <p>Select the previous candidate
-(<code>company-complete-previous-or-abort</code>).
+(<code>company-select-previous-or-abort</code>,
+<code><span class="nolinebreak">company-select-previous</span></code><!-- /@w -->).
 </p>
 </dd>
 <dt id='index-RET-1'><span><kbd>RET</kbd><a href='#index-RET-1' class='copiable-anchor'> &para;</a></span></dt>
@@ -256,7 +260,6 @@ a command can be unbound from a key.  For instance:
   (define-key company-active-map (kbd &quot;M-.&quot;) #'company-show-location)
   (define-key company-active-map (kbd &quot;RET&quot;) nil))
 </pre></div>
-
 
 </div>
 </div>
