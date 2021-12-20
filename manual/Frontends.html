@@ -43,7 +43,7 @@ span:hover a.copiable-anchor {visibility: visible}
 ul.no-bullet {list-style: none}
 -->
 </style>
-<link rel="stylesheet" type="text/css" href="http://company-mode.github.io/stylesheets/stylesheet.css">
+<link rel="stylesheet" type="text/css" href="https://company-mode.github.io/stylesheets/stylesheet.css">
 
 
 </head>
@@ -184,7 +184,16 @@ displayed by the current tooltip page.
 <img src="./images/large/tooltip-offset-display.png" alt="./images/large/tooltip-offset-display">
 </dd></dl>
 
-
+<dl class="def">
+<dt id="index-company_002dtooltip_002dminimum"><span class="category">User Option: </span><span><strong>company-tooltip-minimum</strong><a href='#index-company_002dtooltip_002dminimum' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>When the number of lines between the point and the bottom of the
+window is less than <code>company-tooltip-minimum</code> value, then the
+tooltip is displayed above the point.
+</p>
+<div class="example lisp">
+<pre class="lisp">(setq company-tooltip-minimum 4)
+</pre></div>
+</dd></dl>
 
 <dl class="def">
 <dt id="index-company_002dtooltip_002dflip_002dwhen_002dabove"><span class="category">User Option: </span><span><strong>company-tooltip-flip-when-above</strong><a href='#index-company_002dtooltip_002dflip_002dwhen_002dabove' class='copiable-anchor'> &para;</a></span></dt>
@@ -449,6 +458,12 @@ completion candidate in the echo area.
 <img src="./images/large/echo-meta.png" alt="./images/large/echo-meta">
 </dd></dl>
 
+<br>
+<p>The last pair of the built-in frontends isn&rsquo;t that commonly used and
+not as full-featured as the previously reviewed <em>tooltip-</em> and
+<em>preview-</em> frontends, but still, feel free to play with them and
+have some fun!
+</p>
 <dl class="def">
 <dt id="index-company_002decho_002dfrontend"><span class="category">Function: </span><span><strong>company-echo-frontend</strong><a href='#index-company_002decho_002dfrontend' class='copiable-anchor'> &para;</a></span></dt>
 <dd><p>This frontend outputs all the available completion candidates in the
