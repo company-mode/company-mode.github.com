@@ -381,7 +381,7 @@ div.manual ul ul ul {
 
 div.manual ul.no-bullet li{
     list-style: none;
-    padding-left: 0;
+    padding-left: 1em;
 }
 
 div.manual sup {
