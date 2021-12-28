@@ -3,7 +3,8 @@
 <!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<!-- This user manual is for Company version 0.9.14.
+<!-- This user manual is for Company version 0.9.14snapshot
+(28 December 2021).
 
 Copyright (C) 2021 Free Software Foundation, Inc.
 
@@ -172,31 +173,33 @@ backend(s), as shown in the following concise example:
 backends bundled with Company.  Each section is devoted to one of the
 roughly outlined groups of the backends.
 </p>
-<p>Some of the backends expose several user options for customization.
-To see the list of the user options, we suggest doing one of the
+<p>Some of the backends expose user options for customization; a few of
+these options are introduced below.  For those who would like to fetch
+the full list of a backend&rsquo;s user options, we suggest doing one of the
 following:
 </p>
 <ul>
-<li> Execute command <code>M-x customize-group <span class="key">RET</span> &lt;backend-name&gt;</code>.
+<li> Execute command <kbd><span class="nolinebreak">M-x</span>&nbsp;<span class="nolinebreak">customize-group</span>&nbsp;<span class="key">RET</span>&nbsp;<span class="nolinebreak">&lt;backend-name&gt;</span></kbd><!-- /@w -->.
 
-</li><li> Open the source file of the backend and run <code>M-x occur <span class="key">RET</span>
-^(defcustom</code>.
+</li><li> Open the source file of the backend and run <kbd><span class="nolinebreak">M-x</span>&nbsp;occur&nbsp;<span class="key">RET</span>&nbsp;^(defcustom</kbd><!-- /@w -->.
+
+<ul class="no-bullet">
+<li>- Optionally, search for the matches with <kbd><span class="nolinebreak">M-x</span>&nbsp;isearch&nbsp;<span class="key">RET</span>&nbsp;(defcustom</kbd><!-- /@w -->.
+</li></ul>
+
 </li></ul>
 
 <hr>
-<div class="subsection" id="Symbol-Names-Completion">
-<span id="Symbol-Names-Completion-1"></span><h4 class="subsection">Symbol Names Completion</h4>
+<div class="subsection" id="Code-Completion">
+<span id="Code-Completion-1"></span><h4 class="subsection">Code Completion</h4>
 
-<p>A completion for symbol names typically assists programmers working
-with the source code.
-</p>
 <dl class="def">
 <dt id="index-company_002dcapf"><span class="category">Function: </span><span><strong>company-capf</strong><a href='#index-company_002dcapf' class='copiable-anchor'> &para;</a></span></dt>
-<dd><p>In Emacs&rsquo; world, the current tendency is to have the completion logic
-executed by <code><span class="nolinebreak">completion-at-point-functions</span></code><!-- /@w --> (<acronym>CAPF</acronym>)
-implementations.  [Among the other things, this is what the popular
-packages that support language server protocol (<acronym>LSP</acronym>) also
-rely on.]
+<dd><p>In the Emacs&rsquo;s world, the current tendency is to have the completion
+logic provided by <code><span class="nolinebreak">completion-at-point-functions</span></code><!-- /@w -->
+(<acronym>CAPF</acronym>) implementations.  [Among the other things, this is
+what the popular packages that support language server protocol
+(<acronym>LSP</acronym>) also rely on.]
 </p>
 <p>Since <em>company-capf</em> works as a bridge to the standard
 <acronym>CAPF</acronym> facility, it is probably the most often used and
@@ -216,10 +219,10 @@ modes that have <acronym>CAPF</acronym> support implemented.
 
 <dl class="def">
 <dt id="index-company_002ddabbrev_002dcode"><span class="category">Function: </span><span><strong>company-dabbrev-code</strong><a href='#index-company_002ddabbrev_002dcode' class='copiable-anchor'> &para;</a></span></dt>
-<dd><p>This backend works similarly to the Emacs built-in package
-<em>dabbrev</em>, parsing completion candidates from the text in open
-buffer(s).  Internally, its based on the backend
-<em>company-dabbrev</em> (see <a href="#Natural-Language-Completion">Natural Language Completion</a>).
+<dd><p>This backend works similarly to the built-in Emacs package
+<em>dabbrev</em>, searching for completion candidates inside the
+contents of the open buffer(s).  Internally, its based on the backend
+<em>company-dabbrev</em> (see <a href="#Text-Completion">Text Completion</a>).
 </p></dd></dl>
 
 <dl class="def">
@@ -257,37 +260,159 @@ switching to <em>company-capf</em> backend.
 
 <hr>
 </div>
-<div class="subsection" id="Natural-Language-Completion">
-<span id="Natural-Language-Completion-1"></span><h4 class="subsection">Natural Language Completion</h4>
+<div class="subsection" id="Text-Completion">
+<span id="Text-Completion-1"></span><h4 class="subsection">Text Completion</h4>
 
 <dl class="def">
 <dt id="index-company_002ddabbrev"><span class="category">Function: </span><span><strong>company-dabbrev</strong><a href='#index-company_002ddabbrev' class='copiable-anchor'> &para;</a></span></dt>
-<dd><p>This backend works similarly to the Emacs built-in package
-<em>dabbrev</em>, parsing completion candidates from the text entered
-into the open buffer(s).
+<dd><p>This backend works similarly to the built-in Emacs package
+<em>dabbrev</em>, searching for completion candidates inside the
+contents of the open buffer(s).  It is one of the often used backends,
+and it has several interesting options for configuration.  Let&rsquo;s
+review a few of them.
+</p>
+<dl class="def">
+<dt id="index-company_002ddabbrev_002dminimum_002dlength"><span class="category">User Option: </span><span><strong>company-dabbrev-minimum-length</strong><a href='#index-company_002ddabbrev_002dminimum_002dlength' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>This option sets the minimum length of a completion candidate to
+collect from the text.  The default value of &lsquo;<samp>4</samp>&rsquo; is intended to
+prevent potential performance issues.  But in many scenarios, it may
+be acceptable to lower this value.  Note that this option also affects
+the behavior of the <em>company-dabbrev-code</em> backend.
+</p>
+<div class="example lisp">
+<pre class="lisp">(setq company-dabbrev-minimum-length 2)
+</pre></div>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-company_002ddabbrev_002dother_002dbuffers"><span class="category">User Option: </span><span><strong>company-dabbrev-other-buffers</strong><a href='#index-company_002ddabbrev_002dother_002dbuffers' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>By default, <em>company-dabbrev</em> collects completion candidates from
+all not ignored buffers (see more on that below).  This behavior can
+be changed to collecting candidates from the current buffer only (by
+setting the value to &lsquo;<samp>nil</samp>&rsquo;) or from the buffers with the same
+major mode:
+</p>
+<div class="example lisp">
+<pre class="lisp">(setq company-dabbrev-other-buffers t)
+</pre></div>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-company_002ddabbrev_002dignore_002dbuffers"><span class="category">User Option: </span><span><strong>company-dabbrev-ignore-buffers</strong><a href='#index-company_002ddabbrev_002dignore_002dbuffers' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>The value of this option should be a regexp or a predicate function
+that can be used to match a buffer name.  The matched buffers are
+omitted from the search for completion candidates.
 </p></dd></dl>
 
+<p>The last two options described here relate to handling uppercase and
+lowercase letters in completion candidates.  The illustrative examples
+given below can be reproduced in the &lsquo;<samp>*scratch*</samp>&rsquo; buffer, with the
+word &lsquo;<samp>Enjoy</samp>&rsquo; typed in, and with this initial setup:
+</p>
+<div class="example lisp">
+<pre class="lisp">(setq-local company-backends '(company-dabbrev)
+            company-dabbrev-other-buffers nil
+            company-dabbrev-ignore-case nil
+            company-dabbrev-downcase nil)
+</pre></div>
+
+<dl class="def">
+<dt id="index-company_002ddabbrev_002dignore_002dcase"><span class="category">User Option: </span><span><strong>company-dabbrev-ignore-case</strong><a href='#index-company_002ddabbrev_002dignore_002dcase' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>This user option controls whether the case is ignored when collecting
+completion candidates.  When the option is set to <code>nil</code>,
+&lsquo;<samp>Enjoy</samp>&rsquo; is suggested as a completion candidate for the typed
+&lsquo;<samp>Enj</samp>&rsquo; letters, but not for &lsquo;<samp>enj</samp>&rsquo;.  When the option is set to
+<code>t</code>, &lsquo;<samp>Enjoy</samp>&rsquo; is suggested as a candidate for both &lsquo;<samp>Enj</samp>&rsquo;
+and &lsquo;<samp>enj</samp>&rsquo; input; note that &lsquo;<samp>enj</samp>&rsquo; prefix is &ldquo;overwritten&rdquo;
+by completing with the &lsquo;<samp>Enjoy</samp>&rsquo; candidate.  The third, default,
+type of behavior solves this issue, keeping the case of the typed
+prefix (and still collecting candidates case-insensitively):
+</p>
+<div class="example lisp">
+<pre class="lisp">(setq company-dabbrev-ignore-case 'keep-prefix)
+</pre></div>
+
+<p>Now we can type &lsquo;<samp>enj</samp>&rsquo;, complete it with the suggested
+&lsquo;<samp>Enjoy</samp>&rsquo;, and <em>enjoy</em> the result.
+</p></dd></dl>
+
+<dl class="def">
+<dt id="index-company_002ddabbrev_002ddowncase"><span class="category">User Option: </span><span><strong>company-dabbrev-downcase</strong><a href='#index-company_002ddabbrev_002ddowncase' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>This user option controls whether completion candidates are down-cased
+before their display.  When the option is set to <code>nil</code>, no
+transformation is performed; in the environment described above,
+typing &lsquo;<samp>Enj</samp>&rsquo; results in the candidate &lsquo;<samp>Enjoy</samp>&rsquo; being
+suggested.  When the option is set to <code>t</code>, the down-cased
+candidate &lsquo;<samp>enjoy</samp>&rsquo; is suggested.  By default, this option is set
+to <code>case-replace</code>, meaning taking a value of the Emacs&rsquo;s variable
+<code>case-replace</code> (<code>t</code> is the current default).
+</p></dd></dl>
+
+</dd></dl>
+
+<br>
 <dl class="def">
 <dt id="index-company_002dispell"><span class="category">Function: </span><span><strong>company-ispell</strong><a href='#index-company_002dispell' class='copiable-anchor'> &para;</a></span></dt>
 <dd><p>This backend returns completion candidates collected by <em>Ispell</em>,
 a built-in Emacs package that performs spell-checking.
-See <a data-manual="emacs" href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Spelling.html#Spelling">(emacs)Checking and Correcting Spelling</a>.
+See <a data-manual="emacs" href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Spelling.html#Spelling">(emacs)Checking and Correcting Spelling</a>.  Note that
+<em>Ispell</em> uses only one dictionary at a time (combining several
+dictionaries into one file is an accepted practice).  By default,
+<em>company-ispell</em> suggests candidates from a dictionary specified
+by the Emacs&rsquo;s setting <code>ispell-complete-word-dict</code>.
+</p>
+<dl class="def">
+<dt id="index-company_002dispell_002ddictionary"><span class="category">User Option: </span><span><strong>company-ispell-dictionary</strong><a href='#index-company_002dispell_002ddictionary' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Optionally, set a file path for <em>company-ispell</em> to use another
+dictionary.
 </p></dd></dl>
+
+</dd></dl>
 
 <hr>
 </div>
-<div class="subsection" id="File-Paths-Completion">
-<span id="File-Paths-Completion-1"></span><h4 class="subsection">File Paths Completion</h4>
+<div class="subsection" id="File-Name-Completion">
+<span id="File-Name-Completion-1"></span><h4 class="subsection">File Name Completion</h4>
 
 <dl class="def">
 <dt id="index-company_002dfiles"><span class="category">Function: </span><span><strong>company-files</strong><a href='#index-company_002dfiles' class='copiable-anchor'> &para;</a></span></dt>
-<dd><p>This backend can be used to retrieve file paths completion candidates.
+<dd><p>This backend can be used to retrieve completion candidates for the
+absolute and relative paths in the directory structure of an operating
+system.  The behavior of the <em>company-files</em> backend can be
+adjusted with the two user options.
+</p>
+<dl class="def">
+<dt id="index-company_002dfiles_002dexclusions"><span class="category">User Option: </span><span><strong>company-files-exclusions</strong><a href='#index-company_002dfiles_002dexclusions' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>It may be desirable to exclude directories or files from the list of
+suggested completion candidates.  For example, someone&rsquo;s setup might
+look this way:
+</p>
+<div class="example lisp">
+<pre class="lisp">(setq company-files-exclusions '(&quot;.git/&quot; &quot;.DS_Store&quot;))
+</pre></div>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-company_002dfiles_002dchop_002dtrailing_002dslash"><span class="category">User Option: </span><span><strong>company-files-chop-trailing-slash</strong><a href='#index-company_002dfiles_002dchop_002dtrailing_002dslash' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>This setting is enabled by default, which results in stripping off a
+trailing slash from an inserted directory name.  On typing a trailing
+slash, the process of completion gets started again, from inside the
+just inserted directory.
+</p>
+<p>Setting <code><span class="nolinebreak">company-files-chop-trailing-slash</span></code><!-- /@w --> to <code>nil</code>
+makes directory names to be inserted as is, with a trailing slash.  In
+this case, the completion process can be continued, for example,
+either by explicitly calling <em>company-files</em> backend
+(see&nbsp;<a href="#Backends-Usage-Basics">Backends Usage Basics</a>)<!-- /@w --> or by starting typing a name of a
+file/directory known to be located under the inserted directory.
 </p></dd></dl>
+
+</dd></dl>
 
 <hr>
 </div>
-<div class="subsection" id="Templates-Expansion">
-<span id="Templates-Expansion-1"></span><h4 class="subsection">Templates Expansion</h4>
+<div class="subsection" id="Template-Expansion">
+<span id="Template-Expansion-1"></span><h4 class="subsection">Template Expansion</h4>
 
 <span id="index-template"></span>
 <span id="index-expansion"></span>
@@ -303,14 +428,15 @@ their expansions.
 <dl class="def">
 <dt id="index-company_002dtempo"><span class="category">Function: </span><span><strong>company-tempo</strong><a href='#index-company_002dtempo' class='copiable-anchor'> &para;</a></span></dt>
 <dd><p>A backend for users of
-<a href="https://www.lysator.liu.se/~davidk/elisp/">Tempo</a>, a built-in
-Emacs package for creating and inserting (expanding) templates.
+<a href="https://www.lysator.liu.se/~davidk/elisp/">Tempo</a>, one more
+built-in Emacs package for creating and inserting (expanding)
+templates.
 </p></dd></dl>
 
 <dl class="def">
 <dt id="index-company_002dyasnippet"><span class="category">Function: </span><span><strong>company-yasnippet</strong><a href='#index-company_002dyasnippet' class='copiable-anchor'> &para;</a></span></dt>
-<dd><p>Used as a completion backend for a third-party template system
-<a href="https://github.com/joaotavora/yasnippet">YASnippet</a>.
+<dd><p>Used as a completion backend for the popular third-party template
+system <a href="https://github.com/joaotavora/yasnippet">YASnippet</a>.
 </p></dd></dl>
 
 <hr>
