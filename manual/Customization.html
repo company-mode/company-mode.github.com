@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <!-- This user manual is for Company version 0.9.14snapshot
-(28 December 2021).
+(8 January 2022).
 
 Copyright (C) 2021 Free Software Foundation, Inc.
 
@@ -164,27 +164,29 @@ enabled <em>company-mode</em> in the mode line.  The default value is
 &lsquo;<samp>company</samp>&rsquo;.
 </p></dd></dl>
 
-<span id="company_002dauto_002dcommit"></span><dl class="def">
-<dt id="index-company_002dauto_002dcommit"><span class="category">User Option: </span><span><strong>company-auto-commit</strong><a href='#index-company_002dauto_002dcommit' class='copiable-anchor'> &para;</a></span></dt>
+<dl class="def">
+<dt id="index-company_002dinsertion_002don_002dtrigger"><span class="category">User Option: </span><span><strong>company-insertion-on-trigger</strong><a href='#index-company_002dinsertion_002don_002dtrigger' class='copiable-anchor'> &para;</a></span></dt>
 <dd><p>One more pair of the user options may instruct Company to complete
 with the selected candidate by typing one of the
-<code>company-auto-commit-chars</code> <a id="DOCF3" href="#FOOT3"><sup>3</sup></a>.  The user
-option <code>company-auto-commit</code> can be enabled or disabled by
+<code>company-insertion-triggers</code>.  The user option
+<code>company-insertion-on-trigger</code> can be enabled or disabled by
 setting its value to one of: <code>nil</code>, <code>t</code>, or a predicate
 function name.
 See <a href="https://www.gnu.org/software/emacs/manual/html_node/eintr/Wrong-Type-of-Argument.html">(eintr)Predicate</a>.
 </p></dd></dl>
 
-<span id="company_002dauto_002dcommit_002dchars"></span><dl class="def">
-<dt id="index-company_002dauto_002dcommit_002dchars"><span class="category">User Option: </span><span><strong>company-auto-commit-chars</strong><a href='#index-company_002dauto_002dcommit_002dchars' class='copiable-anchor'> &para;</a></span></dt>
-<dd><p>This option acts only when <code>company-auto-commit</code> is enabled.  The
-value can be one of: a string of characters, a list of syntax
-description characters (see <a data-manual="elisp" href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Syntax-Class-Table.html#Syntax-Class-Table">(elisp)Syntax Class Table</a>), or a
-predicate function.  By default, <code>company-auto-commit-chars</code> is
-set to the list of the syntax characters: <code>(?\&nbsp;?\)&nbsp;?.)</code><!-- /@w -->,
-which translates to the whitespaces, close parenthesis, and
-punctuation.  The particular convenience of this user option values is
-they do not act as triggers when they are part of valid completion.
+<dl class="def">
+<dt id="index-company_002dinsertion_002dtriggers"><span class="category">User Option: </span><span><strong>company-insertion-triggers</strong><a href='#index-company_002dinsertion_002dtriggers' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>This option has an effect only when
+<code><span class="nolinebreak">company-insertion-on-trigger</span></code><!-- /@w --> is enabled.  The value can be
+one of: a string of characters, a list of syntax description
+characters (see <a data-manual="elisp" href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Syntax-Class-Table.html#Syntax-Class-Table">(elisp)Syntax Class Table</a>), or a predicate
+function.  By default, this user option is set to the list of the
+syntax characters: <code>(?\&nbsp;?\)&nbsp;?.)</code><!-- /@w -->, which translates to the
+whitespaces, close parenthesis, and punctuation.  It is safe to
+configure the value to a character that can potentially be part of a
+valid completion; in this case, Company does not treat such characters
+as triggers.
 </p></dd></dl>
 
 <span id="Hooks"></span><h4 class="subheading">Hooks</h4>
@@ -209,21 +211,6 @@ they do not act as triggers when they are part of valid completion.
 
 
 </div>
-</div>
-<div class="footnote">
-<hr>
-<h4 class="footnotes-heading">Footnotes</h4>
-
-<h5><a id="FOOT3" href="#DOCF3">(3)</a></h5>
-<p>The options
-<code>company-auto-commit</code> and <code>company-auto-commit-chars</code> used
-to be called <code>company-auto-complete</code> and
-<code>company-auto-complete-chars</code> respectively, which was in more
-accordance with the terminology given in this manual.  But the
-resulting combination of the words &lsquo;<samp>auto-complete</samp>&rsquo; present in
-those names made it seem the role of these user options was to
-configure Company&rsquo;s auto-start behavior.  Hence, it was chosen to
-rename the options to, hopefully, less confusing names.</p>
 </div>
 <hr>
 <div class="header">
