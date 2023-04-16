@@ -1,12 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
-<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 7.0.3, https://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <!-- This user manual is for Company version 0.9.14snapshot
-(12 August 2022).
+(16 April 2023).
 
-Copyright (C) 2021-2022  Free Software Foundation, Inc.
+Copyright © 2021-2023  Free Software Foundation, Inc.
 
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3 or
@@ -26,21 +26,10 @@ any later version published by the Free Software Foundation. -->
 <link href="Backends.html#Backends" rel="prev" title="Backends">
 <style type="text/css">
 <!--
-a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
-a.summary-letter {text-decoration: none}
-blockquote.indentedblock {margin-right: 0em}
-div.display {margin-left: 3.2em}
-div.example {margin-left: 3.2em}
-kbd {font-style: oblique}
-pre.display {font-family: inherit}
-pre.format {font-family: inherit}
-pre.menu-comment {font-family: serif}
-pre.menu-preformatted {font-family: serif}
-span.nolinebreak {white-space: nowrap}
-span.roman {font-family: initial; font-weight: normal}
-span.sansserif {font-family: sans-serif; font-weight: normal}
-span:hover a.copiable-anchor {visibility: visible}
-ul.no-bullet {list-style: none}
+kbd.kbd {font-style: oblique}
+kbd.key {font-style: normal}
+span.w-nolinebreak-text {white-space: nowrap}
+ul.mark-bullet {list-style-type: disc}
 -->
 </style>
 <link rel="stylesheet" type="text/css" href="https://company-mode.github.io/stylesheets/stylesheet.css">
@@ -49,68 +38,68 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="en">
-<div class="inner manual"><div class="chapter" id="Troubleshooting">
-<div class="header">
+<div class="inner manual"><div class="chapter-level-extent" id="Troubleshooting">
+<div class="nav-panel">
 <p>
 Previous: <a href="Backends.html#Backends" accesskey="p" rel="prev">Backends</a>, Up: <a href="index.html" accesskey="u" rel="up">Company</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <hr>
-<span id="Troubleshooting-1"></span><h2 class="chapter">Troubleshooting</h2>
+<h2 class="chapter" id="Troubleshooting-1">Troubleshooting</h2>
 
-<span id="index-troubleshoot"></span>
-<span id="index-bug"></span>
-<span id="index-issue"></span>
-<span id="index-error"></span>
-<span id="index-company_002ddiag-1"></span>
+<a class="index-entry-id" id="index-troubleshoot"></a>
+<a class="index-entry-id" id="index-bug"></a>
+<a class="index-entry-id" id="index-issue"></a>
+<a class="index-entry-id" id="index-error"></a>
+<a class="index-entry-id" id="index-company_002ddiag-1"></a>
 <p>If something goes wrong, the first thing we recommend doing is to
-execute command <kbd><span class="nolinebreak">M-x</span>&nbsp;<span class="nolinebreak">company-diag</span></kbd><!-- /@w --> and thoroughly study its
+execute command <kbd class="kbd"><span class="w-nolinebreak-text">M-x</span>&nbsp;<span class="w-nolinebreak-text">company-diag</span></kbd><!-- /@w --> and thoroughly study its
 output.
 </p>
 <p>This command outputs important details about the internal workings of
-Company at the moment of the <kbd>company-diag</kbd> command execution,
+Company at the moment of the <kbd class="kbd">company-diag</kbd> command execution,
 including a responsible backend and a list of completion candidates
 provided by it.
 </p>
-<span id="index-active-backend-1"></span>
-<span id="index-backend-4"></span>
-<p>Based on the value of the &lsquo;<samp>Used backend</samp>&rsquo; in the output of the
-command <kbd><span class="nolinebreak">M-x</span>&nbsp;<span class="nolinebreak">company-diag</span></kbd><!-- /@w -->, these possible actions may follow:
+<a class="index-entry-id" id="index-active-backend-1"></a>
+<a class="index-entry-id" id="index-backend-4"></a>
+<p>Based on the value of the &lsquo;<samp class="samp">Used backend</samp>&rsquo; in the output of the
+command <kbd class="kbd"><span class="w-nolinebreak-text">M-x</span>&nbsp;<span class="w-nolinebreak-text">company-diag</span></kbd><!-- /@w -->, these possible actions may follow:
 </p>
-<ul>
-<li> <span id="index-third_002dparty-1"></span>
+<ul class="itemize mark-bullet">
+<li><a class="index-entry-id" id="index-third_002dparty-1"></a>
 If the used backend does not belong to the Company package, report the
 issue to the corresponding third-party package maintainer(s).
 
-</li><li> If the used backend is &lsquo;<samp>company-capf</samp>&rsquo;, then take a look at the
-line starting with &lsquo;<samp>Value of c-a-p-f:</samp>&rsquo;.  The issue could have
+</li><li>If the used backend is &lsquo;<samp class="samp">company-capf</samp>&rsquo;, then take a look at the
+line starting with &lsquo;<samp class="samp">Value of c-a-p-f:</samp>&rsquo;.  The issue could have
 been caused by a function listed there.  To identify to which package
-it belongs, type <kbd><span class="nolinebreak">M-x</span>&nbsp;<span class="nolinebreak">find-function</span>&nbsp;<span class="key">RET</span>&nbsp;<span class="nolinebreak">&lt;function-name&gt;</span>&nbsp;<span class="key">RET</span></kbd><!-- /@w -->.
+it belongs, type <kbd class="kbd"><span class="w-nolinebreak-text">M-x</span>&nbsp;<span class="w-nolinebreak-text">find-function</span>&nbsp;<kbd class="key">RET</kbd>&nbsp;<span class="w-nolinebreak-text">&lt;function-name&gt;</span>&nbsp;<kbd class="key">RET</kbd></kbd><!-- /@w -->.
 </li></ul>
 
-<span id="index-issue-tracker"></span>
-<span id="index-bug-1"></span>
-<span id="index-error-1"></span>
+<a class="index-entry-id" id="index-issue-tracker"></a>
+<a class="index-entry-id" id="index-bug-1"></a>
+<a class="index-entry-id" id="index-error-1"></a>
 <p>If the aforementioned steps didn&rsquo;t help to find the cause of the
 issue, then file a bug report to
-<a href="https://github.com/company-mode/company-mode/issues">the&nbsp;Company&nbsp;Issue&nbsp;Tracker</a><!-- /@w -->, attaching the following information:
+<a class="uref" href="https://github.com/company-mode/company-mode/issues">the&nbsp;Company&nbsp;Issue&nbsp;Tracker</a><!-- /@w -->, attaching the following information:
 </p>
-<ol>
-<li> Output of the <kbd>M-x company-diag</kbd>.
+<ol class="enumerate">
+<li> Output of the <kbd class="kbd">M-x company-diag</kbd>.
 
-</li><li> The exact error message: you can find it in the <samp>*Messages*</samp>
+</li><li> The exact error message: you can find it in the <samp class="file">*Messages*</samp>
 buffer.
 
 </li><li> The steps to reproduce the behavior. Ideally, if you can, starting
-with a bare Emacs session: <code>emacs -Q</code>.
+with a bare Emacs session: <code class="code">emacs -Q</code>.
 
 </li><li> The backtrace of the error, which you can get by running the command:
-<kbd><span class="nolinebreak">M-x</span>&nbsp;<span class="nolinebreak">toggle-debug-on-error</span></kbd><!-- /@w --> before reproducing the error.
+<kbd class="kbd"><span class="w-nolinebreak-text">M-x</span>&nbsp;<span class="w-nolinebreak-text">toggle-debug-on-error</span></kbd><!-- /@w --> before reproducing the error.
 </li></ol>
 
 
 </div>
 <hr>
-<div class="header">
+<div class="nav-panel">
 <p>
 Previous: <a href="Backends.html#Backends" accesskey="p" rel="prev">Backends</a>, Up: <a href="index.html" accesskey="u" rel="up">Company</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>

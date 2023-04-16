@@ -1,12 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
-<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 7.0.3, https://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <!-- This user manual is for Company version 0.9.14snapshot
-(12 August 2022).
+(16 April 2023).
 
-Copyright (C) 2021-2022  Free Software Foundation, Inc.
+Copyright © 2021-2023  Free Software Foundation, Inc.
 
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3 or
@@ -27,21 +27,15 @@ any later version published by the Free Software Foundation. -->
 <link href="Frontends.html#Frontends" rel="prev" title="Frontends">
 <style type="text/css">
 <!--
-a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
-a.summary-letter {text-decoration: none}
-blockquote.indentedblock {margin-right: 0em}
-div.display {margin-left: 3.2em}
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
 div.example {margin-left: 3.2em}
-kbd {font-style: oblique}
-pre.display {font-family: inherit}
-pre.format {font-family: inherit}
-pre.menu-comment {font-family: serif}
-pre.menu-preformatted {font-family: serif}
-span.nolinebreak {white-space: nowrap}
-span.roman {font-family: initial; font-weight: normal}
-span.sansserif {font-family: sans-serif; font-weight: normal}
-span:hover a.copiable-anchor {visibility: visible}
-ul.no-bullet {list-style: none}
+kbd.kbd {font-style: oblique}
+kbd.key {font-style: normal}
+span.w-nolinebreak-text {white-space: nowrap}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+ul.mark-bullet {list-style-type: disc}
+ul.mark-minus {list-style-type: "\2212"}
 -->
 </style>
 <link rel="stylesheet" type="text/css" href="https://company-mode.github.io/stylesheets/stylesheet.css">
@@ -50,98 +44,98 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="en">
-<div class="inner manual"><div class="chapter" id="Backends">
-<div class="header">
+<div class="inner manual"><div class="chapter-level-extent" id="Backends">
+<div class="nav-panel">
 <p>
 Next: <a href="Troubleshooting.html" accesskey="n" rel="next">Troubleshooting</a>, Previous: <a href="Frontends.html#Frontends" accesskey="p" rel="prev">Frontends</a>, Up: <a href="index.html" accesskey="u" rel="up">Company</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <hr>
-<span id="Backends-1"></span><h2 class="chapter">Backends</h2>
+<h2 class="chapter" id="Backends-1">Backends</h2>
 
-<span id="index-backends"></span>
+<a class="index-entry-id" id="index-backends"></a>
 <p>We can metaphorically say that each backend is like an engine.  (The
 reality is even better since backends are just functions.)  Fueling
 such an engine with a command causes the production of material for
 Company to move further on.  Typically, moving on means outputting
 that material to a user via one or several configured frontends,
-<a href="Frontends.html#Frontends">Frontends</a>.
+<a class="ref" href="Frontends.html#Frontends">Frontends</a>.
 </p>
-<span id="index-company_002dbackends"></span>
+<a class="index-entry-id" id="index-company_002dbackends"></a>
 <p>Just like Company provides a preconfigured list of the enabled
 frontends, it also defines a list of the backends to rely on by
 default.  This list is stored in the user option
-<code><span class="nolinebreak">company-backends</span></code><!-- /@w -->.  The docstring of this variable has been
+<code class="code"><span class="w-nolinebreak-text">company-backends</span></code><!-- /@w -->.  The docstring of this variable has been
 a source of valuable information for years.  That&rsquo;s why we&rsquo;re going to
-stick to a tradition and suggest reading the output of <kbd>C-h v
+stick to a tradition and suggest reading the output of <kbd class="kbd">C-h v
 company-backends</kbd> for insightful details about backends.
 Nevertheless, the fundamental concepts are described in this user
 manual too.
 </p>
 
 <hr>
-<div class="section" id="Backends-Usage-Basics">
-<span id="Backends-Usage-Basics-1"></span><h3 class="section">Backends Usage Basics</h3>
+<div class="section-level-extent" id="Backends-Usage-Basics">
+<h3 class="section" id="Backends-Usage-Basics-1">Backends Usage Basics</h3>
 
-<span id="index-backends-1"></span>
-<span id="index-company_002dbackends-1"></span>
+<a class="index-entry-id" id="index-backends-1"></a>
+<a class="index-entry-id" id="index-company_002dbackends-1"></a>
 <p>One of the significant concepts to understand about Company is that
-the package relies on one backend at a time <a id="DOCF5" href="#FOOT5"><sup>5</sup></a>.  The
+the package relies on one backend at a time <a class="footnote" id="DOCF5" href="#FOOT5"><sup>5</sup></a>.  The
 backends are invoked one by one, in the sequential order of the items
-on the <code>company-backends</code> list.
+on the <code class="code">company-backends</code> list.
 </p>
-<span id="index-active-backend"></span>
-<span id="index-backend-2"></span>
-<span id="index-company_002ddiag"></span>
+<a class="index-entry-id" id="index-active-backend"></a>
+<a class="index-entry-id" id="index-backend-2"></a>
+<a class="index-entry-id" id="index-company_002ddiag"></a>
 <p>The name of the currently active backend is shown in the mode line and
-in the output of the command <kbd>M-x company-diag</kbd>.
+in the output of the command <kbd class="kbd">M-x company-diag</kbd>.
 </p>
-<span id="index-next-backend"></span>
-<span id="index-backend-3"></span>
-<span id="index-company_002dother_002dbackend"></span>
+<a class="index-entry-id" id="index-next-backend"></a>
+<a class="index-entry-id" id="index-backend-3"></a>
+<a class="index-entry-id" id="index-company_002dother_002dbackend"></a>
 <p>In most cases (mainly to exclude false-positive results), the next
 backend is not invoked automatically.  For the purpose of invoking the
-next backend, use the command <kbd><span class="nolinebreak">company-other-backend</span></kbd><!-- /@w -->: either
-by calling it with <kbd>M-x</kbd> or by binding the command to the keys of
+next backend, use the command <kbd class="kbd"><span class="w-nolinebreak-text">company-other-backend</span></kbd><!-- /@w -->: either
+by calling it with <kbd class="kbd">M-x</kbd> or by binding the command to the keys of
 your choice, such as:
 </p>
 <div class="example lisp">
-<pre class="lisp">(global-set-key (kbd &quot;C-c C-/&quot;) #'company-other-backend)
+<pre class="lisp-preformatted">(global-set-key (kbd &quot;C-c C-/&quot;) #'company-other-backend)
 </pre></div>
 
-<span id="index-company_002dbegin_002dbackend"></span>
+<a class="index-entry-id" id="index-company_002dbegin_002dbackend"></a>
 <p>It is also possible to specifically start a backend with the command
-<kbd><span class="nolinebreak">M-x</span>&nbsp;<span class="nolinebreak">company-begin-backend</span></kbd><!-- /@w --> or by calling a backend by its
-name, for instance: <kbd><span class="nolinebreak">M-x</span>&nbsp;<span class="nolinebreak">company-capf</span></kbd><!-- /@w -->.  As usual for Emacs,
+<kbd class="kbd"><span class="w-nolinebreak-text">M-x</span>&nbsp;<span class="w-nolinebreak-text">company-begin-backend</span></kbd><!-- /@w --> or by calling a backend by its
+name, for instance: <kbd class="kbd"><span class="w-nolinebreak-text">M-x</span>&nbsp;<span class="w-nolinebreak-text">company-capf</span></kbd><!-- /@w -->.  As usual for Emacs,
 such backends calls can be assigned to key bindings, for example:
 </p>
 <div class="example lisp">
-<pre class="lisp">(global-set-key (kbd &quot;C-c y&quot;) 'company-yasnippet)
+<pre class="lisp-preformatted">(global-set-key (kbd &quot;C-c y&quot;) 'company-yasnippet)
 </pre></div>
 
 <hr>
 </div>
-<div class="section" id="Grouped-Backends">
-<span id="Grouped-Backends-1"></span><h3 class="section">Grouped Backends</h3>
+<div class="section-level-extent" id="Grouped-Backends">
+<h3 class="section" id="Grouped-Backends-1">Grouped Backends</h3>
 
-<span id="index-grouped-backends"></span>
-<span id="index-backends-2"></span>
-<span id="index-company_002dbackends-2"></span>
+<a class="index-entry-id" id="index-grouped-backends"></a>
+<a class="index-entry-id" id="index-backends-2"></a>
+<a class="index-entry-id" id="index-company_002dbackends-2"></a>
 <p>In many cases, it can be desirable to receive candidates from several
 backends simultaneously.  This can be achieved by configuring
-<em>grouped backends</em>: a sub-list of backends in the
-<code>company-backends</code> list, that is handled specifically by Company.
+<em class="dfn">grouped backends</em>: a sub-list of backends in the
+<code class="code">company-backends</code> list, that is handled specifically by Company.
 </p>
 <p>The most important part of this handling is the merge of the
 completion candidates from the grouped backends.  (But only from the
-backends that return the same <em>prefix</em> value, see <code>C-h v
+backends that return the same <em class="emph">prefix</em> value, see <code class="code">C-h v
 company-backends</code> for more details.)
 </p>
 <p>To keep the candidates organized in accordance with the grouped
-backends order, add the keyword <code>:separate</code> to the list of the
+backends order, add the keyword <code class="code">:separate</code> to the list of the
 grouped backends.  The following example illustrates this.
 </p>
 <div class="example lisp">
-<pre class="lisp">(defun my-text-mode-hook ()
+<pre class="lisp-preformatted">(defun my-text-mode-hook ()
   (setq-local company-backends
               '((company-dabbrev company-ispell :separate)
                 company-files)))
@@ -149,27 +143,27 @@ grouped backends.  The following example illustrates this.
 (add-hook 'text-mode-hook #'my-text-mode-hook)
 </pre></div>
 
-<p>Another keyword <code>:with</code> helps to make sure the results from
-major/minor mode agnostic backends (such as <em>company-yasnippet</em>,
-<em>company-dabbrev-code</em>) are returned without preventing results
-from context-aware backends (such as <em>company-capf</em> or
-<em>company-clang</em>).  For this feature to work, put backends
+<p>Another keyword <code class="code">:with</code> helps to make sure the results from
+major/minor mode agnostic backends (such as <em class="emph">company-yasnippet</em>,
+<em class="emph">company-dabbrev-code</em>) are returned without preventing results
+from context-aware backends (such as <em class="emph">company-capf</em> or
+<em class="emph">company-clang</em>).  For this feature to work, put backends
 dependent on a mode at the beginning of the grouped backends list,
-then put a keyword <code>:with</code>, and only then put context agnostic
+then put a keyword <code class="code">:with</code>, and only then put context agnostic
 backend(s), as shown in the following concise example:
 </p>
 <div class="example lisp">
-<pre class="lisp">(setq company-backends '((company-capf :with company-yasnippet)))
+<pre class="lisp-preformatted">(setq company-backends '((company-capf :with company-yasnippet)))
 </pre></div>
 
 <hr>
 </div>
-<div class="section" id="Package-Backends">
-<span id="Package-Backends-1"></span><h3 class="section">Package Backends</h3>
+<div class="section-level-extent" id="Package-Backends">
+<h3 class="section" id="Package-Backends-1">Package Backends</h3>
 
-<span id="index-package-backends"></span>
-<span id="index-bundled-backends"></span>
-<span id="index-backends-3"></span>
+<a class="index-entry-id" id="index-package-backends"></a>
+<a class="index-entry-id" id="index-bundled-backends"></a>
+<a class="index-entry-id" id="index-backends-3"></a>
 <p>The following sections give a short overview of the commonly used
 backends bundled with Company.  Each section is devoted to one of the
 roughly outlined groups of the backends.
@@ -179,128 +173,128 @@ these options are introduced below.  For those who would like to fetch
 the full list of a backend&rsquo;s user options, we suggest doing one of the
 following:
 </p>
-<ul>
-<li> Execute command <kbd><span class="nolinebreak">M-x</span>&nbsp;<span class="nolinebreak">customize-group</span>&nbsp;<span class="key">RET</span>&nbsp;<span class="nolinebreak">&lt;backend-name&gt;</span></kbd><!-- /@w -->.
+<ul class="itemize mark-bullet">
+<li>Execute command <kbd class="kbd"><span class="w-nolinebreak-text">M-x</span>&nbsp;<span class="w-nolinebreak-text">customize-group</span>&nbsp;<kbd class="key">RET</kbd>&nbsp;<span class="w-nolinebreak-text">&lt;backend-name&gt;</span></kbd><!-- /@w -->.
 
-</li><li> Open the source file of the backend and run <kbd><span class="nolinebreak">M-x</span>&nbsp;occur&nbsp;<span class="key">RET</span>&nbsp;^(defcustom</kbd><!-- /@w -->.
+</li><li>Open the source file of the backend and run <kbd class="kbd"><span class="w-nolinebreak-text">M-x</span>&nbsp;occur&nbsp;<kbd class="key">RET</kbd>&nbsp;^(defcustom</kbd><!-- /@w -->.
 
-<ul class="no-bullet">
-<li>- Optionally, search for the matches with <kbd><span class="nolinebreak">M-x</span>&nbsp;isearch&nbsp;<span class="key">RET</span>&nbsp;(defcustom</kbd><!-- /@w -->.
+<ul class="itemize mark-minus">
+<li>Optionally, search for the matches with <kbd class="kbd"><span class="w-nolinebreak-text">M-x</span>&nbsp;isearch&nbsp;<kbd class="key">RET</kbd>&nbsp;(defcustom</kbd><!-- /@w -->.
 </li></ul>
 
 </li></ul>
 
 
 <hr>
-<div class="subsection" id="Code-Completion">
-<span id="Code-Completion-1"></span><h4 class="subsection">Code Completion</h4>
+<div class="subsection-level-extent" id="Code-Completion">
+<h4 class="subsection" id="Code-Completion-1">Code Completion</h4>
 
-<dl class="def">
-<dt id="index-company_002dcapf"><span class="category">Function: </span><span><strong>company-capf</strong><a href='#index-company_002dcapf' class='copiable-anchor'> &para;</a></span></dt>
+<dl class="first-deffn first-defun-alias-first-deffn">
+<dt class="deffn defun-alias-deffn" id="index-company_002dcapf"><span class="category-def">Function: </span><span><strong class="def-name">company-capf</strong><a class="copiable-link" href='#index-company_002dcapf'> &para;</a></span></dt>
 <dd><p>In the Emacs&rsquo;s world, the current tendency is to have the completion
-logic provided by <code><span class="nolinebreak">completion-at-point-functions</span></code><!-- /@w -->
-(<acronym>CAPF</acronym>) implementations.  [Among the other things, this is
+logic provided by <code class="code"><span class="w-nolinebreak-text">completion-at-point-functions</span></code><!-- /@w -->
+(<abbr class="acronym">CAPF</abbr>) implementations.  [Among the other things, this is
 what the popular packages that support language server protocol
-(<acronym>LSP</acronym>) also rely on.]
+(<abbr class="acronym">LSP</abbr>) also rely on.]
 </p>
-<p>Since <em>company-capf</em> works as a bridge to the standard
-<acronym>CAPF</acronym> facility, it is probably the most often used and
+<p>Since <em class="emph">company-capf</em> works as a bridge to the standard
+<abbr class="acronym">CAPF</abbr> facility, it is probably the most often used and
 recommended backend nowadays, including for Emacs Lisp coding.
 </p>
 <p>Just to illustrate, the following minimal backends setup
 </p>
 <div class="example lisp">
-<pre class="lisp">(setq company-backends '((company-capf company-dabbrev-code)))
+<pre class="lisp-preformatted">(setq company-backends '((company-capf company-dabbrev-code)))
 </pre></div>
 
 <p>might cover a large number of basic use cases, especially so in major
-modes that have <acronym>CAPF</acronym> support implemented.
+modes that have <abbr class="acronym">CAPF</abbr> support implemented.
 </p>
-<p>For more details on <acronym>CAPF</acronym>, <a data-manual="elisp" href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Completion-in-Buffers.html#Completion-in-Buffers">(elisp)Completion in Buffers</a>.
+<p>For more details on <abbr class="acronym">CAPF</abbr>, <a data-manual="elisp" href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Completion-in-Buffers.html#Completion-in-Buffers">(elisp)Completion in Buffers</a>.
 </p></dd></dl>
 
-<dl class="def">
-<dt id="index-company_002ddabbrev_002dcode"><span class="category">Function: </span><span><strong>company-dabbrev-code</strong><a href='#index-company_002ddabbrev_002dcode' class='copiable-anchor'> &para;</a></span></dt>
+<dl class="first-deffn first-defun-alias-first-deffn">
+<dt class="deffn defun-alias-deffn" id="index-company_002ddabbrev_002dcode"><span class="category-def">Function: </span><span><strong class="def-name">company-dabbrev-code</strong><a class="copiable-link" href='#index-company_002ddabbrev_002dcode'> &para;</a></span></dt>
 <dd><p>This backend works similarly to the built-in Emacs package
-<em>dabbrev</em>, searching for completion candidates inside the
+<em class="emph">dabbrev</em>, searching for completion candidates inside the
 contents of the open buffer(s).  Internally, its based on the backend
-<em>company-dabbrev</em> (see <a href="#Text-Completion">Text Completion</a>).
+<em class="emph">company-dabbrev</em> (see <a class="pxref" href="#Text-Completion">Text Completion</a>).
 </p></dd></dl>
 
-<dl class="def">
-<dt id="index-company_002dkeywords"><span class="category">Function: </span><span><strong>company-keywords</strong><a href='#index-company_002dkeywords' class='copiable-anchor'> &para;</a></span></dt>
+<dl class="first-deffn first-defun-alias-first-deffn">
+<dt class="deffn defun-alias-deffn" id="index-company_002dkeywords"><span class="category-def">Function: </span><span><strong class="def-name">company-keywords</strong><a class="copiable-link" href='#index-company_002dkeywords'> &para;</a></span></dt>
 <dd><p>This backend provides completions for many of the widely spread
-programming languages <em>keywords</em>: words bearing specific meaning
+programming languages <em class="emph">keywords</em>: words bearing specific meaning
 in a language.
 </p></dd></dl>
 
-<dl class="def">
-<dt id="index-company_002dclang"><span class="category">Function: </span><span><strong>company-clang</strong><a href='#index-company_002dclang' class='copiable-anchor'> &para;</a></span></dt>
+<dl class="first-deffn first-defun-alias-first-deffn">
+<dt class="deffn defun-alias-deffn" id="index-company_002dclang"><span class="category-def">Function: </span><span><strong class="def-name">company-clang</strong><a class="copiable-link" href='#index-company_002dclang'> &para;</a></span></dt>
 <dd><p>As the name suggests, use this backend to get completions from
-<em>Clang</em> compiler; that is, for the languages in the <em>C</em>
-language family: <em>C</em>, <em>C++</em>, <em>Objective-C</em>.
+<em class="emph">Clang</em> compiler; that is, for the languages in the <em class="emph">C</em>
+language family: <em class="emph">C</em>, <em class="emph">C++</em>, <em class="emph">Objective-C</em>.
 </p></dd></dl>
 
-<dl class="def">
-<dt id="index-company_002dsemantic"><span class="category">Function: </span><span><strong>company-semantic</strong><a href='#index-company_002dsemantic' class='copiable-anchor'> &para;</a></span></dt>
+<dl class="first-deffn first-defun-alias-first-deffn">
+<dt class="deffn defun-alias-deffn" id="index-company_002dsemantic"><span class="category-def">Function: </span><span><strong class="def-name">company-semantic</strong><a class="copiable-link" href='#index-company_002dsemantic'> &para;</a></span></dt>
 <dd><p>This backend relies on a built-in Emacs package that provides
 language-aware editing commands based on source code parsers,
-<a data-manual="emacs" href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Semantic.html#Semantic">(emacs)Semantic</a>.  Having enabled <em>semantic-mode</em> makes it
-to be used by the <acronym>CAPF</acronym> mechanism (see <a data-manual="emacs" href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Symbol-Completion.html#Symbol-Completion">(emacs)Symbol
+<a data-manual="emacs" href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Semantic.html#Semantic">(emacs)Semantic</a>.  Having enabled <em class="emph">semantic-mode</em> makes it
+to be used by the <abbr class="acronym">CAPF</abbr> mechanism (see <a data-manual="emacs" href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Symbol-Completion.html#Symbol-Completion">(emacs)Symbol
 Completion</a>), hence a user may consider enabling
-<em>company-capf</em> backend instead.
+<em class="emph">company-capf</em> backend instead.
 </p></dd></dl>
 
-<dl class="def">
-<dt id="index-company_002detags"><span class="category">Function: </span><span><strong>company-etags</strong><a href='#index-company_002detags' class='copiable-anchor'> &para;</a></span></dt>
-<dd><p>This backend works on top of a built-in Emacs package <em>etags</em>,
+<dl class="first-deffn first-defun-alias-first-deffn">
+<dt class="deffn defun-alias-deffn" id="index-company_002detags"><span class="category-def">Function: </span><span><strong class="def-name">company-etags</strong><a class="copiable-link" href='#index-company_002detags'> &para;</a></span></dt>
+<dd><p>This backend works on top of a built-in Emacs package <em class="emph">etags</em>,
 <a data-manual="emacs" href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Tags-Tables.html#Tags-Tables">(emacs)Tags Tables</a>.  Similarly to aforementioned
-<em>Semantic</em> usage, tags-based completions now are a part of the
-Emacs&rsquo; <acronym>CAPF</acronym> facility, therefore a user may consider
-switching to <em>company-capf</em> backend.
+<em class="emph">Semantic</em> usage, tags-based completions now are a part of the
+Emacs&rsquo; <abbr class="acronym">CAPF</abbr> facility, therefore a user may consider
+switching to <em class="emph">company-capf</em> backend.
 </p></dd></dl>
 
 <hr>
 </div>
-<div class="subsection" id="Text-Completion">
-<span id="Text-Completion-1"></span><h4 class="subsection">Text Completion</h4>
+<div class="subsection-level-extent" id="Text-Completion">
+<h4 class="subsection" id="Text-Completion-1">Text Completion</h4>
 
-<dl class="def">
-<dt id="index-company_002ddabbrev"><span class="category">Function: </span><span><strong>company-dabbrev</strong><a href='#index-company_002ddabbrev' class='copiable-anchor'> &para;</a></span></dt>
+<dl class="first-deffn first-defun-alias-first-deffn">
+<dt class="deffn defun-alias-deffn" id="index-company_002ddabbrev"><span class="category-def">Function: </span><span><strong class="def-name">company-dabbrev</strong><a class="copiable-link" href='#index-company_002ddabbrev'> &para;</a></span></dt>
 <dd><p>This backend works similarly to the built-in Emacs package
-<em>dabbrev</em>, searching for completion candidates inside the
+<em class="emph">dabbrev</em>, searching for completion candidates inside the
 contents of the open buffer(s).  It is one of the often used backends,
 and it has several interesting options for configuration.  Let&rsquo;s
 review a few of them.
 </p>
-<dl class="def">
-<dt id="index-company_002ddabbrev_002dminimum_002dlength"><span class="category">User Option: </span><span><strong>company-dabbrev-minimum-length</strong><a href='#index-company_002ddabbrev_002dminimum_002dlength' class='copiable-anchor'> &para;</a></span></dt>
+<dl class="first-defvr first-defopt-alias-first-defvr">
+<dt class="defvr defopt-alias-defvr" id="index-company_002ddabbrev_002dminimum_002dlength"><span class="category-def">User Option: </span><span><strong class="def-name">company-dabbrev-minimum-length</strong><a class="copiable-link" href='#index-company_002ddabbrev_002dminimum_002dlength'> &para;</a></span></dt>
 <dd><p>This option sets the minimum length of a completion candidate to
-collect from the text.  The default value of &lsquo;<samp>4</samp>&rsquo; is intended to
+collect from the text.  The default value of &lsquo;<samp class="samp">4</samp>&rsquo; is intended to
 prevent potential performance issues.  But in many scenarios, it may
 be acceptable to lower this value.  Note that this option also affects
-the behavior of the <em>company-dabbrev-code</em> backend.
+the behavior of the <em class="emph">company-dabbrev-code</em> backend.
 </p>
 <div class="example lisp">
-<pre class="lisp">(setq company-dabbrev-minimum-length 2)
+<pre class="lisp-preformatted">(setq company-dabbrev-minimum-length 2)
 </pre></div>
 </dd></dl>
 
-<dl class="def">
-<dt id="index-company_002ddabbrev_002dother_002dbuffers"><span class="category">User Option: </span><span><strong>company-dabbrev-other-buffers</strong><a href='#index-company_002ddabbrev_002dother_002dbuffers' class='copiable-anchor'> &para;</a></span></dt>
-<dd><p>By default, <em>company-dabbrev</em> collects completion candidates from
+<dl class="first-defvr first-defopt-alias-first-defvr">
+<dt class="defvr defopt-alias-defvr" id="index-company_002ddabbrev_002dother_002dbuffers"><span class="category-def">User Option: </span><span><strong class="def-name">company-dabbrev-other-buffers</strong><a class="copiable-link" href='#index-company_002ddabbrev_002dother_002dbuffers'> &para;</a></span></dt>
+<dd><p>By default, <em class="emph">company-dabbrev</em> collects completion candidates from
 all not ignored buffers (see more on that below).  This behavior can
 be changed to collecting candidates from the current buffer only (by
-setting the value to &lsquo;<samp>nil</samp>&rsquo;) or from the buffers with the same
+setting the value to &lsquo;<samp class="samp">nil</samp>&rsquo;) or from the buffers with the same
 major mode:
 </p>
 <div class="example lisp">
-<pre class="lisp">(setq company-dabbrev-other-buffers t)
+<pre class="lisp-preformatted">(setq company-dabbrev-other-buffers t)
 </pre></div>
 </dd></dl>
 
-<dl class="def">
-<dt id="index-company_002ddabbrev_002dignore_002dbuffers"><span class="category">User Option: </span><span><strong>company-dabbrev-ignore-buffers</strong><a href='#index-company_002ddabbrev_002dignore_002dbuffers' class='copiable-anchor'> &para;</a></span></dt>
+<dl class="first-defvr first-defopt-alias-first-defvr">
+<dt class="defvr defopt-alias-defvr" id="index-company_002ddabbrev_002dignore_002dbuffers"><span class="category-def">User Option: </span><span><strong class="def-name">company-dabbrev-ignore-buffers</strong><a class="copiable-link" href='#index-company_002ddabbrev_002dignore_002dbuffers'> &para;</a></span></dt>
 <dd><p>The value of this option should be a regexp or a predicate function
 that can be used to match a buffer name.  The matched buffers are
 omitted from the search for completion candidates.
@@ -308,64 +302,64 @@ omitted from the search for completion candidates.
 
 <p>The last two options described here relate to handling uppercase and
 lowercase letters in completion candidates.  The illustrative examples
-given below can be reproduced in the &lsquo;<samp>*scratch*</samp>&rsquo; buffer, with the
-word &lsquo;<samp>Enjoy</samp>&rsquo; typed in, and with this initial setup:
+given below can be reproduced in the &lsquo;<samp class="samp">*scratch*</samp>&rsquo; buffer, with the
+word &lsquo;<samp class="samp">Enjoy</samp>&rsquo; typed in, and with this initial setup:
 </p>
 <div class="example lisp">
-<pre class="lisp">(setq-local company-backends '(company-dabbrev)
+<pre class="lisp-preformatted">(setq-local company-backends '(company-dabbrev)
             company-dabbrev-other-buffers nil
             company-dabbrev-ignore-case nil
             company-dabbrev-downcase nil)
 </pre></div>
 
-<dl class="def">
-<dt id="index-company_002ddabbrev_002dignore_002dcase"><span class="category">User Option: </span><span><strong>company-dabbrev-ignore-case</strong><a href='#index-company_002ddabbrev_002dignore_002dcase' class='copiable-anchor'> &para;</a></span></dt>
+<dl class="first-defvr first-defopt-alias-first-defvr">
+<dt class="defvr defopt-alias-defvr" id="index-company_002ddabbrev_002dignore_002dcase"><span class="category-def">User Option: </span><span><strong class="def-name">company-dabbrev-ignore-case</strong><a class="copiable-link" href='#index-company_002ddabbrev_002dignore_002dcase'> &para;</a></span></dt>
 <dd><p>This user option controls whether the case is ignored when collecting
-completion candidates.  When the option is set to <code>nil</code>,
-&lsquo;<samp>Enjoy</samp>&rsquo; is suggested as a completion candidate for the typed
-&lsquo;<samp>Enj</samp>&rsquo; letters, but not for &lsquo;<samp>enj</samp>&rsquo;.  When the option is set to
-<code>t</code>, &lsquo;<samp>Enjoy</samp>&rsquo; is suggested as a candidate for both &lsquo;<samp>Enj</samp>&rsquo;
-and &lsquo;<samp>enj</samp>&rsquo; input; note that &lsquo;<samp>enj</samp>&rsquo; prefix is &ldquo;overwritten&rdquo;
-by completing with the &lsquo;<samp>Enjoy</samp>&rsquo; candidate.  The third, default,
+completion candidates.  When the option is set to <code class="code">nil</code>,
+&lsquo;<samp class="samp">Enjoy</samp>&rsquo; is suggested as a completion candidate for the typed
+&lsquo;<samp class="samp">Enj</samp>&rsquo; letters, but not for &lsquo;<samp class="samp">enj</samp>&rsquo;.  When the option is set to
+<code class="code">t</code>, &lsquo;<samp class="samp">Enjoy</samp>&rsquo; is suggested as a candidate for both &lsquo;<samp class="samp">Enj</samp>&rsquo;
+and &lsquo;<samp class="samp">enj</samp>&rsquo; input; note that &lsquo;<samp class="samp">enj</samp>&rsquo; prefix is &ldquo;overwritten&rdquo;
+by completing with the &lsquo;<samp class="samp">Enjoy</samp>&rsquo; candidate.  The third, default,
 type of behavior solves this issue, keeping the case of the typed
 prefix (and still collecting candidates case-insensitively):
 </p>
 <div class="example lisp">
-<pre class="lisp">(setq company-dabbrev-ignore-case 'keep-prefix)
+<pre class="lisp-preformatted">(setq company-dabbrev-ignore-case 'keep-prefix)
 </pre></div>
 
-<p>Now we can type &lsquo;<samp>enj</samp>&rsquo;, complete it with the suggested
-&lsquo;<samp>Enjoy</samp>&rsquo;, and <em>enjoy</em> the result.
+<p>Now we can type &lsquo;<samp class="samp">enj</samp>&rsquo;, complete it with the suggested
+&lsquo;<samp class="samp">Enjoy</samp>&rsquo;, and <em class="emph">enjoy</em> the result.
 </p></dd></dl>
 
-<dl class="def">
-<dt id="index-company_002ddabbrev_002ddowncase"><span class="category">User Option: </span><span><strong>company-dabbrev-downcase</strong><a href='#index-company_002ddabbrev_002ddowncase' class='copiable-anchor'> &para;</a></span></dt>
+<dl class="first-defvr first-defopt-alias-first-defvr">
+<dt class="defvr defopt-alias-defvr" id="index-company_002ddabbrev_002ddowncase"><span class="category-def">User Option: </span><span><strong class="def-name">company-dabbrev-downcase</strong><a class="copiable-link" href='#index-company_002ddabbrev_002ddowncase'> &para;</a></span></dt>
 <dd><p>This user option controls whether completion candidates are down-cased
-before their display.  When the option is set to <code>nil</code>, no
+before their display.  When the option is set to <code class="code">nil</code>, no
 transformation is performed; in the environment described above,
-typing &lsquo;<samp>Enj</samp>&rsquo; results in the candidate &lsquo;<samp>Enjoy</samp>&rsquo; being
-suggested.  When the option is set to <code>t</code>, the down-cased
-candidate &lsquo;<samp>enjoy</samp>&rsquo; is suggested.  By default, this option is set
-to <code>case-replace</code>, meaning taking a value of the Emacs&rsquo;s variable
-<code>case-replace</code> (<code>t</code> is the current default).
+typing &lsquo;<samp class="samp">Enj</samp>&rsquo; results in the candidate &lsquo;<samp class="samp">Enjoy</samp>&rsquo; being
+suggested.  When the option is set to <code class="code">t</code>, the down-cased
+candidate &lsquo;<samp class="samp">enjoy</samp>&rsquo; is suggested.  By default, this option is set
+to <code class="code">case-replace</code>, meaning taking a value of the Emacs&rsquo;s variable
+<code class="code">case-replace</code> (<code class="code">t</code> is the current default).
 </p></dd></dl>
 
 </dd></dl>
 
 <br>
-<dl class="def">
-<dt id="index-company_002dispell"><span class="category">Function: </span><span><strong>company-ispell</strong><a href='#index-company_002dispell' class='copiable-anchor'> &para;</a></span></dt>
-<dd><p>This backend returns completion candidates collected by <em>Ispell</em>,
+<dl class="first-deffn first-defun-alias-first-deffn">
+<dt class="deffn defun-alias-deffn" id="index-company_002dispell"><span class="category-def">Function: </span><span><strong class="def-name">company-ispell</strong><a class="copiable-link" href='#index-company_002dispell'> &para;</a></span></dt>
+<dd><p>This backend returns completion candidates collected by <em class="emph">Ispell</em>,
 a built-in Emacs package that performs spell-checking.
 See <a data-manual="emacs" href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Spelling.html#Spelling">(emacs)Checking and Correcting Spelling</a>.  Note that
-<em>Ispell</em> uses only one dictionary at a time (combining several
+<em class="emph">Ispell</em> uses only one dictionary at a time (combining several
 dictionaries into one file is an accepted practice).  By default,
-<em>company-ispell</em> suggests candidates from a dictionary specified
-by the Emacs&rsquo;s setting <code>ispell-complete-word-dict</code>.
+<em class="emph">company-ispell</em> suggests candidates from a dictionary specified
+by the Emacs&rsquo;s setting <code class="code">ispell-complete-word-dict</code>.
 </p>
-<dl class="def">
-<dt id="index-company_002dispell_002ddictionary"><span class="category">User Option: </span><span><strong>company-ispell-dictionary</strong><a href='#index-company_002dispell_002ddictionary' class='copiable-anchor'> &para;</a></span></dt>
-<dd><p>Optionally, set a file path for <em>company-ispell</em> to use another
+<dl class="first-defvr first-defopt-alias-first-defvr">
+<dt class="defvr defopt-alias-defvr" id="index-company_002dispell_002ddictionary"><span class="category-def">User Option: </span><span><strong class="def-name">company-ispell-dictionary</strong><a class="copiable-link" href='#index-company_002dispell_002ddictionary'> &para;</a></span></dt>
+<dd><p>Optionally, set a file path for <em class="emph">company-ispell</em> to use another
 dictionary.
 </p></dd></dl>
 
@@ -373,39 +367,39 @@ dictionary.
 
 <hr>
 </div>
-<div class="subsection" id="File-Name-Completion">
-<span id="File-Name-Completion-1"></span><h4 class="subsection">File Name Completion</h4>
+<div class="subsection-level-extent" id="File-Name-Completion">
+<h4 class="subsection" id="File-Name-Completion-1">File Name Completion</h4>
 
-<dl class="def">
-<dt id="index-company_002dfiles"><span class="category">Function: </span><span><strong>company-files</strong><a href='#index-company_002dfiles' class='copiable-anchor'> &para;</a></span></dt>
+<dl class="first-deffn first-defun-alias-first-deffn">
+<dt class="deffn defun-alias-deffn" id="index-company_002dfiles"><span class="category-def">Function: </span><span><strong class="def-name">company-files</strong><a class="copiable-link" href='#index-company_002dfiles'> &para;</a></span></dt>
 <dd><p>This backend can be used to retrieve completion candidates for the
 absolute and relative paths in the directory structure of an operating
-system.  The behavior of the <em>company-files</em> backend can be
+system.  The behavior of the <em class="emph">company-files</em> backend can be
 adjusted with the two user options.
 </p>
-<dl class="def">
-<dt id="index-company_002dfiles_002dexclusions"><span class="category">User Option: </span><span><strong>company-files-exclusions</strong><a href='#index-company_002dfiles_002dexclusions' class='copiable-anchor'> &para;</a></span></dt>
+<dl class="first-defvr first-defopt-alias-first-defvr">
+<dt class="defvr defopt-alias-defvr" id="index-company_002dfiles_002dexclusions"><span class="category-def">User Option: </span><span><strong class="def-name">company-files-exclusions</strong><a class="copiable-link" href='#index-company_002dfiles_002dexclusions'> &para;</a></span></dt>
 <dd><p>It may be desirable to exclude directories or files from the list of
 suggested completion candidates.  For example, someone&rsquo;s setup might
 look this way:
 </p>
 <div class="example lisp">
-<pre class="lisp">(setq company-files-exclusions '(&quot;.git/&quot; &quot;.DS_Store&quot;))
+<pre class="lisp-preformatted">(setq company-files-exclusions '(&quot;.git/&quot; &quot;.DS_Store&quot;))
 </pre></div>
 </dd></dl>
 
-<dl class="def">
-<dt id="index-company_002dfiles_002dchop_002dtrailing_002dslash"><span class="category">User Option: </span><span><strong>company-files-chop-trailing-slash</strong><a href='#index-company_002dfiles_002dchop_002dtrailing_002dslash' class='copiable-anchor'> &para;</a></span></dt>
+<dl class="first-defvr first-defopt-alias-first-defvr">
+<dt class="defvr defopt-alias-defvr" id="index-company_002dfiles_002dchop_002dtrailing_002dslash"><span class="category-def">User Option: </span><span><strong class="def-name">company-files-chop-trailing-slash</strong><a class="copiable-link" href='#index-company_002dfiles_002dchop_002dtrailing_002dslash'> &para;</a></span></dt>
 <dd><p>This setting is enabled by default, which results in stripping off a
 trailing slash from an inserted directory name.  On typing a trailing
 slash, the process of completion gets started again, from inside the
 just inserted directory.
 </p>
-<p>Setting <code><span class="nolinebreak">company-files-chop-trailing-slash</span></code><!-- /@w --> to <code>nil</code>
+<p>Setting <code class="code"><span class="w-nolinebreak-text">company-files-chop-trailing-slash</span></code><!-- /@w --> to <code class="code">nil</code>
 makes directory names to be inserted as is, with a trailing slash.  In
 this case, the completion process can be continued, for example,
-either by explicitly calling <em>company-files</em> backend
-(see&nbsp;<a href="#Backends-Usage-Basics">Backends Usage Basics</a>)<!-- /@w --> or by starting typing a name of a
+either by explicitly calling <em class="emph">company-files</em> backend
+(see <a class="pxref" href="#Backends-Usage-Basics">Backends Usage Basics</a>) or by starting typing a name of a
 file/directory known to be located under the inserted directory.
 </p></dd></dl>
 
@@ -413,97 +407,97 @@ file/directory known to be located under the inserted directory.
 
 <hr>
 </div>
-<div class="subsection" id="Template-Expansion">
-<span id="Template-Expansion-1"></span><h4 class="subsection">Template Expansion</h4>
+<div class="subsection-level-extent" id="Template-Expansion">
+<h4 class="subsection" id="Template-Expansion-1">Template Expansion</h4>
 
-<span id="index-template"></span>
-<span id="index-expansion"></span>
-<span id="index-snippet"></span>
-<span id="index-abbrev"></span>
-<dl class="def">
-<dt id="index-company_002dabbrev"><span class="category">Function: </span><span><strong>company-abbrev</strong><a href='#index-company_002dabbrev' class='copiable-anchor'> &para;</a></span></dt>
+<a class="index-entry-id" id="index-template"></a>
+<a class="index-entry-id" id="index-expansion"></a>
+<a class="index-entry-id" id="index-snippet"></a>
+<a class="index-entry-id" id="index-abbrev"></a>
+<dl class="first-deffn first-defun-alias-first-deffn">
+<dt class="deffn defun-alias-deffn" id="index-company_002dabbrev"><span class="category-def">Function: </span><span><strong class="def-name">company-abbrev</strong><a class="copiable-link" href='#index-company_002dabbrev'> &para;</a></span></dt>
 <dd><p>This is a completion backend for a built-in word abbreviation mode
 (see <a data-manual="emacs" href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Abbrevs.html#Abbrevs">(emacs)Abbrevs</a>), that allows completing abbreviations with
 their expansions.
 </p></dd></dl>
 
-<dl class="def">
-<dt id="index-company_002dtempo"><span class="category">Function: </span><span><strong>company-tempo</strong><a href='#index-company_002dtempo' class='copiable-anchor'> &para;</a></span></dt>
+<dl class="first-deffn first-defun-alias-first-deffn">
+<dt class="deffn defun-alias-deffn" id="index-company_002dtempo"><span class="category-def">Function: </span><span><strong class="def-name">company-tempo</strong><a class="copiable-link" href='#index-company_002dtempo'> &para;</a></span></dt>
 <dd><p>A backend for users of
-<a href="https://www.lysator.liu.se/~davidk/elisp/">Tempo</a>, one more
+<a class="uref" href="https://www.lysator.liu.se/~davidk/elisp/">Tempo</a>, one more
 built-in Emacs package for creating and inserting (expanding)
 templates.
 </p></dd></dl>
 
-<dl class="def">
-<dt id="index-company_002dyasnippet"><span class="category">Function: </span><span><strong>company-yasnippet</strong><a href='#index-company_002dyasnippet' class='copiable-anchor'> &para;</a></span></dt>
+<dl class="first-deffn first-defun-alias-first-deffn">
+<dt class="deffn defun-alias-deffn" id="index-company_002dyasnippet"><span class="category-def">Function: </span><span><strong class="def-name">company-yasnippet</strong><a class="copiable-link" href='#index-company_002dyasnippet'> &para;</a></span></dt>
 <dd><p>Used as a completion backend for the popular third-party template
-system <a href="https://github.com/joaotavora/yasnippet">YASnippet</a>.
+system <a class="uref" href="https://github.com/joaotavora/yasnippet">YASnippet</a>.
 </p></dd></dl>
 
 <hr>
 </div>
 </div>
-<div class="section" id="Candidates-Post_002dProcessing">
-<span id="Candidates-Post_002dProcessing-1"></span><h3 class="section">Candidates Post-Processing</h3>
+<div class="section-level-extent" id="Candidates-Post_002dProcessing">
+<h3 class="section" id="Candidates-Post_002dProcessing-1">Candidates Post-Processing</h3>
 
-<span id="index-sort"></span>
-<span id="index-duplicate"></span>
-<span id="index-company_002dtransformers"></span>
+<a class="index-entry-id" id="index-sort"></a>
+<a class="index-entry-id" id="index-duplicate"></a>
+<a class="index-entry-id" id="index-company_002dtransformers"></a>
 <p>A list of completion candidates, supplied by a backend, can be
 additionally manipulated (reorganized, reduced, sorted, etc) before
 its output.  This is done by adding a processing function name to the
-user option <code>company-transformers</code> list, for example:
+user option <code class="code">company-transformers</code> list, for example:
 </p>
 <div class="example lisp">
-<pre class="lisp">(setq company-transformers '(delete-consecutive-dups
+<pre class="lisp-preformatted">(setq company-transformers '(delete-consecutive-dups
                              company-sort-by-occurrence))
 </pre></div>
 
 <p>Company is bundled with several such transformer functions.  They are
 listed below.
 </p>
-<dl class="def">
-<dt id="index-company_002dsort_002dby_002doccurrence"><span class="category">Function: </span><span><strong>company-sort-by-occurrence</strong><a href='#index-company_002dsort_002dby_002doccurrence' class='copiable-anchor'> &para;</a></span></dt>
-<dd><p>Sorts candidates using <code>company-occurrence-weight-function</code>
+<dl class="first-deffn first-defun-alias-first-deffn">
+<dt class="deffn defun-alias-deffn" id="index-company_002dsort_002dby_002doccurrence"><span class="category-def">Function: </span><span><strong class="def-name">company-sort-by-occurrence</strong><a class="copiable-link" href='#index-company_002dsort_002dby_002doccurrence'> &para;</a></span></dt>
+<dd><p>Sorts candidates using <code class="code">company-occurrence-weight-function</code>
 algorithm.
 </p></dd></dl>
 
-<dl class="def">
-<dt id="index-company_002doccurrence_002dweight_002dfunction"><span class="category">User Option: </span><span><strong>company-occurrence-weight-function</strong><a href='#index-company_002doccurrence_002dweight_002dfunction' class='copiable-anchor'> &para;</a></span></dt>
+<dl class="first-defvr first-defopt-alias-first-defvr">
+<dt class="defvr defopt-alias-defvr" id="index-company_002doccurrence_002dweight_002dfunction"><span class="category-def">User Option: </span><span><strong class="def-name">company-occurrence-weight-function</strong><a class="copiable-link" href='#index-company_002doccurrence_002dweight_002dfunction'> &para;</a></span></dt>
 <dd><p>Can be set to one of
-<code><span class="nolinebreak">company-occurrence-prefer-closest-above</span></code><!-- /@w --> (default) or
-<code><span class="nolinebreak">company-occurrence-prefer-any-closest</span></code><!-- /@w -->.  This user option
-defines the behavior of the <code>company-sort-by-occurrence</code>
+<code class="code"><span class="w-nolinebreak-text">company-occurrence-prefer-closest-above</span></code><!-- /@w --> (default) or
+<code class="code"><span class="w-nolinebreak-text">company-occurrence-prefer-any-closest</span></code><!-- /@w -->.  This user option
+defines the behavior of the <code class="code">company-sort-by-occurrence</code>
 transformer function.
 </p></dd></dl>
 
-<dl class="def">
-<dt id="index-company_002dsort_002dby_002dbackend_002dimportance"><span class="category">Function: </span><span><strong>company-sort-by-backend-importance</strong><a href='#index-company_002dsort_002dby_002dbackend_002dimportance' class='copiable-anchor'> &para;</a></span></dt>
+<dl class="first-deffn first-defun-alias-first-deffn">
+<dt class="deffn defun-alias-deffn" id="index-company_002dsort_002dby_002dbackend_002dimportance"><span class="category-def">Function: </span><span><strong class="def-name">company-sort-by-backend-importance</strong><a class="copiable-link" href='#index-company_002dsort_002dby_002dbackend_002dimportance'> &para;</a></span></dt>
 <dd><p>Sorts candidates as two priority groups, differentiated by the keyword
-<code>:with</code> (see <a href="#Grouped-Backends">Grouped Backends</a>).  Backends positioned in the
-backends list before the keyword <code>:with</code> are treated as more
+<code class="code">:with</code> (see <a class="pxref" href="#Grouped-Backends">Grouped Backends</a>).  Backends positioned in the
+backends list before the keyword <code class="code">:with</code> are treated as more
 important.
 </p></dd></dl>
 
-<dl class="def">
-<dt id="index-company_002dsort_002dprefer_002dsame_002dcase_002dprefix"><span class="category">Function: </span><span><strong>company-sort-prefer-same-case-prefix</strong><a href='#index-company_002dsort_002dprefer_002dsame_002dcase_002dprefix' class='copiable-anchor'> &para;</a></span></dt>
+<dl class="first-deffn first-defun-alias-first-deffn">
+<dt class="deffn defun-alias-deffn" id="index-company_002dsort_002dprefer_002dsame_002dcase_002dprefix"><span class="category-def">Function: </span><span><strong class="def-name">company-sort-prefer-same-case-prefix</strong><a class="copiable-link" href='#index-company_002dsort_002dprefer_002dsame_002dcase_002dprefix'> &para;</a></span></dt>
 <dd><p>Gives preference to the candidates that match the prefix
 case-insensitively.
 </p></dd></dl>
 
 </div>
 </div>
-<div class="footnote">
+<div class="footnotes-segment">
 <hr>
 <h4 class="footnotes-heading">Footnotes</h4>
 
-<h5><a id="FOOT5" href="#DOCF5">(5)</a></h5>
+<h5 class="footnote-body-heading"><a id="FOOT5" href="#DOCF5">(5)</a></h5>
 <p>The grouped
-backends act as one complex backend.  See <a href="#Grouped-Backends">Grouped Backends</a>.</p>
+backends act as one complex backend.  See <a class="xref" href="#Grouped-Backends">Grouped Backends</a>.</p>
 </div>
 <hr>
-<div class="header">
+<div class="nav-panel">
 <p>
 Next: <a href="Troubleshooting.html" accesskey="n" rel="next">Troubleshooting</a>, Previous: <a href="Frontends.html#Frontends" accesskey="p" rel="prev">Frontends</a>, Up: <a href="index.html" accesskey="u" rel="up">Company</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
