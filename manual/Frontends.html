@@ -1,12 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
-<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 7.0.3, https://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <!-- This user manual is for Company version 0.9.14snapshot
-(12 August 2022).
+(16 April 2023).
 
-Copyright (C) 2021-2022  Free Software Foundation, Inc.
+Copyright © 2021-2023  Free Software Foundation, Inc.
 
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3 or
@@ -27,21 +27,13 @@ any later version published by the Free Software Foundation. -->
 <link href="Customization.html#Customization" rel="prev" title="Customization">
 <style type="text/css">
 <!--
-a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
-a.summary-letter {text-decoration: none}
-blockquote.indentedblock {margin-right: 0em}
-div.display {margin-left: 3.2em}
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
 div.example {margin-left: 3.2em}
-kbd {font-style: oblique}
-pre.display {font-family: inherit}
-pre.format {font-family: inherit}
-pre.menu-comment {font-family: serif}
-pre.menu-preformatted {font-family: serif}
-span.nolinebreak {white-space: nowrap}
-span.roman {font-family: initial; font-weight: normal}
-span.sansserif {font-family: sans-serif; font-weight: normal}
-span:hover a.copiable-anchor {visibility: visible}
-ul.no-bullet {list-style: none}
+kbd.kbd {font-style: oblique}
+kbd.key {font-style: normal}
+span.w-nolinebreak-text {white-space: nowrap}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
 -->
 </style>
 <link rel="stylesheet" type="text/css" href="https://company-mode.github.io/stylesheets/stylesheet.css">
@@ -50,68 +42,68 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="en">
-<div class="inner manual"><div class="chapter" id="Frontends">
-<div class="header">
+<div class="inner manual"><div class="chapter-level-extent" id="Frontends">
+<div class="nav-panel">
 <p>
 Next: <a href="Backends.html#Backends" accesskey="n" rel="next">Backends</a>, Previous: <a href="Customization.html#Customization" accesskey="p" rel="prev">Customization</a>, Up: <a href="index.html" accesskey="u" rel="up">Company</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <hr>
-<span id="Frontends-1"></span><h2 class="chapter">Frontends</h2>
+<h2 class="chapter" id="Frontends-1">Frontends</h2>
 
-<span id="index-frontends"></span>
-<span id="index-company_002dfrontends"></span>
+<a class="index-entry-id" id="index-frontends"></a>
+<a class="index-entry-id" id="index-company_002dfrontends"></a>
 <p>Company is packaged with several frontends and provides a predefined
 set of enabled frontends.  A list of the enabled frontends can be
-changed by configuring the user option <code>company-frontends</code>.
+changed by configuring the user option <code class="code">company-frontends</code>.
 </p>
 <p>Each frontend is simply a function that receives a command and acts
 accordingly to it: outputs candidates, hides its output, refreshes
 displayed data, and so on.
 </p>
 <p>All of the Company frontends can be categorized by the type of the
-output into the three groups: <em>tooltip-</em>, <em>preview-</em>, and
-<em>echo-</em> frontends.  We overview these groups in the first sections
+output into the three groups: <em class="dfn">tooltip-</em>, <em class="dfn">preview-</em>, and
+<em class="dfn">echo-</em> frontends.  We overview these groups in the first sections
 of this chapter.  The sections that follow are dedicated to the ways
 the displayed candidates can be searched, filtered, and
 quick-accessed.
 </p>
 
 <hr>
-<div class="section" id="Tooltip-Frontends">
-<span id="Tooltip-Frontends-1"></span><h3 class="section">Tooltip Frontends</h3>
+<div class="section-level-extent" id="Tooltip-Frontends">
+<h3 class="section" id="Tooltip-Frontends-1">Tooltip Frontends</h3>
 
-<span id="index-tooltip"></span>
-<span id="index-pop_002dup"></span>
+<a class="index-entry-id" id="index-tooltip"></a>
+<a class="index-entry-id" id="index-pop_002dup"></a>
 <p>This group of frontends displays completion candidates in an overlayed
-tooltip (aka <span class="nolinebreak">pop-up</span><!-- /@w -->).  Company provides three <em>tooltip
+tooltip (aka <span class="w-nolinebreak-text">pop-up</span><!-- /@w -->).  Company provides three <em class="emph">tooltip
 frontends</em>, listed below.
 </p>
-<dl class="def">
-<dt id="index-company_002dpseudo_002dtooltip_002dunless_002djust_002done_002dfrontend"><span class="category">Function: </span><span><strong>company-pseudo-tooltip-unless-just-one-frontend</strong><a href='#index-company_002dpseudo_002dtooltip_002dunless_002djust_002done_002dfrontend' class='copiable-anchor'> &para;</a></span></dt>
+<dl class="first-deffn first-defun-alias-first-deffn">
+<dt class="deffn defun-alias-deffn" id="index-company_002dpseudo_002dtooltip_002dunless_002djust_002done_002dfrontend"><span class="category-def">Function: </span><span><strong class="def-name">company-pseudo-tooltip-unless-just-one-frontend</strong><a class="copiable-link" href='#index-company_002dpseudo_002dtooltip_002dunless_002djust_002done_002dfrontend'> &para;</a></span></dt>
 <dd><p>This is one of the default frontends.  It starts displaying a tooltip
 only if more than one completion candidate is available, which nicely
 combines &mdash; and it is done so by default &mdash; with
-<code>company-preview-if-just-one-frontend</code>, <a href="#Preview-Frontends">Preview Frontends</a>.
+<code class="code">company-preview-if-just-one-frontend</code>, <a class="ref" href="#Preview-Frontends">Preview Frontends</a>.
 </p></dd></dl>
 
-<dl class="def">
-<dt id="index-company_002dpseudo_002dtooltip_002dfrontend"><span class="category">Function: </span><span><strong>company-pseudo-tooltip-frontend</strong><a href='#index-company_002dpseudo_002dtooltip_002dfrontend' class='copiable-anchor'> &para;</a></span></dt>
+<dl class="first-deffn first-defun-alias-first-deffn">
+<dt class="deffn defun-alias-deffn" id="index-company_002dpseudo_002dtooltip_002dfrontend"><span class="category-def">Function: </span><span><strong class="def-name">company-pseudo-tooltip-frontend</strong><a class="copiable-link" href='#index-company_002dpseudo_002dtooltip_002dfrontend'> &para;</a></span></dt>
 <dd><p>This frontend outputs a tooltip for any number of completion
 candidates.
 </p></dd></dl>
 
-<dl class="def">
-<dt id="index-company_002dpseudo_002dtooltip_002dunless_002djust_002done_002dfrontend_002dwith_002ddelay"><span class="category">Function: </span><span><strong>company-pseudo-tooltip-unless-just-one-frontend-with-delay</strong><a href='#index-company_002dpseudo_002dtooltip_002dunless_002djust_002done_002dfrontend_002dwith_002ddelay' class='copiable-anchor'> &para;</a></span></dt>
-<dd><span id="index-company_002dtooltip_002didle_002ddelay"></span>
+<dl class="first-deffn first-defun-alias-first-deffn">
+<dt class="deffn defun-alias-deffn" id="index-company_002dpseudo_002dtooltip_002dunless_002djust_002done_002dfrontend_002dwith_002ddelay"><span class="category-def">Function: </span><span><strong class="def-name">company-pseudo-tooltip-unless-just-one-frontend-with-delay</strong><a class="copiable-link" href='#index-company_002dpseudo_002dtooltip_002dunless_002djust_002done_002dfrontend_002dwith_002ddelay'> &para;</a></span></dt>
+<dd><a class="index-entry-id" id="index-company_002dtooltip_002didle_002ddelay"></a>
 <p>This is a peculiar frontend, that displays a tooltip only if more than
 one candidate is available, and only after a delay.  The delay can be
-configured with the user option <code><span class="nolinebreak">company-tooltip-idle-delay</span></code><!-- /@w -->.
+configured with the user option <code class="code"><span class="w-nolinebreak-text">company-tooltip-idle-delay</span></code><!-- /@w -->.
 A typical use case for plugging in this frontend would be displaying a
 tooltip only on a manual request (when needed), as shown in the
 following example:
 </p>
 <div class="example lisp">
-<pre class="lisp">(setq company-idle-delay 0
+<pre class="lisp-preformatted">(setq company-idle-delay 0
       company-tooltip-idle-delay 10
       company-require-match nil
       company-frontends
@@ -130,82 +122,95 @@ following example:
 </pre></div>
 </dd></dl>
 
-<span id="User-Options"></span><h4 class="subheading">User Options</h4>
+<h4 class="subheading" id="User-Options">User Options</h4>
 
 
-<span id="index-custom-3"></span>
-<span id="index-configure-3"></span>
-<span id="index-interface"></span>
-<p>To change the <em>tooltip frontends</em> configuration, adjust the
+<a class="index-entry-id" id="index-custom-3"></a>
+<a class="index-entry-id" id="index-configure-3"></a>
+<a class="index-entry-id" id="index-interface"></a>
+<p>To change the <em class="emph">tooltip frontends</em> configuration, adjust the
 following user options.
 </p>
-<dl class="def">
-<dt id="index-company_002dtooltip_002dalign_002dannotations"><span class="category">User Option: </span><span><strong>company-tooltip-align-annotations</strong><a href='#index-company_002dtooltip_002dalign_002dannotations' class='copiable-anchor'> &para;</a></span></dt>
-<dd><span id="index-annotation"></span>
-<p>An <em>annotation</em> is a string that carries additional information
+<dl class="first-defvr first-defopt-alias-first-defvr">
+<dt class="defvr defopt-alias-defvr" id="index-company_002dtooltip_002dalign_002dannotations"><span class="category-def">User Option: </span><span><strong class="def-name">company-tooltip-align-annotations</strong><a class="copiable-link" href='#index-company_002dtooltip_002dalign_002dannotations'> &para;</a></span></dt>
+<dd><a class="index-entry-id" id="index-annotation"></a>
+<p>An <em class="dfn">annotation</em> is a string that carries additional information
 about a candidate; such as a data type, function arguments, or
 whatever a backend appoints to be a valuable piece of information
 about a candidate.  By default, the annotations are shown right beside
-the candidates.  Setting the option value to <code>t</code> aligns
+the candidates.  Setting the option value to <code class="code">t</code> aligns
 annotations to the right side of the tooltip.
 </p>
 <div class="example lisp">
-<pre class="lisp">(setq company-tooltip-align-annotations t)
+<pre class="lisp-preformatted">(setq company-tooltip-align-annotations t)
 </pre></div>
 
-<img src="./images/large/tooltip-annotations.png" alt="./images/large/tooltip-annotations">
+<img class="image" src="./images/large/tooltip-annotations.png" alt="./images/large/tooltip-annotations">
 
 </dd></dl>
 
-<dl class="def">
-<dt id="index-company_002dtooltip_002dlimit"><span class="category">User Option: </span><span><strong>company-tooltip-limit</strong><a href='#index-company_002dtooltip_002dlimit' class='copiable-anchor'> &para;</a></span></dt>
+<dl class="first-defvr first-defopt-alias-first-defvr">
+<dt class="defvr defopt-alias-defvr" id="index-company_002dtooltip_002dannotation_002dpadding"><span class="category-def">User Option: </span><span><strong class="def-name">company-tooltip-annotation-padding</strong><a class="copiable-link" href='#index-company_002dtooltip_002dannotation_002dpadding'> &para;</a></span></dt>
+<dd><p>Adds left padding to the candidates&rsquo; annotations.  It is disabled by
+default.  If <code class="code">company-tooltip-align-annotations</code> is enabled,
+<code class="code">company-tooltip-annotation-padding</code> defines the minimum spacing
+between a candidate and annotation, with the default value of 1.
+</p>
+<div class="example lisp">
+<pre class="lisp-preformatted">(setq company-tooltip-annotation-padding 1)
+</pre></div>
+
+</dd></dl>
+
+<dl class="first-defvr first-defopt-alias-first-defvr">
+<dt class="defvr defopt-alias-defvr" id="index-company_002dtooltip_002dlimit"><span class="category-def">User Option: </span><span><strong class="def-name">company-tooltip-limit</strong><a class="copiable-link" href='#index-company_002dtooltip_002dlimit'> &para;</a></span></dt>
 <dd><p>Controls the maximum number of the candidates shown simultaneously in
-the tooltip (the default value is <code>10</code>).  When the number of the
+the tooltip (the default value is <code class="code">10</code>).  When the number of the
 available candidates is larger than this option&rsquo;s value, Company
 paginates the results.
 </p>
 <div class="example lisp">
-<pre class="lisp">(setq company-tooltip-limit 4)
+<pre class="lisp-preformatted">(setq company-tooltip-limit 4)
 </pre></div>
 
-<img src="./images/large/tooltip-limit.png" alt="./images/large/tooltip-limit">
+<img class="image" src="./images/large/tooltip-limit.png" alt="./images/large/tooltip-limit">
 
 </dd></dl>
 
-<dl class="def">
-<dt id="index-company_002dtooltip_002doffset_002ddisplay"><span class="category">User Option: </span><span><strong>company-tooltip-offset-display</strong><a href='#index-company_002dtooltip_002doffset_002ddisplay' class='copiable-anchor'> &para;</a></span></dt>
+<dl class="first-defvr first-defopt-alias-first-defvr">
+<dt class="defvr defopt-alias-defvr" id="index-company_002dtooltip_002doffset_002ddisplay"><span class="category-def">User Option: </span><span><strong class="def-name">company-tooltip-offset-display</strong><a class="copiable-link" href='#index-company_002dtooltip_002doffset_002ddisplay'> &para;</a></span></dt>
 <dd><p>Use this option to choose in which way to output paginated results.
-The default value is &lsquo;<samp>scrollbar</samp>&rsquo;.  Another supported value is
-&lsquo;<samp>lines</samp>&rsquo;; choose it to show the quantity of the candidates not
+The default value is &lsquo;<samp class="samp">scrollbar</samp>&rsquo;.  Another supported value is
+&lsquo;<samp class="samp">lines</samp>&rsquo;; choose it to show the quantity of the candidates not
 displayed by the current tooltip page.
 </p>
 <div class="example lisp">
-<pre class="lisp">(setq company-tooltip-offset-display 'lines)
+<pre class="lisp-preformatted">(setq company-tooltip-offset-display 'lines)
 </pre></div>
 
-<img src="./images/large/tooltip-offset-display.png" alt="./images/large/tooltip-offset-display">
+<img class="image" src="./images/large/tooltip-offset-display.png" alt="./images/large/tooltip-offset-display">
 </dd></dl>
 
-<dl class="def">
-<dt id="index-company_002dtooltip_002dminimum"><span class="category">User Option: </span><span><strong>company-tooltip-minimum</strong><a href='#index-company_002dtooltip_002dminimum' class='copiable-anchor'> &para;</a></span></dt>
+<dl class="first-defvr first-defopt-alias-first-defvr">
+<dt class="defvr defopt-alias-defvr" id="index-company_002dtooltip_002dminimum"><span class="category-def">User Option: </span><span><strong class="def-name">company-tooltip-minimum</strong><a class="copiable-link" href='#index-company_002dtooltip_002dminimum'> &para;</a></span></dt>
 <dd><p>This user option acts only when a tooltip is shown close to the bottom
 of a window.  It guarantees visibility of this number of completion
 candidates below point.  When the number of lines between point and
-the bottom of a window is less than <code><span class="nolinebreak">company-tooltip-minimum</span></code><!-- /@w -->
+the bottom of a window is less than <code class="code"><span class="w-nolinebreak-text">company-tooltip-minimum</span></code><!-- /@w -->
 value, the tooltip is displayed above point.
 </p>
 <div class="example lisp">
-<pre class="lisp">(setq company-tooltip-minimum 4)
+<pre class="lisp-preformatted">(setq company-tooltip-minimum 4)
 </pre></div>
 
-<img src="./images/large/tooltip-minimum-below.png" alt="./images/large/tooltip-minimum-below">
+<img class="image" src="./images/large/tooltip-minimum-below.png" alt="./images/large/tooltip-minimum-below">
 
 
-<img src="./images/large/tooltip-minimum-above.png" alt="./images/large/tooltip-minimum-above">
+<img class="image" src="./images/large/tooltip-minimum-above.png" alt="./images/large/tooltip-minimum-above">
 </dd></dl>
 
-<dl class="def">
-<dt id="index-company_002dtooltip_002dflip_002dwhen_002dabove"><span class="category">User Option: </span><span><strong>company-tooltip-flip-when-above</strong><a href='#index-company_002dtooltip_002dflip_002dwhen_002dabove' class='copiable-anchor'> &para;</a></span></dt>
+<dl class="first-defvr first-defopt-alias-first-defvr">
+<dt class="defvr defopt-alias-defvr" id="index-company_002dtooltip_002dflip_002dwhen_002dabove"><span class="category-def">User Option: </span><span><strong class="def-name">company-tooltip-flip-when-above</strong><a class="copiable-link" href='#index-company_002dtooltip_002dflip_002dwhen_002dabove'> &para;</a></span></dt>
 <dd><p>This is one of the fancy features Company has to suggest.  When this
 setting is enabled, no matter if a tooltip is shown above or below
 point, the candidates are always listed starting near point.  (Putting
@@ -213,161 +218,161 @@ it differently, the candidates are mirrored horizontally if a tooltip
 changes its position, instead of being commonly listed top-to-bottom.)
 </p>
 <div class="example lisp">
-<pre class="lisp">(setq company-tooltip-flip-when-above t)
+<pre class="lisp-preformatted">(setq company-tooltip-flip-when-above t)
 </pre></div>
 
-<img src="./images/large/tooltip-flip.png" alt="./images/large/tooltip-flip">
+<img class="image" src="./images/large/tooltip-flip.png" alt="./images/large/tooltip-flip">
 </dd></dl>
 
-<dl class="def">
-<dt id="index-company_002dtooltip_002dminimum_002dwidth"><span class="category">User Option: </span><span><strong>company-tooltip-minimum-width</strong><a href='#index-company_002dtooltip_002dminimum_002dwidth' class='copiable-anchor'> &para;</a></span></dt>
+<dl class="first-defvr first-defopt-alias-first-defvr">
+<dt class="defvr defopt-alias-defvr" id="index-company_002dtooltip_002dminimum_002dwidth"><span class="category-def">User Option: </span><span><strong class="def-name">company-tooltip-minimum-width</strong><a class="copiable-link" href='#index-company_002dtooltip_002dminimum_002dwidth'> &para;</a></span></dt>
 <dd><p>Sets the minimum width of a tooltip, excluding the margins and the
 scroll bar.  Changing this value especially makes sense if a user
 navigates between tooltip pages.  Keeping this value at the default
-<code>0</code> allows Company to always adapt the width of the tooltip to
+<code class="code">0</code> allows Company to always adapt the width of the tooltip to
 the longest shown candidate.  Enlarging
-<code>company-tooltip-minimum-width</code> prevents possible significant
+<code class="code">company-tooltip-minimum-width</code> prevents possible significant
 shifts in the width of the tooltip when navigating to the
 next/previous tooltip page.  (For an alternate solution, see
-<code>company-tooltip-width-grow-only</code>.)
+<code class="code">company-tooltip-width-grow-only</code>.)
 </p></dd></dl>
 
-<dl class="def">
-<dt id="index-company_002dtooltip_002dwidth_002dgrow_002donly"><span class="category">User Option: </span><span><strong>company-tooltip-width-grow-only</strong><a href='#index-company_002dtooltip_002dwidth_002dgrow_002donly' class='copiable-anchor'> &para;</a></span></dt>
+<dl class="first-defvr first-defopt-alias-first-defvr">
+<dt class="defvr defopt-alias-defvr" id="index-company_002dtooltip_002dwidth_002dgrow_002donly"><span class="category-def">User Option: </span><span><strong class="def-name">company-tooltip-width-grow-only</strong><a class="copiable-link" href='#index-company_002dtooltip_002dwidth_002dgrow_002donly'> &para;</a></span></dt>
 <dd><p>This is another way to restrict auto-adaptation of the tooltip width
-(another is by adjusting <code>company-tooltip-minimum-width</code> value)
+(another is by adjusting <code class="code">company-tooltip-minimum-width</code> value)
 when navigating between the tooltip pages.
 </p></dd></dl>
 
-<dl class="def">
-<dt id="index-company_002dtooltip_002dmaximum_002dwidth"><span class="category">User Option: </span><span><strong>company-tooltip-maximum-width</strong><a href='#index-company_002dtooltip_002dmaximum_002dwidth' class='copiable-anchor'> &para;</a></span></dt>
+<dl class="first-defvr first-defopt-alias-first-defvr">
+<dt class="defvr defopt-alias-defvr" id="index-company_002dtooltip_002dmaximum_002dwidth"><span class="category-def">User Option: </span><span><strong class="def-name">company-tooltip-maximum-width</strong><a class="copiable-link" href='#index-company_002dtooltip_002dmaximum_002dwidth'> &para;</a></span></dt>
 <dd><p>This user option controls the maximum width of the tooltip inner area.
 By default, its value is pseudo-limitless, potentially permitting the
 output of extremely long candidates.  But if long lines become an
-issue, set this option to a smaller number, such as <code>60</code> or
-<code>70</code>.
+issue, set this option to a smaller number, such as <code class="code">60</code> or
+<code class="code">70</code>.
 </p></dd></dl>
 
-<dl class="def">
-<dt id="index-company_002dtooltip_002dmargin"><span class="category">User Option: </span><span><strong>company-tooltip-margin</strong><a href='#index-company_002dtooltip_002dmargin' class='copiable-anchor'> &para;</a></span></dt>
-<dd><span id="index-margin"></span>
-<p>Controls the width of the <em>margin</em> on the sides of the tooltip
-inner area.  If <code>company-format-margin-function</code> is set,
-<code>company-tooltip-margin</code> defines only the right margin.
+<dl class="first-defvr first-defopt-alias-first-defvr">
+<dt class="defvr defopt-alias-defvr" id="index-company_002dtooltip_002dmargin"><span class="category-def">User Option: </span><span><strong class="def-name">company-tooltip-margin</strong><a class="copiable-link" href='#index-company_002dtooltip_002dmargin'> &para;</a></span></dt>
+<dd><a class="index-entry-id" id="index-margin"></a>
+<p>Controls the width of the <em class="dfn">margin</em> on the sides of the tooltip
+inner area.  If <code class="code">company-format-margin-function</code> is set,
+<code class="code">company-tooltip-margin</code> defines only the right margin.
 </p>
 <div class="example lisp">
-<pre class="lisp">(setq company-tooltip-margin 3)
+<pre class="lisp-preformatted">(setq company-tooltip-margin 3)
 </pre></div>
 
-<img src="./images/large/tooltip-margin.png" alt="./images/large/tooltip-margin">
+<img class="image" src="./images/large/tooltip-margin.png" alt="./images/large/tooltip-margin">
 </dd></dl>
 
-<span id="Candidates-Icons"></span><h4 class="subheading">Candidates Icons</h4>
+<h4 class="subheading" id="Candidates-Icons">Candidates Icons</h4>
 
-<span id="index-icon"></span>
-<span id="index-kind"></span>
-<p>An <em>icon</em> is an image or a text that represents a candidate&rsquo;s
-kind; it is displayed in front of a candidate.  The term <em>kind</em>
+<a class="index-entry-id" id="index-icon"></a>
+<a class="index-entry-id" id="index-kind"></a>
+<p>An <em class="dfn">icon</em> is an image or a text that represents a candidate&rsquo;s
+kind; it is displayed in front of a candidate.  The term <em class="dfn">kind</em>
 here stands for a high-level category a candidate fits into. (Such as
-&lsquo;<samp>array</samp>&rsquo;, &lsquo;<samp>function</samp>&rsquo;, &lsquo;<samp>file</samp>&rsquo;, &lsquo;<samp>string</samp>&rsquo;,
-&lsquo;<samp>color</samp>&rsquo;, etc.  For an extended list of the possible <em>kinds</em>,
-see the user option <code>company-text-icons-mapping</code> or the variable
-<code><span class="nolinebreak">company-vscode-icons-mapping</span></code><!-- /@w -->.)
+&lsquo;<samp class="samp">array</samp>&rsquo;, &lsquo;<samp class="samp">function</samp>&rsquo;, &lsquo;<samp class="samp">file</samp>&rsquo;, &lsquo;<samp class="samp">string</samp>&rsquo;,
+&lsquo;<samp class="samp">color</samp>&rsquo;, etc.  For an extended list of the possible <em class="emph">kinds</em>,
+see the user option <code class="code">company-text-icons-mapping</code> or the variable
+<code class="code"><span class="w-nolinebreak-text">company-vscode-icons-mapping</span></code><!-- /@w -->.)
 </p>
-<dl class="def">
-<dt id="index-company_002dformat_002dmargin_002dfunction"><span class="category">User Option: </span><span><strong>company-format-margin-function</strong><a href='#index-company_002dformat_002dmargin_002dfunction' class='copiable-anchor'> &para;</a></span></dt>
-<dd><span id="index-margin-1"></span>
+<dl class="first-defvr first-defopt-alias-first-defvr">
+<dt class="defvr defopt-alias-defvr" id="index-company_002dformat_002dmargin_002dfunction"><span class="category-def">User Option: </span><span><strong class="def-name">company-format-margin-function</strong><a class="copiable-link" href='#index-company_002dformat_002dmargin_002dfunction'> &para;</a></span></dt>
+<dd><a class="index-entry-id" id="index-margin-1"></a>
 <p>Allows setting a function to format the left margin of a tooltip inner
-area; namely, to output candidate&rsquo;s <em>icons</em>.  The predefined
+area; namely, to output candidate&rsquo;s <em class="emph">icons</em>.  The predefined
 formatting functions are listed below.  A user may also set this
 option to a custom function. To disable left margin formatting, set
-the value of the option to <code>nil</code> (this way control over the size
+the value of the option to <code class="code">nil</code> (this way control over the size
 of the left margin returns to the user option
-<code>company-tooltip-margin</code>).
+<code class="code">company-tooltip-margin</code>).
 </p></dd></dl>
 
-<dl class="def">
-<dt id="index-company_002dvscode_002ddark_002dicons_002dmargin"><span class="category">Function: </span><span><strong>company-vscode-dark-icons-margin</strong><a href='#index-company_002dvscode_002ddark_002dicons_002dmargin' class='copiable-anchor'> &para;</a></span></dt>
-<dt id="index-company_002dvscode_002dlight_002dicons_002dmargin"><span class="category">Function: </span><span><strong>company-vscode-light-icons-margin</strong><a href='#index-company_002dvscode_002dlight_002dicons_002dmargin' class='copiable-anchor'> &para;</a></span></dt>
-<dd><span id="index-company_002dicon_002dsize"></span>
-<span id="index-company_002dicon_002dmargin"></span>
+<dl class="first-deffn first-defun-alias-first-deffn">
+<dt class="deffn defun-alias-deffn" id="index-company_002dvscode_002ddark_002dicons_002dmargin"><span class="category-def">Function: </span><span><strong class="def-name">company-vscode-dark-icons-margin</strong><a class="copiable-link" href='#index-company_002dvscode_002ddark_002dicons_002dmargin'> &para;</a></span></dt>
+<dt class="deffnx defunx-alias-deffnx def-cmd-deffn" id="index-company_002dvscode_002dlight_002dicons_002dmargin"><span class="category-def">Function: </span><span><strong class="def-name">company-vscode-light-icons-margin</strong><a class="copiable-link" href='#index-company_002dvscode_002dlight_002dicons_002dmargin'> &para;</a></span></dt>
+<dd><a class="index-entry-id" id="index-company_002dicon_002dsize"></a>
+<a class="index-entry-id" id="index-company_002dicon_002dmargin"></a>
 <p>These functions utilize VSCode dark and light theme icon sets
-<a id="DOCF3" href="#FOOT3"><sup>3</sup></a>.  The related two user
-options are <code>company-icon-size</code> and <code>company-icon-margin</code>.
+<a class="footnote" id="DOCF3" href="#FOOT3"><sup>3</sup></a>.  The related two user
+options are <code class="code">company-icon-size</code> and <code class="code">company-icon-margin</code>.
 </p>
-<img src="./images/large/tooltip-icons-vscode.png" alt="./images/large/tooltip-icons-vscode">
+<img class="image" src="./images/large/tooltip-icons-vscode.png" alt="./images/large/tooltip-icons-vscode">
 </dd></dl>
 
-<dl class="def">
-<dt id="index-company_002dtext_002dicons_002dmargin"><span class="category">Function: </span><span><strong>company-text-icons-margin</strong><a href='#index-company_002dtext_002dicons_002dmargin' class='copiable-anchor'> &para;</a></span></dt>
-<dd><span id="index-company_002dtext_002dicons_002dformat"></span>
+<dl class="first-deffn first-defun-alias-first-deffn">
+<dt class="deffn defun-alias-deffn" id="index-company_002dtext_002dicons_002dmargin"><span class="category-def">Function: </span><span><strong class="def-name">company-text-icons-margin</strong><a class="copiable-link" href='#index-company_002dtext_002dicons_002dmargin'> &para;</a></span></dt>
+<dd><a class="index-entry-id" id="index-company_002dtext_002dicons_002dformat"></a>
 <p>This function produces letters and symbols formatted according to the
-<code><span class="nolinebreak">company-text-icons-format</span></code><!-- /@w -->.  The rest of the user options
+<code class="code"><span class="w-nolinebreak-text">company-text-icons-format</span></code><!-- /@w -->.  The rest of the user options
 affecting this function behavior are listed below.
 </p>
-<img src="./images/large/tooltip-icons-text.png" alt="./images/large/tooltip-icons-text">
+<img class="image" src="./images/large/tooltip-icons-text.png" alt="./images/large/tooltip-icons-text">
 </dd></dl>
 
-<dl class="def">
-<dt id="index-company_002ddot_002dicons_002dmargin"><span class="category">Function: </span><span><strong>company-dot-icons-margin</strong><a href='#index-company_002ddot_002dicons_002dmargin' class='copiable-anchor'> &para;</a></span></dt>
-<dd><span id="index-company_002ddot_002dicons_002dformat"></span>
+<dl class="first-deffn first-defun-alias-first-deffn">
+<dt class="deffn defun-alias-deffn" id="index-company_002ddot_002dicons_002dmargin"><span class="category-def">Function: </span><span><strong class="def-name">company-dot-icons-margin</strong><a class="copiable-link" href='#index-company_002ddot_002dicons_002dmargin'> &para;</a></span></dt>
+<dd><a class="index-entry-id" id="index-company_002ddot_002dicons_002dformat"></a>
 <p>This function produces a colored Unicode symbol of a circle formatted
-according to the <code><span class="nolinebreak">company-dot-icons-format</span></code><!-- /@w -->.  Other user
+according to the <code class="code"><span class="w-nolinebreak-text">company-dot-icons-format</span></code><!-- /@w -->.  Other user
 options that affect the resulting output are listed below.
 </p>
-<img src="./images/large/tooltip-icons-dot.png" alt="./images/large/tooltip-icons-dot">
+<img class="image" src="./images/large/tooltip-icons-dot.png" alt="./images/large/tooltip-icons-dot">
 </dd></dl>
 
-<p>The following user options influence appearance of the <em>text</em> and
-<em>dot</em> <em>icons</em>.
+<p>The following user options influence appearance of the <em class="emph">text</em> and
+<em class="emph">dot</em> <em class="emph">icons</em>.
 </p>
-<dl class="def">
-<dt id="index-company_002dtext_002dicons_002dmapping"><span class="category">User Option: </span><span><strong>company-text-icons-mapping</strong><a href='#index-company_002dtext_002dicons_002dmapping' class='copiable-anchor'> &para;</a></span></dt>
-<dd><p>Lists candidates&rsquo; <em>kinds</em> with their corresponding <em>icons</em>
+<dl class="first-defvr first-defopt-alias-first-defvr">
+<dt class="defvr defopt-alias-defvr" id="index-company_002dtext_002dicons_002dmapping"><span class="category-def">User Option: </span><span><strong class="def-name">company-text-icons-mapping</strong><a class="copiable-link" href='#index-company_002dtext_002dicons_002dmapping'> &para;</a></span></dt>
+<dd><p>Lists candidates&rsquo; <em class="emph">kinds</em> with their corresponding <em class="emph">icons</em>
 configurations.
 </p></dd></dl>
 
-<dl class="def">
-<dt id="index-company_002dtext_002dface_002dextra_002dattributes"><span class="category">User Option: </span><span><strong>company-text-face-extra-attributes</strong><a href='#index-company_002dtext_002dface_002dextra_002dattributes' class='copiable-anchor'> &para;</a></span></dt>
-<dd><p>A list of face attributes to be applied to the <em>icons</em>.
+<dl class="first-defvr first-defopt-alias-first-defvr">
+<dt class="defvr defopt-alias-defvr" id="index-company_002dtext_002dface_002dextra_002dattributes"><span class="category-def">User Option: </span><span><strong class="def-name">company-text-face-extra-attributes</strong><a class="copiable-link" href='#index-company_002dtext_002dface_002dextra_002dattributes'> &para;</a></span></dt>
+<dd><p>A list of face attributes to be applied to the <em class="emph">icons</em>.
 </p>
 <div class="example lisp">
-<pre class="lisp">(setq company-text-face-extra-attributes
+<pre class="lisp-preformatted">(setq company-text-face-extra-attributes
       '(:weight bold :slant italic))
 </pre></div>
 
-<img src="./images/large/tooltip-icon-face.png" alt="./images/large/tooltip-icon-face">
+<img class="image" src="./images/large/tooltip-icon-face.png" alt="./images/large/tooltip-icon-face">
 </dd></dl>
 
-<dl class="def">
-<dt id="index-company_002dtext_002dicons_002dadd_002dbackground"><span class="category">User Option: </span><span><strong>company-text-icons-add-background</strong><a href='#index-company_002dtext_002dicons_002dadd_002dbackground' class='copiable-anchor'> &para;</a></span></dt>
-<dd><p>If this option is enabled, when an <em>icon</em> doesn&rsquo;t have a
-background configured by <code>company-text-icons-mapping</code>, then a
+<dl class="first-defvr first-defopt-alias-first-defvr">
+<dt class="defvr defopt-alias-defvr" id="index-company_002dtext_002dicons_002dadd_002dbackground"><span class="category-def">User Option: </span><span><strong class="def-name">company-text-icons-add-background</strong><a class="copiable-link" href='#index-company_002dtext_002dicons_002dadd_002dbackground'> &para;</a></span></dt>
+<dd><p>If this option is enabled, when an <em class="emph">icon</em> doesn&rsquo;t have a
+background configured by <code class="code">company-text-icons-mapping</code>, then a
 generated background is applied.
 </p>
 <div class="example lisp">
-<pre class="lisp">(setq company-text-icons-add-background t)
+<pre class="lisp-preformatted">(setq company-text-icons-add-background t)
 </pre></div>
 
-<img src="./images/large/tooltip-icon-bg.png" alt="./images/large/tooltip-icon-bg">
+<img class="image" src="./images/large/tooltip-icon-bg.png" alt="./images/large/tooltip-icon-bg">
 </dd></dl>
 
-<dl class="def">
-<dt id="index-company_002ddetect_002dicons_002dmargin"><span class="category">Function: </span><span><strong>company-detect-icons-margin</strong><a href='#index-company_002ddetect_002dicons_002dmargin' class='copiable-anchor'> &para;</a></span></dt>
+<dl class="first-deffn first-defun-alias-first-deffn">
+<dt class="deffn defun-alias-deffn" id="index-company_002ddetect_002dicons_002dmargin"><span class="category-def">Function: </span><span><strong class="def-name">company-detect-icons-margin</strong><a class="copiable-link" href='#index-company_002ddetect_002dicons_002dmargin'> &para;</a></span></dt>
 <dd><p>This is the default margin formatting function, that applies one of
-the <code><span class="nolinebreak">company-vscode-*-icons-margin</span></code><!-- /@w --> functions if
-&lsquo;<samp>vscode</samp>&rsquo; icons set is supported; otherwise applies a
-<code><span class="nolinebreak">company-text-icons-margin</span></code><!-- /@w --> function.
+the <code class="code"><span class="w-nolinebreak-text">company-vscode-*-icons-margin</span></code><!-- /@w --> functions if
+&lsquo;<samp class="samp">vscode</samp>&rsquo; icons set is supported; otherwise applies a
+<code class="code"><span class="w-nolinebreak-text">company-text-icons-margin</span></code><!-- /@w --> function.
 </p></dd></dl>
 
-<span id="Faces"></span><h4 class="subheading">Faces</h4>
-<span id="index-company_002dtooltip"></span>
-<span id="index-face"></span>
-<span id="index-font"></span>
-<span id="index-color"></span>
-<span id="index-interface-1"></span>
-<span id="index-custom-4"></span>
-<span id="index-configure-4"></span>
+<h4 class="subheading" id="Faces">Faces</h4>
+<a class="index-entry-id" id="index-company_002dtooltip"></a>
+<a class="index-entry-id" id="index-face"></a>
+<a class="index-entry-id" id="index-font"></a>
+<a class="index-entry-id" id="index-color"></a>
+<a class="index-entry-id" id="index-interface-1"></a>
+<a class="index-entry-id" id="index-custom-4"></a>
+<a class="index-entry-id" id="index-configure-4"></a>
 <p>Out-of-the-box Company defines and configures distinguished faces
 (see <a data-manual="emacs" href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Faces.html#Faces">(emacs)Faces</a>) for light and dark themes.  Moreover, some of
 the built-in and third-party themes fine-tune Company to fit their
@@ -376,13 +381,13 @@ adjustments on a user side.  However, this chapter presents some hints
 on where to start customizing Company interface.
 </p>
 <p>Namely, the look of a tooltip is controlled by the
-<code>company-tooltip*</code> named faces.
+<code class="code">company-tooltip*</code> named faces.
 </p>
 <p>The following example hints how a user may approach tooltip faces
 customization:
 </p>
 <div class="example lisp">
-<pre class="lisp">(custom-set-faces
+<pre class="lisp-preformatted">(custom-set-faces
  '(company-tooltip
    ((t (:background &quot;ivory&quot; :foreground &quot;MistyRose3&quot;))))
  '(company-tooltip-selection
@@ -393,243 +398,243 @@ customization:
  '(company-tooltip-annotation ((t (:foreground &quot;MistyRose2&quot;)))))
 </pre></div>
 
-<img src="./images/large/tooltip-faces-light.png" alt="./images/large/tooltip-faces-light">
+<img class="image" src="./images/large/tooltip-faces-light.png" alt="./images/large/tooltip-faces-light">
 
 <hr>
 </div>
-<div class="section" id="Preview-Frontends">
-<span id="Preview-Frontends-1"></span><h3 class="section">Preview Frontends</h3>
+<div class="section-level-extent" id="Preview-Frontends">
+<h3 class="section" id="Preview-Frontends-1">Preview Frontends</h3>
 
-<span id="index-preview"></span>
-<span id="index-face-1"></span>
-<span id="index-company_002dpreview"></span>
-<span id="index-candidate-3"></span>
-<span id="index-common-part-2"></span>
-<span id="index-complete-5"></span>
+<a class="index-entry-id" id="index-preview"></a>
+<a class="index-entry-id" id="index-face-1"></a>
+<a class="index-entry-id" id="index-company_002dpreview"></a>
+<a class="index-entry-id" id="index-candidate-3"></a>
+<a class="index-entry-id" id="index-common-part-2"></a>
+<a class="index-entry-id" id="index-complete-5"></a>
 <p>Frontends in this group output a completion candidate or a common part
 of the candidates temporarily inline, as if a word had already been
-completed <a id="DOCF4" href="#FOOT4"><sup>4</sup></a>.
+completed <a class="footnote" id="DOCF4" href="#FOOT4"><sup>4</sup></a>.
 </p>
-<dl class="def">
-<dt id="index-company_002dpreview_002dif_002djust_002done_002dfrontend"><span class="category">Function: </span><span><strong>company-preview-if-just-one-frontend</strong><a href='#index-company_002dpreview_002dif_002djust_002done_002dfrontend' class='copiable-anchor'> &para;</a></span></dt>
+<dl class="first-deffn first-defun-alias-first-deffn">
+<dt class="deffn defun-alias-deffn" id="index-company_002dpreview_002dif_002djust_002done_002dfrontend"><span class="category-def">Function: </span><span><strong class="def-name">company-preview-if-just-one-frontend</strong><a class="copiable-link" href='#index-company_002dpreview_002dif_002djust_002done_002dfrontend'> &para;</a></span></dt>
 <dd><p>This is one of the frontends enabled by default.  This frontend
 outputs a preview if only one completion candidate is available; it is
 a good suit to be combined with
-<code><span class="nolinebreak">company-pseudo-tooltip-unless-just-one-frontend</span></code><!-- /@w -->,
-<a href="#Tooltip-Frontends">Tooltip Frontends</a>.
+<code class="code"><span class="w-nolinebreak-text">company-pseudo-tooltip-unless-just-one-frontend</span></code><!-- /@w -->,
+<a class="ref" href="#Tooltip-Frontends">Tooltip Frontends</a>.
 </p></dd></dl>
 
 
-<dl class="def">
-<dt id="index-company_002dpreview_002dfrontend"><span class="category">Function: </span><span><strong>company-preview-frontend</strong><a href='#index-company_002dpreview_002dfrontend' class='copiable-anchor'> &para;</a></span></dt>
+<dl class="first-deffn first-defun-alias-first-deffn">
+<dt class="deffn defun-alias-deffn" id="index-company_002dpreview_002dfrontend"><span class="category-def">Function: </span><span><strong class="def-name">company-preview-frontend</strong><a class="copiable-link" href='#index-company_002dpreview_002dfrontend'> &para;</a></span></dt>
 <dd><p>This frontend outputs the first of the available completion candidates
 inline for a preview.
 </p></dd></dl>
 
-<dl class="def">
-<dt id="index-company_002dpreview_002dcommon_002dfrontend"><span class="category">Function: </span><span><strong>company-preview-common-frontend</strong><a href='#index-company_002dpreview_002dcommon_002dfrontend' class='copiable-anchor'> &para;</a></span></dt>
+<dl class="first-deffn first-defun-alias-first-deffn">
+<dt class="deffn defun-alias-deffn" id="index-company_002dpreview_002dcommon_002dfrontend"><span class="category-def">Function: </span><span><strong class="def-name">company-preview-common-frontend</strong><a class="copiable-link" href='#index-company_002dpreview_002dcommon_002dfrontend'> &para;</a></span></dt>
 <dd><p>As the name of this frontend suggests, it outputs for a preview only a
 common part of the candidates.
 </p></dd></dl>
 
-<span id="index-custom-5"></span>
-<span id="index-configure-5"></span>
-<span id="index-interface-2"></span>
-<span id="index-face-2"></span>
+<a class="index-entry-id" id="index-custom-5"></a>
+<a class="index-entry-id" id="index-configure-5"></a>
+<a class="index-entry-id" id="index-interface-2"></a>
+<a class="index-entry-id" id="index-face-2"></a>
 <p>The look of the preview is controlled by the following faces:
-<code>company-preview</code>, <code>company-preview-common</code>, and
-<code>company-preview-search</code>.
+<code class="code">company-preview</code>, <code class="code">company-preview-common</code>, and
+<code class="code">company-preview-search</code>.
 </p>
-<img src="./images/large/preview-light.png" alt="./images/large/preview-light">
+<img class="image" src="./images/large/preview-light.png" alt="./images/large/preview-light">
 
 
-<img src="./images/large/preview-dark.png" alt="./images/large/preview-dark">
+<img class="image" src="./images/large/preview-dark.png" alt="./images/large/preview-dark">
 
 <hr>
 </div>
-<div class="section" id="Echo-Frontends">
-<span id="Echo-Frontends-1"></span><h3 class="section">Echo Frontends</h3>
+<div class="section-level-extent" id="Echo-Frontends">
+<h3 class="section" id="Echo-Frontends-1">Echo Frontends</h3>
 
-<span id="index-echo"></span>
-<span id="index-face-3"></span>
-<span id="index-company_002decho"></span>
+<a class="index-entry-id" id="index-echo"></a>
+<a class="index-entry-id" id="index-face-3"></a>
+<a class="index-entry-id" id="index-company_002decho"></a>
 <p>The frontends listed in this section display information in the
 Emacs&rsquo;s echo area, <a data-manual="emacs" href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Echo-Area.html#Echo-Area">(emacs)Echo Area</a>.
 </p>
-<dl class="def">
-<dt id="index-company_002decho_002dmetadata_002dfrontend"><span class="category">Function: </span><span><strong>company-echo-metadata-frontend</strong><a href='#index-company_002decho_002dmetadata_002dfrontend' class='copiable-anchor'> &para;</a></span></dt>
+<dl class="first-deffn first-defun-alias-first-deffn">
+<dt class="deffn defun-alias-deffn" id="index-company_002decho_002dmetadata_002dfrontend"><span class="category-def">Function: </span><span><strong class="def-name">company-echo-metadata-frontend</strong><a class="copiable-link" href='#index-company_002decho_002dmetadata_002dfrontend'> &para;</a></span></dt>
 <dd><p>This frontend is a part of the predefined frontends set.  Its
 responsibility is to output a short documentation string for a
 completion candidate in the echo area.
 </p>
-<img src="./images/large/echo-meta.png" alt="./images/large/echo-meta">
+<img class="image" src="./images/large/echo-meta.png" alt="./images/large/echo-meta">
 </dd></dl>
 
 <br>
 <p>The last pair of the built-in frontends isn&rsquo;t that commonly used and
-not as full-featured as the previously reviewed <em>tooltip-</em> and
-<em>preview-</em> frontends, but still, feel free to play with them and
+not as full-featured as the previously reviewed <em class="emph">tooltip-</em> and
+<em class="emph">preview-</em> frontends, but still, feel free to play with them and
 have some fun!
 </p>
-<dl class="def">
-<dt id="index-company_002decho_002dfrontend"><span class="category">Function: </span><span><strong>company-echo-frontend</strong><a href='#index-company_002decho_002dfrontend' class='copiable-anchor'> &para;</a></span></dt>
+<dl class="first-deffn first-defun-alias-first-deffn">
+<dt class="deffn defun-alias-deffn" id="index-company_002decho_002dfrontend"><span class="category-def">Function: </span><span><strong class="def-name">company-echo-frontend</strong><a class="copiable-link" href='#index-company_002decho_002dfrontend'> &para;</a></span></dt>
 <dd><p>This frontend outputs all the available completion candidates in the
 echo area.
 </p>
-<img src="./images/large/echo.png" alt="./images/large/echo">
+<img class="image" src="./images/large/echo.png" alt="./images/large/echo">
 </dd></dl>
 
-<dl class="def">
-<dt id="index-company_002decho_002dstrip_002dcommon_002dfrontend"><span class="category">Function: </span><span><strong>company-echo-strip-common-frontend</strong><a href='#index-company_002decho_002dstrip_002dcommon_002dfrontend' class='copiable-anchor'> &para;</a></span></dt>
+<dl class="first-deffn first-defun-alias-first-deffn">
+<dt class="deffn defun-alias-deffn" id="index-company_002decho_002dstrip_002dcommon_002dfrontend"><span class="category-def">Function: </span><span><strong class="def-name">company-echo-strip-common-frontend</strong><a class="copiable-link" href='#index-company_002decho_002dstrip_002dcommon_002dfrontend'> &para;</a></span></dt>
 <dd><p>It acts similarly to the previous frontend but outputs a common part
 of the candidates once for all of them.
 </p>
-<img src="./images/large/echo-strip.png" alt="./images/large/echo-strip">
+<img class="image" src="./images/large/echo-strip.png" alt="./images/large/echo-strip">
 </dd></dl>
 
-<dl class="def">
-<dt id="index-company_002decho_002dtruncate_002dlines"><span class="category">User Option: </span><span><strong>company-echo-truncate-lines</strong><a href='#index-company_002decho_002dtruncate_002dlines' class='copiable-anchor'> &para;</a></span></dt>
-<dd><p>This is the only <em>echo frontends</em> targeted setting.  When
+<dl class="first-defvr first-defopt-alias-first-defvr">
+<dt class="defvr defopt-alias-defvr" id="index-company_002decho_002dtruncate_002dlines"><span class="category-def">User Option: </span><span><strong class="def-name">company-echo-truncate-lines</strong><a class="copiable-link" href='#index-company_002decho_002dtruncate_002dlines'> &para;</a></span></dt>
+<dd><p>This is the only <em class="emph">echo frontends</em> targeted setting.  When
 enabled, the output is truncated to fit the echo area.  This setting
-is set to <code>t</code> by default.
+is set to <code class="code">t</code> by default.
 </p></dd></dl>
 
-<span id="index-custom-6"></span>
-<span id="index-configure-6"></span>
-<span id="index-interface-3"></span>
-<span id="index-face-4"></span>
+<a class="index-entry-id" id="index-custom-6"></a>
+<a class="index-entry-id" id="index-configure-6"></a>
+<a class="index-entry-id" id="index-interface-3"></a>
+<a class="index-entry-id" id="index-face-4"></a>
 <p>To apply visual changes to the output of these frontends, configure
-the faces <code><span class="nolinebreak">company-echo</span></code><!-- /@w --> and <code>company-echo-common</code>.
+the faces <code class="code"><span class="w-nolinebreak-text">company-echo</span></code><!-- /@w --> and <code class="code">company-echo-common</code>.
 </p>
 <hr>
 </div>
-<div class="section" id="Candidates-Search">
-<span id="Candidates-Search-1"></span><h3 class="section">Candidates Search</h3>
+<div class="section-level-extent" id="Candidates-Search">
+<h3 class="section" id="Candidates-Search-1">Candidates Search</h3>
 
-<span id="index-search"></span>
-<span id="index-face-5"></span>
-<span id="index-company_002dtooltip_002dsearch"></span>
-<span id="index-C_002ds"></span>
-<p>By default, when <em>company-mode</em> is in action, a key binding
-<kbd>C-s</kbd> starts looking for matches to additionally typed characters
+<a class="index-entry-id" id="index-search"></a>
+<a class="index-entry-id" id="index-face-5"></a>
+<a class="index-entry-id" id="index-company_002dtooltip_002dsearch"></a>
+<a class="index-entry-id" id="index-C_002ds"></a>
+<p>By default, when <em class="emph">company-mode</em> is in action, a key binding
+<kbd class="kbd">C-s</kbd> starts looking for matches to additionally typed characters
 among the displayed candidates.  When a search is initiated, an
-indicator &lsquo;<samp>Search:&nbsp;CHARACTERS</samp>&rsquo;<!-- /@w --> is shown in the Emacs&rsquo;s mode
+indicator &lsquo;<samp class="samp">Search:&nbsp;CHARACTERS</samp>&rsquo;<!-- /@w --> is shown in the Emacs&rsquo;s mode
 line.
 </p>
-<span id="index-C_002dg-2"></span>
-<p>To quit the search mode, hit <kbd>C-g</kbd>.
+<a class="index-entry-id" id="index-C_002dg-2"></a>
+<p>To quit the search mode, hit <kbd class="kbd">C-g</kbd>.
 </p>
-<dl class="def">
-<dt id="index-company_002dsearch_002dregexp_002dfunction"><span class="category">User Option: </span><span><strong>company-search-regexp-function</strong><a href='#index-company_002dsearch_002dregexp_002dfunction' class='copiable-anchor'> &para;</a></span></dt>
+<dl class="first-defvr first-defopt-alias-first-defvr">
+<dt class="defvr defopt-alias-defvr" id="index-company_002dsearch_002dregexp_002dfunction"><span class="category-def">User Option: </span><span><strong class="def-name">company-search-regexp-function</strong><a class="copiable-link" href='#index-company_002dsearch_002dregexp_002dfunction'> &para;</a></span></dt>
 <dd><p>The value of this user option must be a function that interprets the
 search input.  By default it is set to the function
-<code>regexp-quote</code>, with looks for an exact match.  Company defines
+<code class="code">regexp-quote</code>, with looks for an exact match.  Company defines
 several more functions suitable for this option. They are listed below.
 </p></dd></dl>
 
-<dl class="def">
-<dt id="index-company_002dsearch_002dwords_002dregexp"><span class="category">Function: </span><span><strong>company-search-words-regexp</strong><a href='#index-company_002dsearch_002dwords_002dregexp' class='copiable-anchor'> &para;</a></span></dt>
+<dl class="first-deffn first-defun-alias-first-deffn">
+<dt class="deffn defun-alias-deffn" id="index-company_002dsearch_002dwords_002dregexp"><span class="category-def">Function: </span><span><strong class="def-name">company-search-words-regexp</strong><a class="copiable-link" href='#index-company_002dsearch_002dwords_002dregexp'> &para;</a></span></dt>
 <dd><p>Searches for words separated with spaces in the given order.
 </p></dd></dl>
 
-<dl class="def">
-<dt id="index-company_002dsearch_002dwords_002din_002dany_002dorder_002dregexp"><span class="category">Function: </span><span><strong>company-search-words-in-any-order-regexp</strong><a href='#index-company_002dsearch_002dwords_002din_002dany_002dorder_002dregexp' class='copiable-anchor'> &para;</a></span></dt>
+<dl class="first-deffn first-defun-alias-first-deffn">
+<dt class="deffn defun-alias-deffn" id="index-company_002dsearch_002dwords_002din_002dany_002dorder_002dregexp"><span class="category-def">Function: </span><span><strong class="def-name">company-search-words-in-any-order-regexp</strong><a class="copiable-link" href='#index-company_002dsearch_002dwords_002din_002dany_002dorder_002dregexp'> &para;</a></span></dt>
 <dd><p>Searches for words separated with spaces in any order.
 </p></dd></dl>
 
-<dl class="def">
-<dt id="index-company_002dsearch_002dflex_002dregexp"><span class="category">Function: </span><span><strong>company-search-flex-regexp</strong><a href='#index-company_002dsearch_002dflex_002dregexp' class='copiable-anchor'> &para;</a></span></dt>
+<dl class="first-deffn first-defun-alias-first-deffn">
+<dt class="deffn defun-alias-deffn" id="index-company_002dsearch_002dflex_002dregexp"><span class="category-def">Function: </span><span><strong class="def-name">company-search-flex-regexp</strong><a class="copiable-link" href='#index-company_002dsearch_002dflex_002dregexp'> &para;</a></span></dt>
 <dd><p>Searches for characters in the given order, with anything in between.
 </p></dd></dl>
 
-<span id="index-custom-7"></span>
-<span id="index-configure-7"></span>
-<span id="index-interface-4"></span>
-<span id="index-face-6"></span>
-<p>Search matches are distinguished by the <code>company-tooltip-search</code>
-and <code><span class="nolinebreak">company-tooltip-search-selection</span></code><!-- /@w --> faces.
+<a class="index-entry-id" id="index-custom-7"></a>
+<a class="index-entry-id" id="index-configure-7"></a>
+<a class="index-entry-id" id="index-interface-4"></a>
+<a class="index-entry-id" id="index-face-6"></a>
+<p>Search matches are distinguished by the <code class="code">company-tooltip-search</code>
+and <code class="code"><span class="w-nolinebreak-text">company-tooltip-search-selection</span></code><!-- /@w --> faces.
 </p>
-<img src="./images/large/tooltip-search.png" alt="./images/large/tooltip-search">
+<img class="image" src="./images/large/tooltip-search.png" alt="./images/large/tooltip-search">
 
 <hr>
 </div>
-<div class="section" id="Filter-Candidates">
-<span id="Filter-Candidates-1"></span><h3 class="section">Filter Candidates</h3>
+<div class="section-level-extent" id="Filter-Candidates">
+<h3 class="section" id="Filter-Candidates-1">Filter Candidates</h3>
 
-<span id="index-filter"></span>
-<span id="index-face-7"></span>
-<span id="index-C_002dM_002ds"></span>
+<a class="index-entry-id" id="index-filter"></a>
+<a class="index-entry-id" id="index-face-7"></a>
+<a class="index-entry-id" id="index-C_002dM_002ds"></a>
 <p>Candidates filtering is started by typing the default key binding
-<kbd>C-M-s</kbd>.  Filtering acts on a par with the search
-(see <a href="#Candidates-Search">Candidates Search</a>), indicating its activation by the text
-&lsquo;<samp>Filter:&nbsp;CHARACTERS</samp>&rsquo;<!-- /@w --> in the mode line and influencing the
+<kbd class="kbd">C-M-s</kbd>.  Filtering acts on a par with the search
+(see <a class="pxref" href="#Candidates-Search">Candidates Search</a>), indicating its activation by the text
+&lsquo;<samp class="samp">Filter:&nbsp;CHARACTERS</samp>&rsquo;<!-- /@w --> in the mode line and influencing the
 displayed candidates.  The difference is that the filtering, as its
 name suggests, keeps displaying only the matching candidates (in
 addition to distinguishing the matches with a face).
 </p>
-<span id="index-C_002dg-3"></span>
-<span id="index-C_002do"></span>
-<p>To quit the filtering, hit <kbd>C-g</kbd>.  To toggle between search and
-filter states, use key binding <kbd>C-o</kbd>.
+<a class="index-entry-id" id="index-C_002dg-3"></a>
+<a class="index-entry-id" id="index-C_002do"></a>
+<p>To quit the filtering, hit <kbd class="kbd">C-g</kbd>.  To toggle between search and
+filter states, use key binding <kbd class="kbd">C-o</kbd>.
 </p>
-<img src="./images/large/tooltip-filter.png" alt="./images/large/tooltip-filter">
+<img class="image" src="./images/large/tooltip-filter.png" alt="./images/large/tooltip-filter">
 
 <hr>
 </div>
-<div class="section" id="Quick-Access-a-Candidate">
-<span id="Quick-Access-a-Candidate-1"></span><h3 class="section">Quick Access a Candidate</h3>
+<div class="section-level-extent" id="Quick-Access-a-Candidate">
+<h3 class="section" id="Quick-Access-a-Candidate-1">Quick Access a Candidate</h3>
 
-<span id="index-quick_002daccess"></span>
-<span id="index-M_002d_003cdigit_003e"></span>
+<a class="index-entry-id" id="index-quick_002daccess"></a>
+<a class="index-entry-id" id="index-M_002d_003cdigit_003e"></a>
 <p>Company provides a way to choose a candidate for completion without
 having to navigate to that candidate: by hitting one of the
-<span class="nolinebreak">quick-access</span><!-- /@w --> keys.  By default, <span class="nolinebreak">quick-access</span><!-- /@w --> key bindings
-utilize a modifier <tt class="key">META</tt> and one of the digits, such that
-pressing <kbd>M-1</kbd> completes with the first candidate on the list and
-<kbd>M-0</kbd> with the tenth candidate.
+<span class="w-nolinebreak-text">quick-access</span><!-- /@w --> keys.  By default, <span class="w-nolinebreak-text">quick-access</span><!-- /@w --> key bindings
+utilize a modifier <kbd class="key">META</kbd> and one of the digits, such that
+pressing <kbd class="kbd">M-1</kbd> completes with the first candidate on the list and
+<kbd class="kbd">M-0</kbd> with the tenth candidate.
 </p>
-<span id="index-company_002dshow_002dquick_002daccess"></span>
-<p>If <code>company-show-quick-access</code> is enabled, <em>tooltip-</em> and
-<em>echo-</em> frontends show <span class="nolinebreak">quick-access</span><!-- /@w --> hints.
+<a class="index-entry-id" id="index-company_002dshow_002dquick_002daccess"></a>
+<p>If <code class="code">company-show-quick-access</code> is enabled, <em class="emph">tooltip-</em> and
+<em class="emph">echo-</em> frontends show <span class="w-nolinebreak-text">quick-access</span><!-- /@w --> hints.
 </p>
 <div class="example lisp">
-<pre class="lisp">(setq company-show-quick-access 'left)
+<pre class="lisp-preformatted">(setq company-show-quick-access 'left)
 </pre></div>
 
-<img src="./images/large/tooltip-quick-access.png" alt="./images/large/tooltip-quick-access">
+<img class="image" src="./images/large/tooltip-quick-access.png" alt="./images/large/tooltip-quick-access">
 
 
-<img src="./images/large/echo-qa.png" alt="./images/large/echo-qa">
+<img class="image" src="./images/large/echo-qa.png" alt="./images/large/echo-qa">
 
 
-<img src="./images/large/echo-strip-qa.png" alt="./images/large/echo-strip-qa">
+<img class="image" src="./images/large/echo-strip-qa.png" alt="./images/large/echo-strip-qa">
 
-<span id="index-custom-8"></span>
-<span id="index-configure-8"></span>
+<a class="index-entry-id" id="index-custom-8"></a>
+<a class="index-entry-id" id="index-configure-8"></a>
 <p>To customize the key bindings, either do it via Customization
-Interface (see <a href="Customization.html#Customization-Interface">Customization Interface</a>) or use the following
+Interface (see <a class="pxref" href="Customization.html#Customization-Interface">Customization Interface</a>) or use the following
 approach:
 </p>
 <div class="example lisp">
-<pre class="lisp">(custom-set-variables
+<pre class="lisp-preformatted">(custom-set-variables
  '(company-quick-access-keys '(&quot;a&quot; &quot;o&quot; &quot;e&quot; &quot;u&quot; &quot;i&quot;))
  '(company-quick-access-modifier 'super))
 </pre></div>
 
-<p>A modifier should be one of <code>meta</code>, <code>super</code>, <code>hyper</code>,
-<code> control</code>.
+<p>A modifier should be one of <code class="code">meta</code>, <code class="code">super</code>, <code class="code">hyper</code>,
+<code class="code"> control</code>.
 </p>
-<span id="index-face-8"></span>
-<span id="index-font-1"></span>
-<span id="index-color-1"></span>
-<span id="index-interface-5"></span>
-<span id="index-custom-9"></span>
-<span id="index-configure-9"></span>
+<a class="index-entry-id" id="index-face-8"></a>
+<a class="index-entry-id" id="index-font-1"></a>
+<a class="index-entry-id" id="index-color-1"></a>
+<a class="index-entry-id" id="index-interface-5"></a>
+<a class="index-entry-id" id="index-custom-9"></a>
+<a class="index-entry-id" id="index-configure-9"></a>
 <p>The following example applies a bit of customization and demonstrates
 how to change quick-access hints faces.
 </p>
 <div class="example lisp">
-<pre class="lisp">(setq company-show-quick-access t)
+<pre class="lisp-preformatted">(setq company-show-quick-access t)
 
 (custom-set-faces
  '(company-tooltip-quick-access ((t (:foreground &quot;pink1&quot;))))
@@ -637,26 +642,26 @@ how to change quick-access hints faces.
    ((t (:foreground &quot;pink1&quot; :slant italic)))))
 </pre></div>
 
-<img src="./images/large/tooltip-qa-faces-light.png" alt="./images/large/tooltip-qa-faces-light">
+<img class="image" src="./images/large/tooltip-qa-faces-light.png" alt="./images/large/tooltip-qa-faces-light">
 
 </div>
 </div>
-<div class="footnote">
+<div class="footnotes-segment">
 <hr>
 <h4 class="footnotes-heading">Footnotes</h4>
 
-<h5><a id="FOOT3" href="#DOCF3">(3)</a></h5>
-<p><acronym>SVG</acronym> images support has to be enabled in Emacs for
+<h5 class="footnote-body-heading"><a id="FOOT3" href="#DOCF3">(3)</a></h5>
+<p><abbr class="acronym">SVG</abbr> images support has to be enabled in Emacs for
 these icons set to be used.  The supported images types can be checked
-with <code>C-h v image-types</code>.  Before compiling Emacs, make sure
-&lsquo;<samp>librsvg</samp>&rsquo; is installed on your system.</p>
-<h5><a id="FOOT4" href="#DOCF4">(4)</a></h5>
+with <code class="code">C-h v image-types</code>.  Before compiling Emacs, make sure
+&lsquo;<samp class="samp">librsvg</samp>&rsquo; is installed on your system.</p>
+<h5 class="footnote-body-heading"><a id="FOOT4" href="#DOCF4">(4)</a></h5>
 <p>The candidates retrieved according to
-<code>non-prefix</code> matches (see <a href="Overview.html#Terminology">Terminology</a>) may be shown in full
+<code class="code">non-prefix</code> matches (see <a class="pxref" href="Overview.html#Terminology">Terminology</a>) may be shown in full
 after point.</p>
 </div>
 <hr>
-<div class="header">
+<div class="nav-panel">
 <p>
 Next: <a href="Backends.html#Backends" accesskey="n" rel="next">Backends</a>, Previous: <a href="Customization.html#Customization" accesskey="p" rel="prev">Customization</a>, Up: <a href="index.html" accesskey="u" rel="up">Company</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>

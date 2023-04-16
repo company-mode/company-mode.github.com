@@ -1,12 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
-<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 7.0.3, https://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <!-- This user manual is for Company version 0.9.14snapshot
-(12 August 2022).
+(16 April 2023).
 
-Copyright (C) 2021-2022  Free Software Foundation, Inc.
+Copyright © 2021-2023  Free Software Foundation, Inc.
 
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3 or
@@ -27,21 +27,9 @@ any later version published by the Free Software Foundation. -->
 <link href="index.html" rel="prev" title="Top">
 <style type="text/css">
 <!--
-a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
-a.summary-letter {text-decoration: none}
-blockquote.indentedblock {margin-right: 0em}
-div.display {margin-left: 3.2em}
 div.example {margin-left: 3.2em}
-kbd {font-style: oblique}
-pre.display {font-family: inherit}
-pre.format {font-family: inherit}
-pre.menu-comment {font-family: serif}
-pre.menu-preformatted {font-family: serif}
-span.nolinebreak {white-space: nowrap}
-span.roman {font-family: initial; font-weight: normal}
-span.sansserif {font-family: sans-serif; font-weight: normal}
-span:hover a.copiable-anchor {visibility: visible}
-ul.no-bullet {list-style: none}
+kbd.key {font-style: normal}
+span.w-nolinebreak-text {white-space: nowrap}
 -->
 </style>
 <link rel="stylesheet" type="text/css" href="https://company-mode.github.io/stylesheets/stylesheet.css">
@@ -50,15 +38,15 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="en">
-<div class="inner manual"><div class="chapter" id="Overview">
-<div class="header">
+<div class="inner manual"><div class="chapter-level-extent" id="Overview">
+<div class="nav-panel">
 <p>
 Next: <a href="Getting-Started.html#Getting-Started" accesskey="n" rel="next">Getting Started</a>, Previous: <a href="index.html" accesskey="p" rel="prev">Company</a>, Up: <a href="index.html" accesskey="u" rel="up">Company</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <hr>
-<span id="Overview-1"></span><h2 class="chapter">Overview</h2>
+<h2 class="chapter" id="Overview-1">Overview</h2>
 
-<p><em>Company</em> is a modular text completion framework for GNU Emacs.
+<p><em class="dfn">Company</em> is a modular text completion framework for GNU Emacs.
 </p>
 <p>In other words, it is a package for retrieving, manipulating, and
 displaying text completion candidates. It aims to assist developers,
@@ -66,95 +54,95 @@ writers, and scientists during code and text writing.
 </p>
 
 <hr>
-<div class="section" id="Terminology">
-<span id="Terminology-1"></span><h3 class="section">Terminology</h3>
+<div class="section-level-extent" id="Terminology">
+<h3 class="section" id="Terminology-1">Terminology</h3>
 
-<span id="index-completion"></span>
-<span id="index-complete"></span>
-<p><em>Completion</em> is an act of intelligibly guessing possible variants
-of words based on already typed characters.  To <em>complete</em> a word
+<a class="index-entry-id" id="index-completion"></a>
+<a class="index-entry-id" id="index-complete"></a>
+<p><em class="dfn">Completion</em> is an act of intelligibly guessing possible variants
+of words based on already typed characters.  To <em class="dfn">complete</em> a word
 means to insert a correctly guessed variant into the buffer.
 </p>
-<span id="index-candidate"></span>
-<span id="index-prefix-matches"></span>
-<span id="index-non_002dprefix-matches"></span>
-<p>Consequently, the <em>candidates</em> are the aforementioned guessed
+<a class="index-entry-id" id="index-candidate"></a>
+<a class="index-entry-id" id="index-prefix-matches"></a>
+<a class="index-entry-id" id="index-non_002dprefix-matches"></a>
+<p>Consequently, the <em class="dfn">candidates</em> are the aforementioned guessed
 variants of words.  Each of the candidates has the potential to be
 chosen for successful completion.  And each of the candidates contains
 the initially typed characters: either only at the beginning
-(so-called <em>prefix matches</em>), or also inside (<em>non-prefix
-matches</em>) of a candidate <a id="DOCF1" href="#FOOT1"><sup>1</sup></a>.
+(so-called <em class="dfn">prefix matches</em>), or also inside (<em class="dfn">non-prefix
+matches</em>) of a candidate <a class="footnote" id="DOCF1" href="#FOOT1"><sup>1</sup></a>.
 </p>
-<p>The package&rsquo;s name <em>Company</em> is based on the combination of the
-two words: &lsquo;<samp>Complete</samp>&rsquo; and &lsquo;<samp>Anything</samp>&rsquo;.  These words reflect
+<p>The package&rsquo;s name <em class="dfn">Company</em> is based on the combination of the
+two words: &lsquo;<samp class="samp">Complete</samp>&rsquo; and &lsquo;<samp class="samp">Anything</samp>&rsquo;.  These words reflect
 the package&rsquo;s commitment to handling completion candidates and its
 extensible nature allowing it to cover a wide range of usage
 scenarios.
 </p>
 <hr>
 </div>
-<div class="section" id="Structure">
-<span id="Structure-1"></span><h3 class="section">Structure</h3>
+<div class="section-level-extent" id="Structure">
+<h3 class="section" id="Structure-1">Structure</h3>
 
-<span id="index-module"></span>
-<span id="index-pluggable"></span>
-<span id="index-extensible"></span>
-<span id="index-backend"></span>
-<span id="index-frontend"></span>
+<a class="index-entry-id" id="index-module"></a>
+<a class="index-entry-id" id="index-pluggable"></a>
+<a class="index-entry-id" id="index-extensible"></a>
+<a class="index-entry-id" id="index-backend"></a>
+<a class="index-entry-id" id="index-frontend"></a>
 <p>The Company is easily extensible because its significant building
-blocks are pluggable modules: backends (see <a href="Backends.html#Backends">Backends</a>) and
-frontends (see <a href="Frontends.html#Frontends">Frontends</a>).
+blocks are pluggable modules: backends (see <a class="pxref" href="Backends.html#Backends">Backends</a>) and
+frontends (see <a class="pxref" href="Frontends.html#Frontends">Frontends</a>).
 </p>
-<span id="index-backend-1"></span>
-<span id="index-frontend-1"></span>
-<span id="index-module-1"></span>
-<span id="index-third_002dparty"></span>
-<p>The <em>backends</em> are responsible for retrieving completion
-candidates; which are then outputted by the <em>frontends</em>.  For an
+<a class="index-entry-id" id="index-backend-1"></a>
+<a class="index-entry-id" id="index-frontend-1"></a>
+<a class="index-entry-id" id="index-module-1"></a>
+<a class="index-entry-id" id="index-third_002dparty"></a>
+<p>The <em class="dfn">backends</em> are responsible for retrieving completion
+candidates; which are then outputted by the <em class="dfn">frontends</em>.  For an
 easy and quick initial setup, Company is supplied with the
 preconfigured sets of the backends and frontends.  The default
 behavior of the modules can be adjusted per particular needs, goals,
 and preferences.  It is also typical to utilize backends from a
 variety of
-<a href="https://github.com/company-mode/company-mode/wiki/Third-Party-Packages">third-party libraries</a>, developed to be pluggable with Company.
+<a class="uref" href="https://github.com/company-mode/company-mode/wiki/Third-Party-Packages">third-party libraries</a>, developed to be pluggable with Company.
 </p>
 <p>But Company consists not only of the backends and frontends.
 </p>
 <p>A core of the package plays the role of a controller, connecting the
 modules, making them work together; and exposing configurations and
 commands for a user to operate with.  For more details,
-<a href="Customization.html#Customization">Customization</a> and <a href="Getting-Started.html#Commands">Commands</a>.
+<a class="ref" href="Customization.html#Customization">Customization</a> and <a class="ref" href="Getting-Started.html#Commands">Commands</a>.
 </p>
-<span id="index-TAB"></span>
-<span id="index-company_002dtng"></span>
-<span id="index-Tab-and-Go"></span>
-<span id="index-company_002dtng_002dfrontend"></span>
-<span id="index-company_002dtng_002dmode"></span>
+<a class="index-entry-id" id="index-TAB"></a>
+<a class="index-entry-id" id="index-company_002dtng"></a>
+<a class="index-entry-id" id="index-Tab-and-Go"></a>
+<a class="index-entry-id" id="index-company_002dtng_002dfrontend"></a>
+<a class="index-entry-id" id="index-company_002dtng_002dmode"></a>
 <p>Also, Company is bundled with an alternative workflow configuration
-<em>company-tng</em> &mdash; defining <code>company-tng-frontend</code>,
-<code>company-tng-mode</code>, and <code><span class="nolinebreak">company-tng-map</span></code><!-- /@w --> &mdash; that
-allows performing completion with just <tt class="key">TAB</tt>.  To enable this
-configuration, add the following line to the Emacs initialization
-file (see&nbsp;<a data-manual="emacs" href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Init-File.html#Init-File">(emacs)Init&nbsp;File</a>)<!-- /@w -->:
+<em class="dfn">company-tng</em> &mdash; defining <code class="code">company-tng-frontend</code>,
+<code class="code">company-tng-mode</code>, and <code class="code"><span class="w-nolinebreak-text">company-tng-map</span></code><!-- /@w --> &mdash; that
+allows performing completion with just <kbd class="key">TAB</kbd>.  To enable this
+configuration, add the following line to the Emacs initialization file
+(see <a data-manual="emacs" href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Init-File.html#Init-File">(emacs)Init File</a>):
 </p>
 <div class="example lisp">
-<pre class="lisp">(add-hook 'after-init-hook 'company-tng-mode)
+<pre class="lisp-preformatted">(add-hook 'after-init-hook 'company-tng-mode)
 </pre></div>
 
 </div>
 </div>
-<div class="footnote">
+<div class="footnotes-segment">
 <hr>
 <h4 class="footnotes-heading">Footnotes</h4>
 
-<h5><a id="FOOT1" href="#DOCF1">(1)</a></h5>
+<h5 class="footnote-body-heading"><a id="FOOT1" href="#DOCF1">(1)</a></h5>
 <p>A good starting point to learn
 about types of matches is to play with the Emacs&rsquo;s user option
-<code>completion-styles</code>.  For illustrations on how Company visualizes
-the matches, see <a href="Frontends.html#Frontends">Frontends</a>.</p>
+<code class="code">completion-styles</code>.  For illustrations on how Company visualizes
+the matches, see <a class="pxref" href="Frontends.html#Frontends">Frontends</a>.</p>
 </div>
 <hr>
-<div class="header">
+<div class="nav-panel">
 <p>
 Next: <a href="Getting-Started.html#Getting-Started" accesskey="n" rel="next">Getting Started</a>, Previous: <a href="index.html" accesskey="p" rel="prev">Company</a>, Up: <a href="index.html" accesskey="u" rel="up">Company</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
