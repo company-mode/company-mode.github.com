@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
-<!-- Created by GNU Texinfo 7.0.3, https://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<!-- This user manual is for Company version 0.10.0
-(16 April 2023).
+<!-- This user manual is for Company version 1.0.0
+(21 September 2024).
 
-Copyright © 2021-2023  Free Software Foundation, Inc.
+Copyright © 2021-2024  Free Software Foundation, Inc.
 
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3 or
@@ -26,9 +26,10 @@ any later version published by the Free Software Foundation. -->
 <link href="Backends.html#Backends" rel="prev" title="Backends">
 <style type="text/css">
 <!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
 kbd.kbd {font-style: oblique}
 kbd.key {font-style: normal}
-span.w-nolinebreak-text {white-space: nowrap}
+span:hover a.copiable-link {visibility: visible}
 ul.mark-bullet {list-style-type: disc}
 -->
 </style>
@@ -44,7 +45,7 @@ ul.mark-bullet {list-style-type: disc}
 Previous: <a href="Backends.html#Backends" accesskey="p" rel="prev">Backends</a>, Up: <a href="index.html" accesskey="u" rel="up">Company</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <hr>
-<h2 class="chapter" id="Troubleshooting-1">Troubleshooting</h2>
+<h2 class="chapter" id="Troubleshooting-1"><span>Troubleshooting<a class="copiable-link" href="#Troubleshooting-1"> &para;</a></span></h2>
 
 <a class="index-entry-id" id="index-troubleshoot"></a>
 <a class="index-entry-id" id="index-bug"></a>
@@ -52,7 +53,7 @@ Previous: <a href="Backends.html#Backends" accesskey="p" rel="prev">Backends</a>
 <a class="index-entry-id" id="index-error"></a>
 <a class="index-entry-id" id="index-company_002ddiag-1"></a>
 <p>If something goes wrong, the first thing we recommend doing is to
-execute command <kbd class="kbd"><span class="w-nolinebreak-text">M-x</span>&nbsp;<span class="w-nolinebreak-text">company-diag</span></kbd><!-- /@w --> and thoroughly study its
+execute command <kbd class="kbd">M-x&nbsp;company-diag</kbd><!-- /@w --> and thoroughly study its
 output.
 </p>
 <p>This command outputs important details about the internal workings of
@@ -63,7 +64,7 @@ provided by it.
 <a class="index-entry-id" id="index-active-backend-1"></a>
 <a class="index-entry-id" id="index-backend-4"></a>
 <p>Based on the value of the &lsquo;<samp class="samp">Used backend</samp>&rsquo; in the output of the
-command <kbd class="kbd"><span class="w-nolinebreak-text">M-x</span>&nbsp;<span class="w-nolinebreak-text">company-diag</span></kbd><!-- /@w -->, these possible actions may follow:
+command <kbd class="kbd">M-x&nbsp;company-diag</kbd><!-- /@w -->, these possible actions may follow:
 </p>
 <ul class="itemize mark-bullet">
 <li><a class="index-entry-id" id="index-third_002dparty-1"></a>
@@ -73,7 +74,7 @@ issue to the corresponding third-party package maintainer(s).
 </li><li>If the used backend is &lsquo;<samp class="samp">company-capf</samp>&rsquo;, then take a look at the
 line starting with &lsquo;<samp class="samp">Value of c-a-p-f:</samp>&rsquo;.  The issue could have
 been caused by a function listed there.  To identify to which package
-it belongs, type <kbd class="kbd"><span class="w-nolinebreak-text">M-x</span>&nbsp;<span class="w-nolinebreak-text">find-function</span>&nbsp;<kbd class="key">RET</kbd>&nbsp;<span class="w-nolinebreak-text">&lt;function-name&gt;</span>&nbsp;<kbd class="key">RET</kbd></kbd><!-- /@w -->.
+it belongs, type <kbd class="kbd">M-x&nbsp;find-function&nbsp;<kbd class="key">RET</kbd>&nbsp;&lt;function-name&gt;&nbsp;<kbd class="key">RET</kbd></kbd><!-- /@w -->.
 </li></ul>
 
 <a class="index-entry-id" id="index-issue-tracker"></a>
@@ -93,7 +94,7 @@ buffer.
 with a bare Emacs session: <code class="code">emacs -Q</code>.
 
 </li><li> The backtrace of the error, which you can get by running the command:
-<kbd class="kbd"><span class="w-nolinebreak-text">M-x</span>&nbsp;<span class="w-nolinebreak-text">toggle-debug-on-error</span></kbd><!-- /@w --> before reproducing the error.
+<kbd class="kbd">M-x&nbsp;toggle-debug-on-error</kbd><!-- /@w --> before reproducing the error.
 </li></ol>
 
 

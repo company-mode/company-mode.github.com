@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
-<!-- Created by GNU Texinfo 7.0.3, https://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<!-- This user manual is for Company version 0.10.0
-(16 April 2023).
+<!-- This user manual is for Company version 1.0.0
+(21 September 2024).
 
-Copyright © 2021-2023  Free Software Foundation, Inc.
+Copyright © 2021-2024  Free Software Foundation, Inc.
 
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3 or
@@ -27,9 +27,10 @@ any later version published by the Free Software Foundation. -->
 <link href="index.html" rel="prev" title="Top">
 <style type="text/css">
 <!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
 div.example {margin-left: 3.2em}
 kbd.key {font-style: normal}
-span.w-nolinebreak-text {white-space: nowrap}
+span:hover a.copiable-link {visibility: visible}
 -->
 </style>
 <link rel="stylesheet" type="text/css" href="https://company-mode.github.io/stylesheets/stylesheet.css">
@@ -44,7 +45,7 @@ span.w-nolinebreak-text {white-space: nowrap}
 Next: <a href="Getting-Started.html#Getting-Started" accesskey="n" rel="next">Getting Started</a>, Previous: <a href="index.html" accesskey="p" rel="prev">Company</a>, Up: <a href="index.html" accesskey="u" rel="up">Company</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <hr>
-<h2 class="chapter" id="Overview-1">Overview</h2>
+<h2 class="chapter" id="Overview-1"><span>Overview<a class="copiable-link" href="#Overview-1"> &para;</a></span></h2>
 
 <p><em class="dfn">Company</em> is a modular text completion framework for GNU Emacs.
 </p>
@@ -55,11 +56,11 @@ writers, and scientists during code and text writing.
 
 <hr>
 <div class="section-level-extent" id="Terminology">
-<h3 class="section" id="Terminology-1">Terminology</h3>
+<h3 class="section" id="Terminology-1"><span>Terminology<a class="copiable-link" href="#Terminology-1"> &para;</a></span></h3>
 
 <a class="index-entry-id" id="index-completion"></a>
 <a class="index-entry-id" id="index-complete"></a>
-<p><em class="dfn">Completion</em> is an act of intelligibly guessing possible variants
+<p><em class="dfn">Completion</em> is an act of intelligently guessing possible variants
 of words based on already typed characters.  To <em class="dfn">complete</em> a word
 means to insert a correctly guessed variant into the buffer.
 </p>
@@ -70,10 +71,15 @@ means to insert a correctly guessed variant into the buffer.
 variants of words.  Each of the candidates has the potential to be
 chosen for successful completion.  And each of the candidates contains
 the initially typed characters: either only at the beginning
-(so-called <em class="dfn">prefix matches</em>), or also inside (<em class="dfn">non-prefix
-matches</em>) of a candidate <a class="footnote" id="DOCF1" href="#FOOT1"><sup>1</sup></a>.
+(so-called <em class="dfn">prefix matches</em>), or also inside of a candidate
+(<em class="dfn">non-prefix matches</em>).  Which matching method is used, depends on
+the current <em class="emph">backend</em> (see <a class="pxref" href="#Structure">Structure</a>).  <code class="code">company-capf</code> is
+an example of a backend that supports a number of particular
+non-prefix matching algorithms which are configurable through the user
+option <code class="code">completion-styles</code>, which see.  For illustrations on how
+Company visualizes the matches, see <a class="pxref" href="Frontends.html#Frontends">Frontends</a>.
 </p>
-<p>The package&rsquo;s name <em class="dfn">Company</em> is based on the combination of the
+<p>The package&rsquo;s name &lsquo;<samp class="samp">Company</samp>&rsquo; is based on the combination of the
 two words: &lsquo;<samp class="samp">Complete</samp>&rsquo; and &lsquo;<samp class="samp">Anything</samp>&rsquo;.  These words reflect
 the package&rsquo;s commitment to handling completion candidates and its
 extensible nature allowing it to cover a wide range of usage
@@ -82,7 +88,7 @@ scenarios.
 <hr>
 </div>
 <div class="section-level-extent" id="Structure">
-<h3 class="section" id="Structure-1">Structure</h3>
+<h3 class="section" id="Structure-1"><span>Structure<a class="copiable-link" href="#Structure-1"> &para;</a></span></h3>
 
 <a class="index-entry-id" id="index-module"></a>
 <a class="index-entry-id" id="index-pluggable"></a>
@@ -98,19 +104,18 @@ frontends (see <a class="pxref" href="Frontends.html#Frontends">Frontends</a>).
 <a class="index-entry-id" id="index-module-1"></a>
 <a class="index-entry-id" id="index-third_002dparty"></a>
 <p>The <em class="dfn">backends</em> are responsible for retrieving completion
-candidates; which are then outputted by the <em class="dfn">frontends</em>.  For an
+candidates; which are then displayed by the <em class="dfn">frontends</em>.  For an
 easy and quick initial setup, Company is supplied with the
 preconfigured sets of the backends and frontends.  The default
-behavior of the modules can be adjusted per particular needs, goals,
-and preferences.  It is also typical to utilize backends from a
-variety of
+behavior of the modules can be adjusted for particular needs, and
+preferences.  It is also typical to utilize backends from a variety of
 <a class="uref" href="https://github.com/company-mode/company-mode/wiki/Third-Party-Packages">third-party libraries</a>, developed to be pluggable with Company.
 </p>
 <p>But Company consists not only of the backends and frontends.
 </p>
 <p>A core of the package plays the role of a controller, connecting the
 modules, making them work together; and exposing configurations and
-commands for a user to operate with.  For more details,
+commands for the user to operate with.  For more details,
 <a class="ref" href="Customization.html#Customization">Customization</a> and <a class="ref" href="Getting-Started.html#Commands">Commands</a>.
 </p>
 <a class="index-entry-id" id="index-TAB"></a>
@@ -120,7 +125,7 @@ commands for a user to operate with.  For more details,
 <a class="index-entry-id" id="index-company_002dtng_002dmode"></a>
 <p>Also, Company is bundled with an alternative workflow configuration
 <em class="dfn">company-tng</em> &mdash; defining <code class="code">company-tng-frontend</code>,
-<code class="code">company-tng-mode</code>, and <code class="code"><span class="w-nolinebreak-text">company-tng-map</span></code><!-- /@w --> &mdash; that
+<code class="code">company-tng-mode</code>, and <code class="code">company-tng-map</code><!-- /@w --> &mdash; that
 allows performing completion with just <kbd class="key">TAB</kbd>.  To enable this
 configuration, add the following line to the Emacs initialization file
 (see <a data-manual="emacs" href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Init-File.html#Init-File">(emacs)Init File</a>):
@@ -130,16 +135,6 @@ configuration, add the following line to the Emacs initialization file
 </pre></div>
 
 </div>
-</div>
-<div class="footnotes-segment">
-<hr>
-<h4 class="footnotes-heading">Footnotes</h4>
-
-<h5 class="footnote-body-heading"><a id="FOOT1" href="#DOCF1">(1)</a></h5>
-<p>A good starting point to learn
-about types of matches is to play with the Emacs&rsquo;s user option
-<code class="code">completion-styles</code>.  For illustrations on how Company visualizes
-the matches, see <a class="pxref" href="Frontends.html#Frontends">Frontends</a>.</p>
 </div>
 <hr>
 <div class="nav-panel">

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
-<!-- Created by GNU Texinfo 7.0.3, https://www.gnu.org/software/texinfo/ -->
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<!-- This user manual is for Company version 0.10.0
-(16 April 2023).
+<!-- This user manual is for Company version 1.0.0
+(21 September 2024).
 
-Copyright © 2021-2023  Free Software Foundation, Inc.
+Copyright © 2021-2024  Free Software Foundation, Inc.
 
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3 or
@@ -31,7 +31,6 @@ a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
 div.example {margin-left: 3.2em}
 kbd.kbd {font-style: oblique}
 kbd.key {font-style: normal}
-span.w-nolinebreak-text {white-space: nowrap}
 span:hover a.copiable-link {visibility: visible}
 strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
 -->
@@ -48,7 +47,7 @@ strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
 Next: <a href="Frontends.html#Frontends" accesskey="n" rel="next">Frontends</a>, Previous: <a href="Getting-Started.html#Getting-Started" accesskey="p" rel="prev">Getting Started</a>, Up: <a href="index.html" accesskey="u" rel="up">Company</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
 <hr>
-<h2 class="chapter" id="Customization-1">Customization</h2>
+<h2 class="chapter" id="Customization-1"><span>Customization<a class="copiable-link" href="#Customization-1"> &para;</a></span></h2>
 
 <a class="index-entry-id" id="index-configure"></a>
 <a class="index-entry-id" id="index-custom"></a>
@@ -61,11 +60,11 @@ both of these approaches.
 
 <hr>
 <div class="section-level-extent" id="Customization-Interface">
-<h3 class="section" id="Customization-Interface-1">Customization Interface</h3>
+<h3 class="section" id="Customization-Interface-1"><span>Customization Interface<a class="copiable-link" href="#Customization-Interface-1"> &para;</a></span></h3>
 
 <a class="index-entry-id" id="index-configure-1"></a>
 <a class="index-entry-id" id="index-custom-1"></a>
-<p>In order to employ the customization interface, run <kbd class="kbd"><span class="w-nolinebreak-text">M-x</span>&nbsp;<span class="w-nolinebreak-text">customize-group</span>&nbsp;<kbd class="key">RET</kbd>&nbsp;company</kbd><!-- /@w -->.
+<p>In order to employ the customization interface, run <kbd class="kbd">M-x&nbsp;customize-group&nbsp;<kbd class="key">RET</kbd>&nbsp;company</kbd><!-- /@w -->.
 </p>
 <p>This interface outputs all the options available for user
 customization, so you may find it beneficial to review this list even
@@ -77,16 +76,15 @@ Variable</a>.
 <hr>
 </div>
 <div class="section-level-extent" id="Configuration-File">
-<h3 class="section" id="Configuration-File-1">Configuration File</h3>
+<h3 class="section" id="Configuration-File-1"><span>Configuration File<a class="copiable-link" href="#Configuration-File-1"> &para;</a></span></h3>
 
 <a class="index-entry-id" id="index-configure-2"></a>
 <a class="index-entry-id" id="index-custom-2"></a>
 <p>Company is a customization-rich package.  This section lists some of
-the core settings that influence the overall behavior of the
-<em class="emph">company-mode</em>.
+the core settings that influence its overall behavior.
 </p>
 <dl class="first-defvr first-defopt-alias-first-defvr">
-<dt class="defvr defopt-alias-defvr" id="index-company_002dminimum_002dprefix_002dlength"><span class="category-def">User Option: </span><span><strong class="def-name">company-minimum-prefix-length</strong><a class="copiable-link" href='#index-company_002dminimum_002dprefix_002dlength'> &para;</a></span></dt>
+<dt class="defvr defopt-alias-defvr" id="index-company_002dminimum_002dprefix_002dlength"><span class="category-def">User Option: </span><span><strong class="def-name">company-minimum-prefix-length</strong><a class="copiable-link" href="#index-company_002dminimum_002dprefix_002dlength"> &para;</a></span></dt>
 <dd><p>This is one of the values (together with <code class="code">company-idle-delay</code>),
 based on which Company auto-stars looking up completion candidates.
 This option configures how many characters have to be typed in by a
@@ -96,7 +94,7 @@ default value of <code class="code">3</code>.
 </p></dd></dl>
 
 <dl class="first-defvr first-defopt-alias-first-defvr">
-<dt class="defvr defopt-alias-defvr" id="index-company_002didle_002ddelay"><span class="category-def">User Option: </span><span><strong class="def-name">company-idle-delay</strong><a class="copiable-link" href='#index-company_002didle_002ddelay'> &para;</a></span></dt>
+<dt class="defvr defopt-alias-defvr" id="index-company_002didle_002ddelay"><span class="category-def">User Option: </span><span><strong class="def-name">company-idle-delay</strong><a class="copiable-link" href="#index-company_002didle_002ddelay"> &para;</a></span></dt>
 <dd><p>This is the second of the options that configure Company&rsquo;s auto-start
 behavior (together with <code class="code">company-minimum-prefix-length</code>).  The
 value of this option defines how fast Company is going to react to the
@@ -113,7 +111,13 @@ predicate function, as shown in the following example:
 </dd></dl>
 
 <dl class="first-defvr first-defopt-alias-first-defvr">
-<dt class="defvr defopt-alias-defvr" id="index-company_002dglobal_002dmodes"><span class="category-def">User Option: </span><span><strong class="def-name">company-global-modes</strong><a class="copiable-link" href='#index-company_002dglobal_002dmodes'> &para;</a></span></dt>
+<dt class="defvr defopt-alias-defvr" id="index-company_002dinhibit_002dinside_002dsymbols"><span class="category-def">User Option: </span><span><strong class="def-name">company-inhibit-inside-symbols</strong><a class="copiable-link" href="#index-company_002dinhibit_002dinside_002dsymbols"> &para;</a></span></dt>
+<dd><p>You can set this option to <code class="code">t</code> to disable the auto-start behavior
+when in the middle of a symbol.
+</p></dd></dl>
+
+<dl class="first-defvr first-defopt-alias-first-defvr">
+<dt class="defvr defopt-alias-defvr" id="index-company_002dglobal_002dmodes"><span class="category-def">User Option: </span><span><strong class="def-name">company-global-modes</strong><a class="copiable-link" href="#index-company_002dglobal_002dmodes"> &para;</a></span></dt>
 <dd><p>This option allows to specify in which major modes <em class="emph">company-mode</em>
 can be enabled by <code class="code">(global-company-mode)</code>. See <a class="xref" href="Getting-Started.html#Initial-Setup">Initial Setup</a>.
 The default value of <code class="code">t</code> enables Company in all major modes.
@@ -130,7 +134,7 @@ following example:
 </dd></dl>
 
 <dl class="first-defvr first-defopt-alias-first-defvr">
-<dt class="defvr defopt-alias-defvr" id="index-company_002dselection_002dwrap_002daround"><span class="category-def">User Option: </span><span><strong class="def-name">company-selection-wrap-around</strong><a class="copiable-link" href='#index-company_002dselection_002dwrap_002daround'> &para;</a></span></dt>
+<dt class="defvr defopt-alias-defvr" id="index-company_002dselection_002dwrap_002daround"><span class="category-def">User Option: </span><span><strong class="def-name">company-selection-wrap-around</strong><a class="copiable-link" href="#index-company_002dselection_002dwrap_002daround"> &para;</a></span></dt>
 <dd><p>Enable this option to loop (cycle) the candidates&rsquo; selection: after
 selecting the last candidate on the list, a command to select the next
 candidate does so with the first candidate.  By default, this option
@@ -140,25 +144,25 @@ by this option similarly.
 </p></dd></dl>
 
 <dl class="first-defvr first-defopt-alias-first-defvr">
-<dt class="defvr defopt-alias-defvr" id="index-company_002drequire_002dmatch"><span class="category-def">User Option: </span><span><strong class="def-name">company-require-match</strong><a class="copiable-link" href='#index-company_002drequire_002dmatch'> &para;</a></span></dt>
+<dt class="defvr defopt-alias-defvr" id="index-company_002drequire_002dmatch"><span class="category-def">User Option: </span><span><strong class="def-name">company-require-match</strong><a class="copiable-link" href="#index-company_002drequire_002dmatch"> &para;</a></span></dt>
 <dd><p>To allow typing in characters that don&rsquo;t match the candidates, set the
 value of this option to <code class="code">nil</code>.  For an opposite behavior (that
 is, to disallow non-matching input), set it to <code class="code">t</code>.  By default,
-Company is configured to require a matching input only if a user
-manually enables completion or selects a candidate; by having the
+Company is configured to require a matching input only if the user
+invokes completion manually or selects a candidate; by having the
 option configured to call the function
 <code class="code">company-explicit-action-p</code>.
 </p></dd></dl>
 
 <dl class="first-defvr first-defopt-alias-first-defvr">
-<dt class="defvr defopt-alias-defvr" id="index-company_002dlighter_002dbase"><span class="category-def">User Option: </span><span><strong class="def-name">company-lighter-base</strong><a class="copiable-link" href='#index-company_002dlighter_002dbase'> &para;</a></span></dt>
+<dt class="defvr defopt-alias-defvr" id="index-company_002dlighter_002dbase"><span class="category-def">User Option: </span><span><strong class="def-name">company-lighter-base</strong><a class="copiable-link" href="#index-company_002dlighter_002dbase"> &para;</a></span></dt>
 <dd><p>This user options allows to configure a string indicator of the
 enabled <em class="emph">company-mode</em> in the mode line.  The default value is
 &lsquo;<samp class="samp">company</samp>&rsquo;.
 </p></dd></dl>
 
 <dl class="first-defvr first-defopt-alias-first-defvr">
-<dt class="defvr defopt-alias-defvr" id="index-company_002dinsertion_002don_002dtrigger"><span class="category-def">User Option: </span><span><strong class="def-name">company-insertion-on-trigger</strong><a class="copiable-link" href='#index-company_002dinsertion_002don_002dtrigger'> &para;</a></span></dt>
+<dt class="defvr defopt-alias-defvr" id="index-company_002dinsertion_002don_002dtrigger"><span class="category-def">User Option: </span><span><strong class="def-name">company-insertion-on-trigger</strong><a class="copiable-link" href="#index-company_002dinsertion_002don_002dtrigger"> &para;</a></span></dt>
 <dd><p>One more pair of the user options may instruct Company to complete
 with the selected candidate by typing one of the
 <code class="code">company-insertion-triggers</code>.  The user option
@@ -169,9 +173,9 @@ See <a class="uref" href="https://www.gnu.org/software/emacs/manual/html_node/ei
 </p></dd></dl>
 
 <dl class="first-defvr first-defopt-alias-first-defvr">
-<dt class="defvr defopt-alias-defvr" id="index-company_002dinsertion_002dtriggers"><span class="category-def">User Option: </span><span><strong class="def-name">company-insertion-triggers</strong><a class="copiable-link" href='#index-company_002dinsertion_002dtriggers'> &para;</a></span></dt>
+<dt class="defvr defopt-alias-defvr" id="index-company_002dinsertion_002dtriggers"><span class="category-def">User Option: </span><span><strong class="def-name">company-insertion-triggers</strong><a class="copiable-link" href="#index-company_002dinsertion_002dtriggers"> &para;</a></span></dt>
 <dd><p>This option has an effect only when
-<code class="code"><span class="w-nolinebreak-text">company-insertion-on-trigger</span></code><!-- /@w --> is enabled.  The value can be
+<code class="code">company-insertion-on-trigger</code><!-- /@w --> is enabled.  The value can be
 one of: a string of characters, a list of syntax description
 characters (see <a data-manual="elisp" href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Syntax-Class-Table.html#Syntax-Class-Table">(elisp)Syntax Class Table</a>), or a predicate
 function.  By default, this user option is set to the list of the
@@ -182,24 +186,24 @@ valid completion; in this case, Company does not treat such characters
 as triggers.
 </p></dd></dl>
 
-<h4 class="subheading" id="Hooks">Hooks</h4>
+<h4 class="subheading" id="Hooks"><span>Hooks<a class="copiable-link" href="#Hooks"> &para;</a></span></h4>
 
 <p>Company exposes the following life-cycle hooks:
 </p>
 <dl class="first-defvr first-defopt-alias-first-defvr">
-<dt class="defvr defopt-alias-defvr" id="index-company_002dcompletion_002dstarted_002dhook"><span class="category-def">User Option: </span><span><strong class="def-name">company-completion-started-hook</strong><a class="copiable-link" href='#index-company_002dcompletion_002dstarted_002dhook'> &para;</a></span></dt>
+<dt class="defvr defopt-alias-defvr" id="index-company_002dcompletion_002dstarted_002dhook"><span class="category-def">User Option: </span><span><strong class="def-name">company-completion-started-hook</strong><a class="copiable-link" href="#index-company_002dcompletion_002dstarted_002dhook"> &para;</a></span></dt>
 </dl>
 
 <dl class="first-defvr first-defopt-alias-first-defvr">
-<dt class="defvr defopt-alias-defvr" id="index-company_002dcompletion_002dcancelled_002dhook"><span class="category-def">User Option: </span><span><strong class="def-name">company-completion-cancelled-hook</strong><a class="copiable-link" href='#index-company_002dcompletion_002dcancelled_002dhook'> &para;</a></span></dt>
+<dt class="defvr defopt-alias-defvr" id="index-company_002dcompletion_002dcancelled_002dhook"><span class="category-def">User Option: </span><span><strong class="def-name">company-completion-cancelled-hook</strong><a class="copiable-link" href="#index-company_002dcompletion_002dcancelled_002dhook"> &para;</a></span></dt>
 </dl>
 
 <dl class="first-defvr first-defopt-alias-first-defvr">
-<dt class="defvr defopt-alias-defvr" id="index-company_002dcompletion_002dfinished_002dhook"><span class="category-def">User Option: </span><span><strong class="def-name">company-completion-finished-hook</strong><a class="copiable-link" href='#index-company_002dcompletion_002dfinished_002dhook'> &para;</a></span></dt>
+<dt class="defvr defopt-alias-defvr" id="index-company_002dcompletion_002dfinished_002dhook"><span class="category-def">User Option: </span><span><strong class="def-name">company-completion-finished-hook</strong><a class="copiable-link" href="#index-company_002dcompletion_002dfinished_002dhook"> &para;</a></span></dt>
 </dl>
 
 <dl class="first-defvr first-defopt-alias-first-defvr">
-<dt class="defvr defopt-alias-defvr" id="index-company_002dafter_002dcompletion_002dhook"><span class="category-def">User Option: </span><span><strong class="def-name">company-after-completion-hook</strong><a class="copiable-link" href='#index-company_002dafter_002dcompletion_002dhook'> &para;</a></span></dt>
+<dt class="defvr defopt-alias-defvr" id="index-company_002dafter_002dcompletion_002dhook"><span class="category-def">User Option: </span><span><strong class="def-name">company-after-completion-hook</strong><a class="copiable-link" href="#index-company_002dafter_002dcompletion_002dhook"> &para;</a></span></dt>
 </dl>
 
 
